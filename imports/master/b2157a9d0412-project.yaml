@@ -1,0 +1,17 @@
+id: local-python-tool
+name: Local Python Tool
+version: "1.0.0"
+template_id: python-cli
+workflow_id: build-and-verify
+acceptance_criteria:
+  - Generated project contains source, tests, and README files.
+  - All files remain inside the assigned run workspace.
+  - Python unit tests complete successfully.
+  - Final artifact manifest contains SHA-256 checksums.
+budget:
+  max_steps: 10
+  max_model_calls: 8
+  max_files: 60
+  max_elapsed_seconds: 1800
+test_command: [python3, -m, unittest, discover, -s, tests, -v]
+

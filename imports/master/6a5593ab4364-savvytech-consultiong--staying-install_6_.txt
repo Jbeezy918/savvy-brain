@@ -1,0 +1,18 @@
+zesptool.js
+Serial port WebSerial VendorID 0x1a86 ProductID 0x55d4
+Connecting...
+
+Detecting chip type... 
+ESP8266
+Chip is ESP8266EX
+Features: WiFi
+Crystal is 26MHz
+MAC: fc:f5:c4:b1:f5:eb
+Uploading stub...
+Running stub...
+Stub running...
+Flash ID: 0
+WARNING: Failed to communicate with the flash chip,
+read/write operations will fail.
+Try checking the chip connections or removing
+any other hardware connected to IOs.

@@ -1,0 +1,10 @@
+version: 1
+generated_at: '2026-07-18T15:07:10.672319+00:00'
+tools:
+- id: desktop
+  name: Desktop
+  path: /Users/joebudds/Desktop/Desktop
+  launcher: LaunchKeyVault.command
+  health: needs_attention
+  model_profile: coding
+  enabled: false

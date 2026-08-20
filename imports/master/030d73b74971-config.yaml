@@ -1,0 +1,27 @@
+routing:
+  simple_domains:
+    - light
+    - switch
+    - fan
+    - scene
+    - script
+  complex_words:
+    - automation
+    - dashboard
+    - yaml
+    - troubleshoot
+    - debug
+    - build
+    - create
+    - coordinate
+    - schedule
+    - condition
+    - trigger
+
+safety:
+  blocked_domains:
+    - alarm_control_panel
+  confirmation_domains:
+    - lock
+    - cover
+  max_entity_matches: 8

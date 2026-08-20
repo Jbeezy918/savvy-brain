@@ -1,0 +1,10 @@
+# Agent Scorecard
+
+| Env | Agent Group | Model | Started | Finished | Files Created | Files Modified | Output Exists | Score | Notes |
+|---|---|---|---|---|---:|---:|---|---:|---|
+| ENV1 | Architecture | qwen2.5-coder:32b |  |  |  |  |  |  |  |
+| ENV2 | Backend/API | qwen2.5-coder:32b |  |  |  |  |  |  |  |
+| ENV3 | Frontend | qwen2.5-coder:32b |  |  |  |  |  |  |  |
+| ENV4 | QA/Research | qwen2.5-coder:32b |  |  |  |  |  |  |  |
+| ORCH_A | ENV1+ENV2 | qwen2.5-coder:32b |  |  |  |  |  |  |  |
+| ORCH_B | ENV3+ENV4 | qwen2.5-coder:32b |  |  |  |  |  |  |  |

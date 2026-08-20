@@ -1,0 +1,130 @@
+version: 1
+suite_name: Savvy Suite
+control_root: /Users/joebudds/Desktop/Savvy_Suite
+policy:
+  destructive_actions: false
+  enable_only_after_preflight: true
+  secrets_by_reference: true
+tools:
+  - id: savvy-consolidator
+    name: Savvy Consolidator
+    category: Core Operations
+    source_path: /Users/joebudds/Desktop/Tools/SavvyConsolidator
+    launcher: run.command
+    model_profile: coding
+    enabled: false
+  - id: savvy-tube-os
+    name: SavvyTube OS
+    category: Media Factory
+    source_path: /Users/joebudds/Desktop/SavvyTube_OS
+    launcher: app/dashboard.py
+    model_profile: reasoning
+    enabled: false
+  - id: savvy-app-forge
+    name: Savvy App Forge
+    category: Product Forges
+    source_path: /Users/joebudds/Desktop/Tools/SavvyAppForge
+    launcher: start.command
+    model_profile: coding
+    enabled: false
+  - id: savvy-home-forge
+    name: Savvy Home Forge
+    category: Product Forges
+    source_path: /Users/joebudds/Desktop/Tools/SavvyHomeForge
+    launcher: start.command
+    model_profile: coding
+    enabled: false
+  - id: savvy-market-forge
+    name: Savvy Market Forge
+    category: Product Forges
+    source_path: /Users/joebudds/Desktop/Tools/SavvyMarketForge
+    launcher: start.command
+    model_profile: reasoning
+    enabled: false
+  - id: savvy-site-forge
+    name: Savvy Site Forge
+    category: Product Forges
+    source_path: /Users/joebudds/Desktop/Tools/SavvySiteForge
+    launcher: start.command
+    model_profile: coding
+    enabled: false
+  - id: savvy-tube-forge
+    name: Savvy Tube Forge
+    category: Product Forges
+    source_path: /Users/joebudds/Desktop/Tools/SavvyTubeForge
+    launcher: start.command
+    model_profile: coding
+    enabled: false
+  - id: sop-sync
+    name: SOP Sync
+    category: Business Products
+    source_path: /Users/joebudds/Desktop/SOP_Syncv2
+    launcher: Launch_SOPSync.command
+    model_profile: reasoning
+    enabled: false
+  - id: govcon-hq
+    name: GovCon HQ
+    category: Government Contracting
+    source_path: /Users/joebudds/Desktop/GovCon_Consolidated/govcon_hq
+    launcher: launch.command
+    model_profile: reasoning
+    enabled: false
+  - id: govcon-micro-tools
+    name: GovCon Micro Tools
+    category: Government Contracting
+    source_path: /Users/joebudds/Desktop/GovCon_Consolidated/govcon_micro_tools
+    launcher: app.py
+    model_profile: coding
+    enabled: false
+  - id: ai-assistant
+    name: AI Assistant
+    category: Assistants
+    source_path: /Users/joebudds/Desktop/AI_assistant
+    launcher: null
+    model_profile: standard
+    enabled: false
+  - id: career-assistant
+    name: Career Assistant AI
+    category: Assistants
+    source_path: /Users/joebudds/Desktop/Career_Assistant_AI
+    launcher: null
+    model_profile: standard
+    enabled: false
+  - id: career-creator
+    name: Career Creator
+    category: Assistants
+    source_path: /Users/joebudds/Desktop/career_creator
+    launcher: null
+    model_profile: standard
+    enabled: false
+  - id: ha-agent
+    name: Home Assistant Agent
+    category: Home Automation
+    source_path: /Users/joebudds/Desktop/HA_Agent
+    launcher: null
+    model_profile: fast
+    enabled: false
+  - id: mac-cleanup-tools
+    name: Mac Cleanup Tools
+    category: System Tools
+    source_path: /Users/joebudds/Desktop/Mac_Cleanup_Tools
+    launcher: null
+    model_profile: fast
+    enabled: false
+  - id: agent-brain
+    name: AgentBrain
+    category: Agent Infrastructure
+    source_path: /Users/joebudds/Desktop/Cleaned_Work/Misc/Red Flash Drive/AgentBrain
+    launcher: main.py
+    model_profile: reasoning
+    enabled: false
+exclude_from_control_center:
+  - /Users/joebudds/Desktop/Desktop
+  - /Users/joebudds/Desktop/Organized-2026-07-16_11-24-05
+  - /Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated
+  - paths containing /backups/
+  - paths containing /dist/
+  - paths containing /generated/
+  - paths containing /.venv_bad_/
+  - paths containing /Projects_Archive/
+

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "SavvyHomeForge",
+    "path": "~/Documents/Codex/2026-07-17/referenced-chatgpt-conversation-this-is-untrusted/SavvyHomeForge/SavvyHomeForge.app",
+    "type": "app"
+  },
+  {
+    "name": "SavvyHub",
+    "path": "~/Projects/SavvyHub",
+    "type": "streamlit",
+    "script": "app.py"
+  },
+  {
+    "name": "GovCon",
+    "path": "~/GovCon_Consolidated/govcon_pipeline",
+    "type": "streamlit",
+    "script": "app/dashboard.py"
+  }
+]

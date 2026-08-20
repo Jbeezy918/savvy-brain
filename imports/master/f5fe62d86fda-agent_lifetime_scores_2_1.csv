@@ -1,0 +1,13 @@
+agent,crew,role,rounds_completed,best_score,latest_score,average_score,status,notes
+Builder,A,technical,0,,,,ACTIVE,
+Researcher,A,research,0,,,,ACTIVE,
+QA,A,technical,0,,,,ACTIVE,
+Auditor,A,safety,0,,,,ACTIVE,
+Memory,A,memory,0,,,,ACTIVE,
+Frontend,B,automation,0,,,,ACTIVE,
+Backend,B,automation,0,,,,ACTIVE,
+Automation,B,automation,0,,,,ACTIVE,
+Data,B,research,0,,,,ACTIVE,
+Documentation,B,operations,0,,,,ACTIVE,
+Orchestrator_A,A,operations,0,,,,ACTIVE,
+Orchestrator_B,B,operations,0,,,,ACTIVE,

@@ -1,0 +1,1177 @@
+{
+  "control_root": "/Users/joebudds/Desktop/Savvy_Suite",
+  "endpoint_failures": {
+    "http://192.168.68.102:11434": "request failed for http://192.168.68.102:11434/api/tags: <urlopen error timed out>"
+  },
+  "generated_at": "2026-07-18T16:15:02.133272+00:00",
+  "local_models": [
+    "llama3.2:3b (3.2B) @ http://127.0.0.1:11434",
+    "llama3.2-vision:latest (10.7B) @ http://127.0.0.1:11434",
+    "deepseek-r1:14b (14.8B) @ http://127.0.0.1:11434",
+    "qwen3:4b-instruct (4.0B) @ http://127.0.0.1:11434",
+    "phi4:latest (14.7B) @ http://127.0.0.1:11434",
+    "deepseek-r1:8b (8.2B) @ http://127.0.0.1:11434",
+    "qwen2.5-coder:32b (32.8B) @ http://127.0.0.1:11434"
+  ],
+  "model_routes": {
+    "coding": "qwen2.5-coder:32b (32.8B) @ http://127.0.0.1:11434",
+    "fast": "llama3.2:3b (3.2B) @ http://127.0.0.1:11434",
+    "reasoning": "deepseek-r1:14b (14.8B) @ http://127.0.0.1:11434",
+    "standard": "qwen2.5-coder:32b (32.8B) @ http://127.0.0.1:11434",
+    "vision": "llama3.2-vision:latest (10.7B) @ http://127.0.0.1:11434"
+  },
+  "registry_path": "/Users/joebudds/Downloads/SavvyFactory 6/config/savvy-suite.curated.yaml",
+  "suite_name": "Savvy Suite",
+  "tools": [
+    {
+      "candidates": [
+        {
+          "imports": [
+            "PIL",
+            "PyQt6",
+            "csv",
+            "datetime",
+            "docx",
+            "hashlib",
+            "openpyxl",
+            "pathlib",
+            "pypdf",
+            "pytesseract",
+            "re",
+            "shutil",
+            "striprtf",
+            "sys"
+          ],
+          "path": "main.py",
+          "reasons": [
+            "common entrypoint name (main.py)",
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 205
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "openpyxl",
+            "pathlib",
+            "re",
+            "shutil",
+            "urllib"
+          ],
+          "path": "ai_rebuild_master.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "main",
+            "openpyxl",
+            "pathlib",
+            "shutil",
+            "subprocess",
+            "sys"
+          ],
+          "path": "auto_consolidate.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "openpyxl",
+            "pathlib",
+            "re",
+            "striprtf",
+            "sys"
+          ],
+          "path": "credential_workbook.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "PIL",
+            "PyQt6",
+            "csv",
+            "datetime",
+            "docx",
+            "hashlib",
+            "json",
+            "openpyxl",
+            "os",
+            "pathlib",
+            "pypdf",
+            "pytesseract",
+            "re",
+            "shutil",
+            "striprtf",
+            "sys"
+          ],
+          "path": "main_phase1_backup.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "datetime",
+            "openpyxl",
+            "pathlib",
+            "re",
+            "shutil"
+          ],
+          "path": "rebuild_master_categories.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "openpyxl",
+            "pathlib"
+          ],
+          "path": "export_env.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        },
+        {
+          "imports": [
+            "datetime",
+            "openpyxl",
+            "pathlib",
+            "re",
+            "shutil"
+          ],
+          "path": "repair_missing_keys.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        }
+      ],
+      "category": "Core Operations",
+      "configured_launcher": "run.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Core Operations/Savvy Consolidator.command",
+      "environment": "/Users/joebudds/Desktop/Tools/SavvyConsolidator/.venv/bin/python",
+      "environment_detail": "",
+      "external_imports": [
+        "PIL",
+        "PyQt6",
+        "docx",
+        "openpyxl",
+        "pypdf",
+        "pytesseract",
+        "striprtf"
+      ],
+      "id": "savvy-consolidator",
+      "name": "Savvy Consolidator",
+      "notes": [],
+      "selected_launcher": "run.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Tools/SavvyConsolidator",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Core Operations/Savvy Consolidator"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "pathlib",
+            "production_core",
+            "subprocess",
+            "tkinter"
+          ],
+          "path": "app/dashbord.py",
+          "reasons": [
+            "contains a Python main guard",
+            "uses app framework: tkinter"
+          ],
+          "score": 135
+        },
+        {
+          "imports": [
+            "__future__",
+            "argparse",
+            "datetime",
+            "getpass",
+            "json",
+            "os",
+            "pathlib",
+            "signal",
+            "subprocess",
+            "sys",
+            "time",
+            "tkinter",
+            "typing",
+            "urllib"
+          ],
+          "path": "app/watchdog.py",
+          "reasons": [
+            "contains a Python main guard",
+            "uses app framework: tkinter"
+          ],
+          "score": 135
+        },
+        {
+          "imports": [
+            "tkinter"
+          ],
+          "path": "app/dashboard.py",
+          "reasons": [
+            "common entrypoint name (dashboard.py)",
+            "uses app framework: tkinter"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "__future__",
+            "argparse",
+            "datetime",
+            "json",
+            "niche_manager",
+            "os",
+            "pathlib",
+            "production_core",
+            "re",
+            "research_engine",
+            "scheduler",
+            "sys",
+            "typing",
+            "urllib",
+            "youtube_client"
+          ],
+          "path": "app/production_pipeline.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "os",
+            "pathlib",
+            "signal",
+            "subprocess",
+            "sys",
+            "tempfile",
+            "time",
+            "urllib"
+          ],
+          "path": "app/queue_worker.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        },
+        {
+          "imports": [
+            "__future__",
+            "datetime",
+            "json",
+            "os",
+            "pathlib",
+            "re",
+            "sys",
+            "time",
+            "typing",
+            "urllib",
+            "youtube_client"
+          ],
+          "path": "app/research_engine.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        },
+        {
+          "imports": [
+            "datetime",
+            "pathlib",
+            "production_core",
+            "production_pipeline",
+            "subprocess",
+            "tkinter"
+          ],
+          "path": "app/queue_control.py",
+          "reasons": [
+            "uses app framework: tkinter"
+          ],
+          "score": 35
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "pathlib",
+            "tkinter",
+            "urllib"
+          ],
+          "path": "app/research_engine_gui.py",
+          "reasons": [
+            "uses app framework: tkinter"
+          ],
+          "score": 35
+        }
+      ],
+      "category": "Media Factory",
+      "configured_launcher": "app/dashboard.py",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Media Factory/SavvyTube OS.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [
+        "getpass",
+        "google",
+        "google_auth_oauthlib",
+        "googleapiclient",
+        "py_compile"
+      ],
+      "id": "savvy-tube-os",
+      "name": "SavvyTube OS",
+      "notes": [],
+      "selected_launcher": "app/dashboard.py",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/SavvyTube_OS",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Media Factory/SavvyTube OS"
+    },
+    {
+      "candidates": [],
+      "category": "Product Forges",
+      "configured_launcher": "start.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Product Forges/Savvy App Forge.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [],
+      "id": "savvy-app-forge",
+      "name": "Savvy App Forge",
+      "notes": [],
+      "selected_launcher": "start.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Tools/SavvyAppForge",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Product Forges/Savvy App Forge"
+    },
+    {
+      "candidates": [],
+      "category": "Product Forges",
+      "configured_launcher": "start.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Product Forges/Savvy Home Forge.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [],
+      "id": "savvy-home-forge",
+      "name": "Savvy Home Forge",
+      "notes": [],
+      "selected_launcher": "start.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Tools/SavvyHomeForge",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Product Forges/Savvy Home Forge"
+    },
+    {
+      "candidates": [],
+      "category": "Product Forges",
+      "configured_launcher": "start.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Product Forges/Savvy Market Forge.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [],
+      "id": "savvy-market-forge",
+      "name": "Savvy Market Forge",
+      "notes": [],
+      "selected_launcher": "start.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Tools/SavvyMarketForge",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Product Forges/Savvy Market Forge"
+    },
+    {
+      "candidates": [],
+      "category": "Product Forges",
+      "configured_launcher": "start.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Product Forges/Savvy Site Forge.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [],
+      "id": "savvy-site-forge",
+      "name": "Savvy Site Forge",
+      "notes": [],
+      "selected_launcher": "start.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Tools/SavvySiteForge",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Product Forges/Savvy Site Forge"
+    },
+    {
+      "candidates": [],
+      "category": "Product Forges",
+      "configured_launcher": "start.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Product Forges/Savvy Tube Forge.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [],
+      "id": "savvy-tube-forge",
+      "name": "Savvy Tube Forge",
+      "notes": [],
+      "selected_launcher": "start.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Tools/SavvyTubeForge",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Product Forges/Savvy Tube Forge"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "mss",
+            "os",
+            "pathlib",
+            "pyautogui",
+            "pygetwindow",
+            "pynput",
+            "queue",
+            "threading",
+            "time",
+            "tkinter"
+          ],
+          "path": "sopsync_dashboard.py",
+          "reasons": [
+            "contains a Python main guard",
+            "uses app framework: tkinter",
+            "located at project root"
+          ],
+          "score": 150
+        }
+      ],
+      "category": "Business Products",
+      "configured_launcher": "Launch_SOPSync.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Business Products/SOP Sync.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [
+        "mss",
+        "pyautogui",
+        "pygetwindow",
+        "pynput"
+      ],
+      "id": "sop-sync",
+      "name": "SOP Sync",
+      "notes": [],
+      "selected_launcher": "Launch_SOPSync.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/SOP_Syncv2",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Business Products/SOP Sync"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "pandas",
+            "pathlib",
+            "re",
+            "sam_parser",
+            "sqlite3",
+            "streamlit"
+          ],
+          "path": "app.py",
+          "reasons": [
+            "common entrypoint name (app.py)",
+            "uses app framework: streamlit",
+            "located at project root"
+          ],
+          "score": 135
+        },
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "pandas",
+            "pathlib",
+            "re",
+            "sqlite3",
+            "streamlit"
+          ],
+          "path": "app_backup_before_intake_v2.py",
+          "reasons": [
+            "uses app framework: streamlit",
+            "located at project root"
+          ],
+          "score": 50
+        },
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "pandas",
+            "pathlib",
+            "re",
+            "sam_parser",
+            "sqlite3",
+            "streamlit"
+          ],
+          "path": "app_before_email_intake.py",
+          "reasons": [
+            "uses app framework: streamlit",
+            "located at project root"
+          ],
+          "score": 50
+        },
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "pandas",
+            "pathlib",
+            "re",
+            "sam_parser",
+            "sqlite3",
+            "streamlit"
+          ],
+          "path": "app_before_ops_lanes.py",
+          "reasons": [
+            "uses app framework: streamlit",
+            "located at project root"
+          ],
+          "score": 50
+        },
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "pandas",
+            "pathlib",
+            "re",
+            "sam_parser",
+            "sqlite3",
+            "streamlit"
+          ],
+          "path": "app_messy_backup_20260607_173415.py",
+          "reasons": [
+            "uses app framework: streamlit",
+            "located at project root"
+          ],
+          "score": 50
+        },
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "pandas",
+            "pathlib",
+            "re",
+            "sam_parser",
+            "sqlite3",
+            "streamlit"
+          ],
+          "path": "app_pre_toolbar_backup.py",
+          "reasons": [
+            "uses app framework: streamlit",
+            "located at project root"
+          ],
+          "score": 50
+        },
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "pandas",
+            "pathlib",
+            "re",
+            "sam_parser",
+            "sqlite3",
+            "streamlit"
+          ],
+          "path": "app_working_communications_20260607_224546.py",
+          "reasons": [
+            "uses app framework: streamlit",
+            "located at project root"
+          ],
+          "score": 50
+        },
+        {
+          "imports": [
+            "pathlib"
+          ],
+          "path": "patch_intake_v2.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        },
+        {
+          "imports": [
+            "datetime",
+            "re"
+          ],
+          "path": "sam_parser.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        }
+      ],
+      "category": "Government Contracting",
+      "configured_launcher": "launch.command",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Government Contracting/GovCon HQ.command",
+      "environment": "/Users/joebudds/Desktop/GovCon_Consolidated/govcon_hq/.venv/bin/python",
+      "environment_detail": "Installed and verified packages from requirements.txt.",
+      "external_imports": [
+        "pandas",
+        "streamlit"
+      ],
+      "id": "govcon-hq",
+      "name": "GovCon HQ",
+      "notes": [],
+      "selected_launcher": "launch.command",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/GovCon_Consolidated/govcon_hq",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Government Contracting/GovCon HQ"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "__future__",
+            "flask",
+            "json",
+            "os",
+            "secrets",
+            "tools",
+            "urllib"
+          ],
+          "path": "app.py",
+          "reasons": [
+            "common entrypoint name (app.py)",
+            "contains a Python main guard",
+            "uses app framework: flask",
+            "located at project root"
+          ],
+          "score": 235
+        }
+      ],
+      "category": "Government Contracting",
+      "configured_launcher": "app.py",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Government Contracting/GovCon Micro Tools.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [
+        "flask",
+        "secrets",
+        "tools"
+      ],
+      "id": "govcon-micro-tools",
+      "name": "GovCon Micro Tools",
+      "notes": [],
+      "selected_launcher": "app.py",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/GovCon_Consolidated/govcon_micro_tools",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Government Contracting/GovCon Micro Tools"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "os",
+            "sqlite3"
+          ],
+          "path": "import_resumes.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "datetime",
+            "os",
+            "shutil",
+            "sqlite3"
+          ],
+          "path": "pipeline_compiler.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "docx2txt",
+            "os",
+            "psycopg2",
+            "pypdf"
+          ],
+          "path": "backend/memory_extractor.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        },
+        {
+          "imports": [
+            "os",
+            "re",
+            "shutil"
+          ],
+          "path": "backend/system_sweep.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        },
+        {
+          "imports": [],
+          "path": "pipeline_db.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        },
+        {
+          "imports": [],
+          "path": "router.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        }
+      ],
+      "category": "Assistants",
+      "configured_launcher": null,
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Assistants/AI Assistant.command",
+      "environment": "/Users/joebudds/Desktop/AI_assistant/.venv/bin/python",
+      "environment_detail": "Installed and verified packages from curated free-package list.",
+      "external_imports": [
+        "docx2txt",
+        "psycopg2",
+        "pypdf"
+      ],
+      "id": "ai-assistant",
+      "name": "AI Assistant",
+      "notes": [],
+      "selected_launcher": "menu (4 actions)",
+      "selection": "menu",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/AI_assistant",
+      "status": "menu_launcher_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Assistants/AI Assistant"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "google",
+            "google_auth_oauthlib",
+            "os",
+            "pickle"
+          ],
+          "path": "auth_helper.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "os",
+            "pandas",
+            "pickle"
+          ],
+          "path": "extract_tokens.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "docx",
+            "duckduckgo_search",
+            "fitz",
+            "json",
+            "os"
+          ],
+          "path": "parser.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "getpass",
+            "imaplib"
+          ],
+          "path": "watchdog.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "os",
+            "shutil"
+          ],
+          "path": "consolidator.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        },
+        {
+          "imports": [
+            "imaplib",
+            "keyring"
+          ],
+          "path": "run_watchdog.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        }
+      ],
+      "category": "Assistants",
+      "configured_launcher": null,
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Assistants/Career Assistant AI.command",
+      "environment": "/Users/joebudds/Desktop/Career_Assistant_AI/.venv/bin/python",
+      "environment_detail": "Installed and verified packages from curated free-package list.",
+      "external_imports": [
+        "docx",
+        "duckduckgo_search",
+        "fitz",
+        "getpass",
+        "google",
+        "google_auth_oauthlib",
+        "imaplib",
+        "keyring",
+        "pandas"
+      ],
+      "id": "career-assistant",
+      "name": "Career Assistant AI",
+      "notes": [],
+      "selected_launcher": "menu (5 actions)",
+      "selection": "menu",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Career_Assistant_AI",
+      "status": "menu_launcher_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Assistants/Career Assistant AI"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "os",
+            "sqlite3"
+          ],
+          "path": "init_rapport_tuning.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "os",
+            "sqlite3",
+            "urllib"
+          ],
+          "path": "job_analyzer.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "os",
+            "sqlite3"
+          ],
+          "path": "update_pipeline_logic.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        }
+      ],
+      "category": "Assistants",
+      "configured_launcher": null,
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Assistants/Career Creator.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [],
+      "id": "career-creator",
+      "name": "Career Creator",
+      "notes": [],
+      "selected_launcher": "menu (3 actions)",
+      "selection": "menu",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/career_creator",
+      "status": "menu_launcher_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Assistants/Career Creator"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "paramiko"
+          ],
+          "path": "agent_builder.py",
+          "reasons": [
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 115
+        },
+        {
+          "imports": [
+            "json",
+            "paramiko",
+            "requests"
+          ],
+          "path": "room_builder.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        },
+        {
+          "imports": [
+            "json",
+            "paramiko"
+          ],
+          "path": "voice_config.py",
+          "reasons": [
+            "located at project root"
+          ],
+          "score": 15
+        }
+      ],
+      "category": "Home Automation",
+      "configured_launcher": null,
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Home Automation/Home Assistant Agent.command",
+      "environment": "/Users/joebudds/Desktop/HA_Agent/.venv/bin/python",
+      "environment_detail": "Installed and verified packages from curated free-package list.",
+      "external_imports": [
+        "paramiko",
+        "requests"
+      ],
+      "id": "ha-agent",
+      "name": "Home Assistant Agent",
+      "notes": [],
+      "selected_launcher": "agent_builder.py",
+      "selection": "inferred",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/HA_Agent",
+      "status": "inferred_launcher_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Home Automation/Home Assistant Agent"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "PyPDF2",
+            "base64",
+            "cryptography",
+            "datetime",
+            "difflib",
+            "docx",
+            "hashlib",
+            "io",
+            "json",
+            "pandas",
+            "re",
+            "streamlit",
+            "uuid"
+          ],
+          "path": "Mac_Cleanup_Quarantine_20260519_123419/aie_v3.py",
+          "reasons": [
+            "uses app framework: streamlit"
+          ],
+          "score": 35
+        }
+      ],
+      "category": "System Tools",
+      "configured_launcher": null,
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/System Tools/Mac Cleanup Tools.command",
+      "environment": null,
+      "environment_detail": "",
+      "external_imports": [
+        "PyPDF2",
+        "cryptography",
+        "difflib",
+        "docx",
+        "pandas",
+        "streamlit"
+      ],
+      "id": "mac-cleanup-tools",
+      "name": "Mac Cleanup Tools",
+      "notes": [],
+      "selected_launcher": null,
+      "selection": "none",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Mac_Cleanup_Tools",
+      "status": "folder_only_safety",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/System Tools/Mac Cleanup Tools"
+    },
+    {
+      "candidates": [
+        {
+          "imports": [
+            "agents",
+            "api",
+            "json",
+            "logging",
+            "orchestrator",
+            "os",
+            "sys",
+            "uvicorn"
+          ],
+          "path": "main.py",
+          "reasons": [
+            "common entrypoint name (main.py)",
+            "contains a Python main guard",
+            "located at project root"
+          ],
+          "score": 205
+        },
+        {
+          "imports": [
+            "datetime",
+            "fastapi",
+            "json",
+            "logging",
+            "orchestrator",
+            "os",
+            "pydantic",
+            "sys",
+            "typing",
+            "uvicorn"
+          ],
+          "path": "api/steward_api.py",
+          "reasons": [
+            "contains a Python main guard",
+            "uses app framework: fastapi"
+          ],
+          "score": 135
+        },
+        {
+          "imports": [
+            "datetime",
+            "hashlib",
+            "os",
+            "pathlib",
+            "subprocess",
+            "time"
+          ],
+          "path": "Clipboard_setup_nfirst of webby/clipboard_sync_mac.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "requests"
+          ],
+          "path": "Clipboard_setup_nfirst of webby/SavvyTech_Business_Complete/02_OrderBot/orderbot_demo/review_poster.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        },
+        {
+          "imports": [
+            "datetime",
+            "json",
+            "os",
+            "twilio"
+          ],
+          "path": "Clipboard_setup_nfirst of webby/SavvyTech_Business_Complete/02_OrderBot/orderbot_demo/sms_handler.py",
+          "reasons": [
+            "contains a Python main guard"
+          ],
+          "score": 100
+        }
+      ],
+      "category": "Agent Infrastructure",
+      "configured_launcher": "main.py",
+      "control_launcher": "/Users/joebudds/Desktop/Savvy_Suite/Launchers/Agent Infrastructure/AgentBrain.command",
+      "environment": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Red Flash Drive/AgentBrain/.venv-savvy-py312/bin/python",
+      "environment_detail": "Installed and verified packages from requirements.txt.",
+      "external_imports": [
+        "agents",
+        "api",
+        "fastapi",
+        "orchestrator",
+        "pydantic",
+        "requests",
+        "twilio",
+        "uvicorn"
+      ],
+      "id": "agent-brain",
+      "name": "AgentBrain",
+      "notes": [],
+      "selected_launcher": "main.py",
+      "selection": "configured",
+      "source_exists": true,
+      "source_path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Red Flash Drive/AgentBrain",
+      "status": "control_ready",
+      "tool_link": "/Users/joebudds/Desktop/Savvy_Suite/Tools/Agent Infrastructure/AgentBrain"
+    }
+  ]
+}

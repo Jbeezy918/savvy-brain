@@ -1,0 +1,13 @@
+id: build-and-verify
+version: "1.0.0"
+nodes:
+  - id: design
+    agent_id: architect
+    depends_on: []
+  - id: build
+    agent_id: builder
+    depends_on: [design]
+  - id: verify
+    agent_id: verifier
+    depends_on: [build]
+

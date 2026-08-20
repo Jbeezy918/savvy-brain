@@ -1,0 +1,17 @@
+profiles:
+  fast:
+    prefer: [small, instruct]
+    avoid: [vision]
+  standard:
+    prefer: [instruct]
+    avoid: [vision]
+  reasoning:
+    prefer: [reason, think]
+    avoid: [vision]
+  coding:
+    prefer: [coder, code]
+    avoid: [vision]
+  vision:
+    prefer: [vision, vl]
+    avoid: []
+

@@ -1,0 +1,10 @@
+# Instructions for Project Snapshot
+
+1. Open your terminal.
+2. Navigate to your AI_A1 project folder.
+3. Run the following command to generate the project data:
+
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' && echo "--- README ---" && cat README.md 2>/dev/null && echo "--- REQ ---" && cat requirements.txt 2>/dev/null > project_snapshot.txt
+
+4. The file 'project_snapshot.txt' will be created in your folder.
+5. Upload this 'project_snapshot.txt' file to this chat.

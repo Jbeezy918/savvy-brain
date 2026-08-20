@@ -1,0 +1,60 @@
+---
+research_tech_automation_trends:
+  description: Research current trends in {campaign_topic}, identify high-value SEO
+    keywords relevant to {target_audience}, and analyze {competitors} — their positioning,
+    messaging, content strategy, and audience targeting. Use web search and site scraping
+    to gather fresh, accurate data.
+  expected_output: |-
+    A structured research report in markdown format containing:
+    - Top 5–7 industry trends in {campaign_topic}
+    - A keyword list (10–15 terms) with relevance notes for {target_audience}
+    - Competitor analysis summary: positioning, messaging angles, strengths/weaknesses for each of {competitors}
+  agent: seo_market_research_specialist
+develop_campaign_strategy:
+  description: Using the research report, build a comprehensive marketing campaign
+    strategy for {campaign_topic} targeting {target_audience}. Define campaign objectives,
+    core messaging pillars, audience segmentation approach, recommended channels (paid
+    ads, email, content marketing), and measurable KPIs. Differentiate SavvyTech Consulting
+    from {competitors}.
+  expected_output: |-
+    A comprehensive campaign strategy document in markdown format with:
+    - Campaign objectives (3–5 SMART goals)
+    - 3–4 messaging pillars with key talking points
+    - Audience segmentation breakdown for {target_audience}
+    - Channel mix recommendation with rationale (paid, email, content)
+    - KPIs and success metrics per channel
+  agent: marketing_strategy_director
+  context:
+  - research_tech_automation_trends
+write_ad_copy_email_sequences:
+  description: |-
+    Using the research report and campaign strategy, produce high-converting marketing copy for {campaign_topic} aimed at {target_audience}. All copy must reflect the {brand_voice} tone and style. Deliverables include:
+    - 3 ad variations for Google and/or LinkedIn
+    - A 3-email nurture sequence (awareness → consideration → decision)
+    - A landing page headline and subheadline
+  expected_output: |-
+    A full copy document in markdown format containing:
+    - 3 labeled ad variations (platform noted, headline + body + CTA)
+    - 3-email nurture sequence (subject line, preview text, body, CTA per email)
+    - Landing page headline and subheadline
+    All copy written in {brand_voice} tone, aligned with campaign strategy messaging pillars.
+  agent: direct_response_copywriter
+  context:
+  - research_tech_automation_trends
+  - develop_campaign_strategy
+brand_quality_audit:
+  description: 'Review all copy produced in the previous task against the campaign
+    strategy and {brand_voice} guidelines. For each asset (ads, emails, landing page),
+    flag: off-brand tone, weak or missing CTAs, factual inaccuracies, inconsistencies
+    with the messaging pillars, and conversion gaps. Provide an approved final version
+    with inline revision notes.'
+  expected_output: |-
+    An audited and approved final copy document in markdown format with:
+    - Inline revision notes for each asset (clearly marked)
+    - Final approved version of all copy (ads, emails, landing page)
+    - A quality score (1–10) per asset with a brief justification
+    - An overall campaign copy readiness summary
+  agent: brand_content_quality_auditor
+  context:
+  - develop_campaign_strategy
+  - write_ad_copy_email_sequences

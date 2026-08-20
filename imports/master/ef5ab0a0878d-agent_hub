@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Agent Hub Mac App Launcher
+cd /Users/joebudds/Desktop
+
+# Activate virtual environment
+source spark_env/bin/activate
+
+# Launch the desktop app
+python agent_hub_desktop_v2.py

@@ -1,0 +1,31 @@
+AGENT SYSTEMS LOCATIONS
+========================
+
+Bob Agent v2.0 (Production Ready)
+Location: ~/Desktop/Bob_Agent/
+Status: Complete personal AI assistant
+Documentation: ~/Desktop/Bob_Agent/BOB_OPTIMIZATION_REPORT.md
+
+Oracle Bridge (Functional, needs refactoring)
+Location: ~/oracle_bridge/
+Status: Multi-agent orchestrator
+Documentation: ~/oracle_bridge/ORACLE_OPTIMIZATION_REPORT.md
+
+Archon MCP (Production)
+Location: ~/Projects/AI-Agents/archon/
+Status: MCP server with RAG knowledge base
+Documentation: ~/Projects/AI-Agents/archon/CLAUDE.md
+
+Master Operator (Incomplete - 10%)
+Location: ~/master-operator-agent/
+Status: Only memory client done
+Documentation: ~/master-operator-agent/MASTER_OPERATOR_STATUS.md
+
+Cross-Machine Sync (New - Dec 2025)
+Files: ~/cross_machine_memory_sync.py
+Documentation: ~/CROSS_MACHINE_SETUP_GUIDE.md
+Purpose: Mac/Windows Claude memory sync
+
+For full details, see:
+- ~/CLAUDE_MASTER_DOC.md (complete ecosystem)
+- ~/CLAUDE.md (startup protocols)

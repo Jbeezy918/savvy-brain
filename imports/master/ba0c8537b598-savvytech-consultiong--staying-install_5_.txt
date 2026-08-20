@@ -1,0 +1,205 @@
+esptool.js
+Serial port WebSerial VendorID 0x1a86 ProductID 0x55d4
+Connecting...
+
+Detecting chip type... 
+ESP8266
+Chip is ESP8266EX
+Features: WiFi
+Crystal is 26MHz
+MAC: fc:f5:c4:b1:f5:eb
+Uploading stub...
+Running stub...
+Stub running...
+Flash ID: 0
+WARNING: Failed to communicate with the flash chip,
+read/write operations will fail.
+Try checking the chip connections or removing
+any other hardware connected to IOs.
+INFO ESPHome 2026.7.2
+INFO Reading configuration /config/esphome/savvytech-consultiong--staying.yaml...
+WARNING Captive portal is enabled but no WiFi AP is configured. The captive portal will not be accessible. Add 'ap:' to your WiFi configuration to enable the captive portal.
+WARNING GPIO binary_sensor 'Deauther Button Select': GPIO16 on ESP8266 doesn't support interrupts. Falling back to polling mode (same as in ESPHome <2025.7). The sensor will work exactly as before, but other pins have better performance with interrupts.
+INFO Generating C++ source...
+INFO Compiling app... Build path: /data/build/savvytech-consultiong--staying
+Processing savvytech-consultiong--staying (board: esp12e; framework: arduino; platform: platformio/espressif8266@4.2.1)
+--------------------------------------------------------------------------------
+HARDWARE: ESP8266 80MHz, 80KB RAM, 4MB Flash
+ESPHome: Excluding Updater.cpp from build (using native OTA backend)
+ESPHome: Excluding core_esp8266_waveform_phase.cpp from build (waveform not required)
+ESPHome: Excluding core_esp8266_waveform_pwm.cpp from build (waveform not required)
+Dependency Graph
+|-- ESPAsyncTCP @ 2.0.0
+|-- ESP8266WiFi @ 1.0
+|-- ESPAsyncWebServer @ 3.9.6
+|-- DNSServer @ 1.1.1
+|-- ESP8266mDNS @ 1.2
+|-- Wire @ 1.0
+Compiling .pioenvs/savvytech-consultiong--staying/src/esphome/core/build_info_data.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/src/main.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/lib34f/libESPAsyncTCP.a
+Indexing .pioenvs/savvytech-consultiong--staying/lib34f/libESPAsyncTCP.a
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/CertStoreBearSSL.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFi.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFiAP.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFiGeneric.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFiGratuitous.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFiMulti.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFiSTA-WPS.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFiSTA.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/ESP8266WiFiScan.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/WiFiClient.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/WiFiClientSecureBearSSL.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/WiFiServer.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/WiFiServerSecureBearSSL.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/WiFiUdp.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib67b/ESP8266WiFi/enable_wifi_at_boot_time.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libaf0/Hash/Hash.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/AsyncEventSource.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/AsyncJson.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/lib67b/libESP8266WiFi.a
+Indexing .pioenvs/savvytech-consultiong--staying/lib67b/libESP8266WiFi.a
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/AsyncWebHeader.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/libaf0/libHash.a
+Indexing .pioenvs/savvytech-consultiong--staying/libaf0/libHash.a
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/AsyncWebServerRequest.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/AsyncWebSocket.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/BackPort_SHA1Builder.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/ChunkPrint.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/Middleware.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/WebAuthentication.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/WebHandlers.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/WebRequest.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/WebResponses.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libbed/ESPAsyncWebServer/WebServer.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libecb/DNSServer/DNSServer.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib3ff/ESP8266mDNS/ESP8266mDNS.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib3ff/ESP8266mDNS/LEAmDNS.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/libbed/libESPAsyncWebServer.a
+Indexing .pioenvs/savvytech-consultiong--staying/libbed/libESPAsyncWebServer.a
+Compiling .pioenvs/savvytech-consultiong--staying/lib3ff/ESP8266mDNS/LEAmDNS_Control.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/libecb/libDNSServer.a
+Indexing .pioenvs/savvytech-consultiong--staying/libecb/libDNSServer.a
+Compiling .pioenvs/savvytech-consultiong--staying/lib3ff/ESP8266mDNS/LEAmDNS_Helpers.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib3ff/ESP8266mDNS/LEAmDNS_Structs.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/lib3ff/ESP8266mDNS/LEAmDNS_Transfer.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/libb5a/Wire/Wire.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/libFrameworkArduinoVariant.a
+Indexing .pioenvs/savvytech-consultiong--staying/libFrameworkArduinoVariant.a
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Crypto.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/libb5a/libWire.a
+Indexing .pioenvs/savvytech-consultiong--staying/libb5a/libWire.a
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Esp-frag.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Esp-version.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Esp.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/lib3ff/libESP8266mDNS.a
+Indexing .pioenvs/savvytech-consultiong--staying/lib3ff/libESP8266mDNS.a
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/FS.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/FSnoop.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/FunctionalInterrupt.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/HardwareSerial.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/IPAddress.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/LwipDhcpServer-NonOS.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/LwipDhcpServer.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/LwipIntf.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/LwipIntfCB.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/MD5Builder.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Print.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Schedule.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/StackThunk.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Stream.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/StreamSend.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/Tone.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/TypeConversion.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/WMath.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/WString.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/abi.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/aes_unwrap.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/base64.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/cbuf.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/cont.S.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/cont_util.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_app_entry_noextra4k.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_eboot_command.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_features.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_flash_quirks.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_flash_utils.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_i2s.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_main.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_non32xfer.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_noniso.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_phy.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_postmortem.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_si2c.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_sigma_delta.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_spi_utils.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_timer.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_vm.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_wiring.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_wiring_analog.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_wiring_digital.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_wiring_pulse.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_wiring_pwm.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/core_esp8266_wiring_shift.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/crc32.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/debug.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/exc-c-wrapper-handler.S.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/exc-sethandler.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/flash_hal.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/gdb_hooks.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/heap.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/hwdt_app_entry.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/libb64/cdecode.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/libb64/cencode.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/libc_replacements.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/mmu_iram.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/reboot_uart_dwnld.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/spiffs/spiffs_cache.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/spiffs/spiffs_check.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/spiffs/spiffs_gc.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/spiffs/spiffs_hydrogen.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/spiffs/spiffs_nucleus.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/spiffs_api.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/sqrt32.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/stdlib_noniso.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/time.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/uart.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/umm_malloc/umm_info.c.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/umm_malloc/umm_integrity.c.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/umm_malloc/umm_local.c.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/umm_malloc/umm_malloc.cpp.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/umm_malloc/umm_poison.c.o
+Compiling .pioenvs/savvytech-consultiong--staying/FrameworkArduino/wpa2_eap_patch.cpp.o
+Archiving .pioenvs/savvytech-consultiong--staying/libFrameworkArduino.a
+Indexing .pioenvs/savvytech-consultiong--staying/libFrameworkArduino.a
+remove_scanf_float_flag([".pioenvs/savvytech-consultiong--staying/firmware.elf"], [".pioenvs/savvytech-consultiong--staying/src/esphome/components/binary_sensor/automation.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/binary_sensor/binary_sensor.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/binary_sensor/filter.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/captive_portal/captive_portal.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/display/display.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/display/display_buffer.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/display/rect.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/core.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/crash_handler.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/gpio.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/hal.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/helpers.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/lwip_glue_stubs.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/preferences.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/printf_stubs.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esp8266/waveform_stubs.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/esphome/ota/ota_esphome.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/font/font.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/gpio/binary_sensor/gpio_binary_sensor.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/i2c/i2c.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/i2c/i2c_bus_arduino.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/logger/logger.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/logger/logger_esp8266.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/md5/md5.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/mdns/mdns_component.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/mdns/mdns_esp8266.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/network/network_component.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/network/util.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/ota/ota_backend.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/ota/ota_backend_esp8266.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/ota/ota_bootloader_esp_idf.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/ota/ota_partitions_esp_idf.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/safe_mode/safe_mode.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/sha256/sha256.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/socket/lwip_raw_tcp_impl.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/socket/socket.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/ssd1306_base/ssd1306_base.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/ssd1306_i2c/ssd1306_i2c.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/web_server/ota/ota_web_server.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/web_server_base/web_server_base.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/wifi/wifi_component.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/components/wifi/wifi_component_esp8266.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/alloc_helpers.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/application.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/build_info_data.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/color.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/component.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/component_iterator.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/controller_registry.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/entity_base.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/gpio.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/helpers.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/log.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/scheduler.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/time.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/time_64.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/util.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/esphome/core/wake/wake_esp8266.cpp.o", ".pioenvs/savvytech-consultiong--staying/src/main.cpp.o"])
+ESPHome: Removing _scanf_float (saves ~8KB flash)
+Linking .pioenvs/savvytech-consultiong--staying/firmware.elf
+RAM:   [====      ]  42.0% (used 34372 bytes from 81920 bytes)
+Flash: [===       ]  34.5% (used 360289 bytes from 1044464 bytes)
+Building .pioenvs/savvytech-consultiong--staying/firmware.bin
+esp8266_copy_factory_bin([".pioenvs/savvytech-consultiong--staying/firmware.bin"], [".pioenvs/savvytech-consultiong--staying/firmware.elf"])
+esp8266_copy_ota_bin([".pioenvs/savvytech-consultiong--staying/firmware.bin"], [".pioenvs/savvytech-consultiong--staying/firmware.elf"])
+========================= [SUCCESS] Took 51.66 seconds =========================
+INFO Build Info: config_hash=0xeae80901 build_time_str=2026-07-24 08:24:57 -0500
+INFO Successfully compiled program.
+Not changing the image
+Compressed 364448 bytes to 260006...
+Writing at 0x0... (6%)
+Writing at 0x5826... (12%)
+Writing at 0xb357... (18%)
+Writing at 0x10e4e... (25%)
+Writing at 0x17269... (31%)
+Writing at 0x1d062... (37%)
+Writing at 0x22517... (43%)
+Writing at 0x27cf9... (50%)
+Writing at 0x2ccd0... (56%)
+Writing at 0x31d43... (62%)
+Writing at 0x370f2... (68%)
+Writing at 0x3c96b... (75%)
+Writing at 0x41fda... (81%)
+Writing at 0x47329... (87%)
+Writing at 0x4ce9b... (93%)
+Writing at 0x53945... (100%)
+Wrote 364448 bytes (260006 compressed) at 0x0 in 25.339 seconds.
+Leaving...

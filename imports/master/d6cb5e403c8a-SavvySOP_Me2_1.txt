@@ -1,0 +1,994 @@
+#!/usr/bin/env python3
+"""
+╔══════════════════════════════════════════════════════════════════╗
+║        SOPsync™  —  Workflow Viewer  v1.0                        ║
+║  Straight scroll · S-wrap toggle · Ring chain edit mode          ║
+║  Drag-to-swap · Auto-circles · PDF export · Two-track compare    ║
+║  SavvyTech Consulting LLC  |  savvytechautomations.com           ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Launch:
+  python3 sopsync_viewer.py <session_folder>
+  python3 sopsync_viewer.py <sop_folder> <user_folder>   # two-track compare
+"""
+
+import glob
+import json
+import math
+import os
+import shutil
+import subprocess
+import sys
+import zipfile
+from datetime import datetime
+from pathlib import Path
+
+import tkinter as tk
+from tkinter import ttk, filedialog, messagebox
+
+try:
+    from PIL import Image, ImageTk, ImageDraw, ImageFont
+    PIL_OK = True
+except ImportError:
+    PIL_OK = False
+
+# ── Brand colours ─────────────────────────────────────────────────
+NAVY   = "#1E3A5F"
+BLUE   = "#2E86AB"
+DARK   = "#111C26"
+PANEL  = "#2C3E50"
+WHITE  = "#FFFFFF"
+MID    = "#7F8C8D"
+GREEN  = "#27AE60"
+RED    = "#C0392B"
+GOLD   = "#F39C12"
+TEAL   = "#117A65"
+LBLUE  = "#5DADE2"
+
+FONT_H1   = ("Arial", 15, "bold")
+FONT_H2   = ("Arial", 11, "bold")
+FONT_BODY = ("Arial", 10)
+FONT_SML  = ("Arial", 8)
+FONT_BTN  = ("Arial", 10, "bold")
+
+# ── Thumbnail dimensions ───────────────────────────────────────────
+TW      = 160    # thumbnail width
+TH      = 90     # thumbnail height (16:9)
+GAP_H   = 24     # gap between steps (horizontal)
+GAP_V   = 80     # gap between rows (S-wrap)
+MARGIN  = 30
+RING_W  = 3      # ring border width (flush)
+
+
+# ── Helpers ────────────────────────────────────────────────────────
+
+def flat_btn(parent, text, bg, fg=WHITE, font=FONT_BTN,
+             padx=10, pady=6, cmd=None, **kw):
+    def _dk(h):
+        r, g, b = (int(h[i:i+2], 16) for i in (1, 3, 5))
+        return f"#{max(0,r-30):02x}{max(0,g-30):02x}{max(0,b-30):02x}"
+    lbl = tk.Label(parent, text=text, bg=bg, fg=fg, font=font,
+                   padx=padx, pady=pady, cursor="hand2", relief="flat", **kw)
+    lbl.bind("<Enter>",    lambda e: lbl.config(bg=_dk(bg)))
+    lbl.bind("<Leave>",    lambda e: lbl.config(bg=bg))
+    lbl.bind("<Button-1>", lambda e: cmd() if cmd else None)
+    return lbl
+
+
+def _get_pil_font(size: int):
+    for p in [
+        "/System/Library/Fonts/Helvetica.ttc",
+        "/System/Library/Fonts/Arial.ttf",
+        "/Library/Fonts/Arial.ttf",
+        "C:/Windows/Fonts/arial.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+    ]:
+        if Path(p).exists():
+            try:
+                return ImageFont.truetype(p, max(8, size))
+            except Exception:
+                pass
+    return ImageFont.load_default()
+
+
+def _open_file(path: str):
+    try:
+        if sys.platform == "darwin":
+            subprocess.Popen(["open", path])
+        elif sys.platform == "win32":
+            os.startfile(path)
+        else:
+            subprocess.Popen(["xdg-open", path])
+    except Exception:
+        pass
+
+
+# ─────────────────────────────────────────────────────────────────
+#  SOPsync Workflow Viewer
+# ─────────────────────────────────────────────────────────────────
+
+class WorkflowViewer(tk.Toplevel):
+    """
+    Simplified workflow viewer.
+
+    Single-track mode  → one row of steps, left to right.
+    Two-track mode     → top row = SOP baseline, bottom = user session.
+    Toggle             → switch between Straight scroll and S-wrap.
+    Edit mode          → green rings; select → red ring + red neighbours;
+                         drag-to-swap; delete step.
+    """
+
+    def __init__(self, parent,
+                 sop_paths,          # list of screenshot paths (track A)
+                 user_paths=None,    # list of screenshot paths (track B, optional)
+                 sop_dir=None,
+                 user_dir=None,
+                 client_name="",
+                 process_name=""):
+        super().__init__(parent)
+        self.title("SOPsync™  Workflow Viewer  v1.0")
+        self.configure(bg=DARK)
+        self.minsize(1000, 600)
+
+        # ── Paths ──────────────────────────────────────────────────
+        self._sop_paths  = list(sop_paths)           # track A (always present)
+        self._user_paths = list(user_paths or [])    # track B (compare mode)
+        self._two_track  = bool(self._user_paths)
+        self._sop_dir    = Path(sop_dir)  if sop_dir  else None
+        self._user_dir   = Path(user_dir) if user_dir else None
+        self._client     = client_name
+        self._process    = process_name
+
+        # ── State ──────────────────────────────────────────────────
+        self._layout     = "straight"   # "straight" | "swrap"
+        self._mode       = "view"       # "view" | "edit"
+        self._active_track = "sop"      # "sop" | "user" (edit target)
+
+        # Edit drag state (single-track or per-track in two-track)
+        self._sel_idx    = None   # selected step index (red)
+        self._drag_idx   = None
+        self._drag_started = False
+        self._drag_start_xy = (0, 0)
+        self._drag_ghost_id = None
+        self._drop_idx   = None
+        self._flow_rects_sop  = []   # [(x1,y1,x2,y2,idx)]
+        self._flow_rects_user = []
+
+        # Auto-circles from click log
+        self._circles_sop  = {}   # {path: [(cx,cy), ...]}
+        self._circles_user = {}
+
+        # Thumbnail image caches
+        self._photo_sop  = []
+        self._photo_user = []
+
+        # Resize debounce
+        self._resize_job = None
+
+        # ── Load click logs ────────────────────────────────────────
+        if self._sop_dir:
+            self._circles_sop = self._load_click_log(
+                self._sop_dir, self._sop_paths)
+        if self._user_dir:
+            self._circles_user = self._load_click_log(
+                self._user_dir, self._user_paths)
+
+        self._build_ui()
+
+        w, h = 1280, 760
+        sw, sh = self.winfo_screenwidth(), self.winfo_screenheight()
+        self.geometry(f"{w}x{h}+{(sw-w)//2}+{(sh-h)//2}")
+        self.after(180, self._render)
+        self.protocol("WM_DELETE_WINDOW", self.destroy)
+
+    # ─────────────────────────────────────────────────────────────
+    #  UI BUILD
+    # ─────────────────────────────────────────────────────────────
+
+    def _build_ui(self):
+        # ── Header ──────────────────────────────────────────────
+        hdr = tk.Frame(self, bg=NAVY, height=56)
+        hdr.pack(fill="x")
+        hdr.pack_propagate(False)
+
+        tk.Label(hdr, text="SOPsync™  Workflow Viewer",
+                 font=FONT_H1, fg=WHITE, bg=NAVY).pack(side="left", padx=16, pady=10)
+
+        n_label = f"{len(self._sop_paths)} steps"
+        if self._two_track:
+            n_label += f"  |  Compare: {len(self._user_paths)} user steps"
+        self._count_lbl = tk.Label(hdr, text=n_label,
+                                    font=FONT_BODY, fg="#8ABFE0", bg=NAVY)
+        self._count_lbl.pack(side="left", padx=6)
+
+        # Right-side controls
+        ctrl = tk.Frame(hdr, bg=NAVY)
+        ctrl.pack(side="right", padx=10)
+
+        # Layout toggle
+        tk.Label(ctrl, text="Layout:", font=FONT_SML,
+                 fg="#8ABFE0", bg=NAVY).pack(side="left", padx=(0, 4))
+        self._layout_var = tk.StringVar(value="straight")
+        for val, lbl in [("straight", "→ Straight"), ("swrap", "↩ S-Wrap")]:
+            rb = tk.Radiobutton(ctrl, text=lbl, variable=self._layout_var,
+                                value=val, font=FONT_BODY,
+                                bg=NAVY, fg=WHITE, selectcolor=PANEL,
+                                activebackground=NAVY, activeforeground=GOLD,
+                                command=self._on_layout_toggle)
+            rb.pack(side="left", padx=4)
+
+        tk.Frame(ctrl, bg="#3A5068", width=1).pack(side="left", fill="y", padx=8, pady=8)
+
+        self._edit_btn = flat_btn(ctrl, "✏  Edit", PANEL, GOLD, font=FONT_BTN,
+                                   padx=10, pady=6, cmd=self._toggle_edit)
+        self._edit_btn.pack(side="left", padx=4)
+
+        flat_btn(ctrl, "📄  Export PDF", TEAL, WHITE, font=FONT_BTN,
+                 padx=10, pady=6, cmd=self._export_pdf).pack(side="left", padx=4)
+        flat_btn(ctrl, "📂  Import Step", "#1A5276", WHITE, font=FONT_BTN,
+                 padx=10, pady=6, cmd=self._import_step).pack(side="left", padx=4)
+
+        # ── Canvas area ──────────────────────────────────────────
+        canvas_frame = tk.Frame(self, bg="#0B0F14")
+        canvas_frame.pack(fill="both", expand=True)
+        canvas_frame.rowconfigure(0, weight=1)
+        canvas_frame.columnconfigure(0, weight=1)
+
+        self._canvas = tk.Canvas(canvas_frame, bg="#0B0F14",
+                                  highlightthickness=0)
+        # Scrollbars — both axes available; shown as needed
+        self._vsb = ttk.Scrollbar(canvas_frame, orient="vertical",
+                                   command=self._canvas.yview)
+        self._hsb = ttk.Scrollbar(canvas_frame, orient="horizontal",
+                                   command=self._canvas.xview)
+        self._canvas.configure(xscrollcommand=self._hsb.set,
+                                yscrollcommand=self._vsb.set)
+
+        self._hsb.grid(row=1, column=0, sticky="ew")
+        self._vsb.grid(row=0, column=1, sticky="ns")
+        self._canvas.grid(row=0, column=0, sticky="nsew")
+
+        # Mouse bindings
+        self._canvas.bind("<Configure>",      self._on_resize)
+        self._canvas.bind("<ButtonPress-1>",  self._on_press)
+        self._canvas.bind("<B1-Motion>",       self._on_drag)
+        self._canvas.bind("<ButtonRelease-1>", self._on_release)
+        # Scroll with mouse wheel
+        self._canvas.bind("<MouseWheel>",
+            lambda e: self._canvas.xview_scroll(int(-1*(e.delta/120)), "units")
+            if self._layout == "straight" else
+            self._canvas.yview_scroll(int(-1*(e.delta/120)), "units"))
+        self._canvas.bind("<Button-4>",
+            lambda e: self._canvas.yview_scroll(-1, "units"))
+        self._canvas.bind("<Button-5>",
+            lambda e: self._canvas.yview_scroll(1, "units"))
+
+        # ── Status bar ───────────────────────────────────────────
+        self._status = tk.Label(self, text="View mode — click a step to select",
+                                 font=FONT_SML, fg=MID, bg="#0A0E14",
+                                 anchor="w", padx=12, pady=4)
+        self._status.pack(fill="x", side="bottom")
+
+    # ─────────────────────────────────────────────────────────────
+    #  LAYOUT / MODE TOGGLES
+    # ─────────────────────────────────────────────────────────────
+
+    def _on_layout_toggle(self):
+        self._layout = self._layout_var.get()
+        self._sel_idx = None
+        self._cancel_drag()
+        self._render()
+
+    def _toggle_edit(self):
+        if self._mode == "view":
+            self._mode = "edit"
+            self._edit_btn.config(text="✔  Done", fg=GREEN)
+            self._status.config(
+                text="Edit mode: click a step to select (red), drag to swap, "
+                     "Delete key to remove")
+        else:
+            self._mode = "view"
+            self._sel_idx = None
+            self._cancel_drag()
+            self._edit_btn.config(text="✏  Edit", fg=GOLD)
+            self._status.config(text="View mode — click a step to select")
+        self._render()
+
+    # ─────────────────────────────────────────────────────────────
+    #  POSITIONS
+    # ─────────────────────────────────────────────────────────────
+
+    def _straight_positions(self, paths, y_top):
+        """Single horizontal row positions."""
+        positions = []
+        for i in range(len(paths)):
+            x1 = MARGIN + i * (TW + GAP_H)
+            positions.append((x1, y_top))
+        return positions
+
+    def _swrap_positions(self, paths, y_top, cw):
+        """S-wrap boustrophedon positions."""
+        COLS = max(1, (cw - 2*MARGIN + GAP_H) // (TW + GAP_H))
+        positions = []
+        for i in range(len(paths)):
+            row = i // COLS
+            col_in_row = i % COLS
+            col = col_in_row if (row % 2 == 0) else (COLS - 1 - col_in_row)
+            x1 = MARGIN + col * (TW + GAP_H)
+            y1 = y_top + row * (TH + GAP_V)
+            positions.append((x1, y1))
+        return positions, COLS
+
+    def _compute_canvas_size(self, positions_a, positions_b=None):
+        """Return (total_w, total_h) needed."""
+        all_pos = list(positions_a)
+        if positions_b:
+            all_pos += positions_b
+        if not all_pos:
+            return (800, 400)
+        max_x = max(x+TW for x, y in all_pos)
+        max_y = max(y+TH for x, y in all_pos)
+        return max_x + MARGIN, max_y + MARGIN + 40
+
+    # ─────────────────────────────────────────────────────────────
+    #  MAIN RENDER
+    # ─────────────────────────────────────────────────────────────
+
+    def _render(self):
+        c = self._canvas
+        c.delete("flow")
+        self._photo_sop.clear()
+        self._photo_user.clear()
+        self._flow_rects_sop.clear()
+        self._flow_rects_user.clear()
+
+        cw = max(c.winfo_width(), 900)
+        ch = max(c.winfo_height(), 400)
+
+        HDR = 36   # row header height
+        in_edit = (self._mode == "edit")
+
+        if self._two_track:
+            # ── Two-track layout ──────────────────────────────
+            TOP_A  = HDR + 10
+            TOP_B  = TOP_A + TH + GAP_V + HDR + 20
+
+            if self._layout == "swrap":
+                pos_a, cols_a = self._swrap_positions(
+                    self._sop_paths, TOP_A, cw)
+                pos_b, cols_b = self._swrap_positions(
+                    self._user_paths,
+                    TOP_B + (len(self._sop_paths) // max(1, cols_a)) * (TH + GAP_V),
+                    cw)
+            else:
+                pos_a = self._straight_positions(self._sop_paths, TOP_A)
+                row_b_top = TOP_A + TH + GAP_V + HDR + 16
+                pos_b = self._straight_positions(self._user_paths, row_b_top)
+
+            # Row labels
+            track_w = MARGIN + len(self._sop_paths) * (TW + GAP_H)
+            c.create_rectangle(0, 0, track_w + MARGIN, HDR + 6,
+                                fill="#0E2A42", outline="", tags="flow")
+            c.create_text(MARGIN, HDR//2,
+                          text="■  SOP BASELINE",
+                          fill=LBLUE, font=FONT_H2, anchor="w", tags="flow")
+
+            row_b_lbl_y = (pos_b[0][1] - HDR - 4) if pos_b else TOP_A + TH + GAP_V
+            c.create_rectangle(0, row_b_lbl_y, track_w + MARGIN,
+                                row_b_lbl_y + HDR + 4,
+                                fill="#1A1A0A", outline="", tags="flow")
+            c.create_text(MARGIN, row_b_lbl_y + HDR//2,
+                          text="■  USER SESSION",
+                          fill=GOLD, font=FONT_H2, anchor="w", tags="flow")
+
+            # Draw track A
+            self._flow_rects_sop = self._draw_track(
+                c, self._sop_paths, pos_a,
+                self._circles_sop, self._photo_sop,
+                ring_color=LBLUE if not in_edit else GREEN,
+                tag_prefix="sop",
+                in_edit=in_edit,
+                sel_idx=self._sel_idx if self._active_track == "sop" else None,
+                drop_idx=self._drop_idx if self._active_track == "sop" else None,
+                drag_idx=self._drag_idx if self._active_track == "sop" else None)
+
+            # Draw track B
+            self._flow_rects_user = self._draw_track(
+                c, self._user_paths, pos_b,
+                self._circles_user, self._photo_user,
+                ring_color=GOLD if not in_edit else GREEN,
+                tag_prefix="user",
+                in_edit=in_edit,
+                sel_idx=self._sel_idx if self._active_track == "user" else None,
+                drop_idx=self._drop_idx if self._active_track == "user" else None,
+                drag_idx=self._drag_idx if self._active_track == "user" else None)
+
+            all_pos  = list(pos_a) + list(pos_b)
+            total_w, total_h = self._compute_canvas_size(pos_a, pos_b)
+
+        else:
+            # ── Single-track layout ───────────────────────────
+            TOP = HDR + 10
+            if self._layout == "swrap":
+                pos_a, _ = self._swrap_positions(self._sop_paths, TOP, cw)
+            else:
+                pos_a = self._straight_positions(self._sop_paths, TOP)
+
+            c.create_rectangle(0, 0, cw, HDR + 4,
+                                fill="#0E2A42", outline="", tags="flow")
+            c.create_text(MARGIN, HDR//2,
+                          text="SOP Workflow",
+                          fill=WHITE, font=FONT_H2, anchor="w", tags="flow")
+            if self._client or self._process:
+                c.create_text(MARGIN + 130, HDR//2,
+                              text=f"{self._client}  ·  {self._process}",
+                              fill=MID, font=FONT_SML, anchor="w", tags="flow")
+
+            self._flow_rects_sop = self._draw_track(
+                c, self._sop_paths, pos_a,
+                self._circles_sop, self._photo_sop,
+                ring_color=LBLUE if not in_edit else GREEN,
+                tag_prefix="sop",
+                in_edit=in_edit,
+                sel_idx=self._sel_idx,
+                drop_idx=self._drop_idx,
+                drag_idx=self._drag_idx)
+
+            total_w, total_h = self._compute_canvas_size(pos_a)
+
+        c.configure(scrollregion=(0, 0, total_w, total_h))
+
+        # Show/hide scrollbars depending on layout
+        if self._layout == "straight":
+            self._hsb.grid()
+            if self._two_track:
+                self._vsb.grid()
+            else:
+                self._vsb.grid_remove()
+        else:  # swrap
+            self._vsb.grid()
+            self._hsb.grid_remove()
+
+    def _draw_track(self, c, paths, positions, circles, photo_cache,
+                    ring_color, tag_prefix, in_edit,
+                    sel_idx, drop_idx, drag_idx):
+        """
+        Draw one track of steps.  Returns flow_rects list.
+        """
+        rects = []
+        n = len(paths)
+
+        for i, (path, (x1, y1)) in enumerate(zip(paths, positions)):
+            x2, y2 = x1 + TW, y1 + TH
+            rects.append((x1, y1, x2, y2, i))
+
+        # ── Connection lines ────────────────────────────────────
+        COLS = max(1, (max(c.winfo_width(), 900) - 2*MARGIN + GAP_H) // (TW + GAP_H)) \
+               if self._layout == "swrap" else n
+
+        for i in range(n - 1):
+            x1, y1, x2, y2, _ = rects[i]
+            nx1, ny1, nx2, ny2, _ = rects[i + 1]
+            cx,  cy  = (x1+x2)//2, (y1+y2)//2
+            ncx, ncy = (nx1+nx2)//2, (ny1+ny2)//2
+
+            row_i    = i // COLS if self._layout == "swrap" else 0
+            row_next = (i+1) // COLS if self._layout == "swrap" else 0
+
+            broken = in_edit and (sel_idx in (i, i+1))
+            glow   = "#AA000044" if broken else "#1B4F72"
+            mid_c  = RED if broken else BLUE
+            hi_c   = "#FF6666" if broken else LBLUE
+
+            tag = (f"conn_{tag_prefix}_{i}", "flow")
+
+            if row_i == row_next:
+                # Horizontal connector (glow 3-layer)
+                c.create_line(x2, cy, nx1, ncy, fill=glow,  width=7, tags=tag)
+                c.create_line(x2, cy, nx1, ncy, fill=mid_c, width=3, tags=tag)
+                c.create_line(x2, cy, nx1, ncy, fill=hi_c,  width=1, tags=tag)
+                # Arrow chevron
+                direction = 1 if (row_i % 2 == 0) else -1
+                mx = (x2 + nx1) // 2
+                aw = 7
+                if direction > 0:
+                    c.create_line(mx-aw, cy-4, mx, cy, mx-aw, cy+4,
+                                  fill=hi_c, width=2, tags=tag)
+                else:
+                    c.create_line(mx+aw, cy-4, mx, cy, mx+aw, cy+4,
+                                  fill=hi_c, width=2, tags=tag)
+            else:
+                # S-wrap U-turn
+                cw_canvas = max(c.winfo_width(), 900)
+                COLS_sw   = max(1, (cw_canvas - 2*MARGIN + GAP_H) // (TW + GAP_H))
+                if row_i % 2 == 0:
+                    edge = MARGIN + COLS_sw * (TW + GAP_H) - GAP_H // 2
+                    pts  = [x2, cy, edge, cy, edge, ncy, nx2, ncy]
+                else:
+                    edge = MARGIN - GAP_H // 2
+                    pts  = [x1, cy, edge, cy, edge, ncy, nx1, ncy]
+                c.create_line(*pts, fill=glow,  width=7, smooth=True, tags=tag)
+                c.create_line(*pts, fill=mid_c, width=3, smooth=True, tags=tag)
+                c.create_line(*pts, fill=hi_c,  width=1, smooth=True, tags=tag)
+
+        # ── Steps ───────────────────────────────────────────────
+        for i, (path, (x1, y1)) in enumerate(zip(paths, positions)):
+            x2, y2 = x1 + TW, y1 + TH
+            is_sel   = in_edit and (i == sel_idx)
+            is_drag  = in_edit and self._drag_started and (i == drag_idx)
+            is_drop  = in_edit and self._drag_started and (i == drop_idx) and i != drag_idx
+
+            # Thumbnail
+            placed = False
+            if PIL_OK and path and Path(path).exists():
+                try:
+                    img = Image.open(path).convert("RGB")
+                    img.thumbnail((TW, TH), Image.LANCZOS)
+                    # Burn auto-circles
+                    clicks = circles.get(path, [])
+                    if clicks:
+                        img = self._burn_circles(img, clicks, i + 1)
+                    photo = ImageTk.PhotoImage(img)
+                    photo_cache.append(photo)
+                    c.create_image(x1, y1, anchor="nw", image=photo,
+                                   tags=(f"step_{tag_prefix}_{i}", "flow"))
+                    placed = True
+                except Exception:
+                    pass
+            if not placed:
+                c.create_rectangle(x1, y1, x2, y2,
+                                   fill="#1A2530", outline="", tags="flow")
+                c.create_text((x1+x2)//2, (y1+y2)//2,
+                              text=f"Step {i+1}", fill=WHITE, font=FONT_H2,
+                              tags="flow")
+
+            # Dim if being dragged
+            if is_drag:
+                c.create_rectangle(x1, y1, x2, y2,
+                                   fill="#080808", stipple="gray50", outline="",
+                                   tags="flow")
+
+            # Ring
+            if in_edit:
+                if is_sel or is_drag:
+                    rclr, rw, rdash = RED,        4, ()
+                elif is_drop:
+                    rclr, rw, rdash = "#00FF88",  4, (5, 3)
+                else:
+                    rclr, rw, rdash = ring_color, RING_W, ()
+                if rdash:
+                    c.create_rectangle(x1, y1, x2, y2,
+                                       outline=rclr, width=rw, dash=rdash,
+                                       tags=(f"ring_{tag_prefix}_{i}", "flow"))
+                else:
+                    c.create_rectangle(x1, y1, x2, y2,
+                                       outline=rclr, width=rw,
+                                       tags=(f"ring_{tag_prefix}_{i}", "flow"))
+
+            # Step badge
+            c.create_rectangle(x1, y2+1, x1+30, y2+17,
+                                fill=NAVY, outline="", tags="flow")
+            c.create_text(x1+15, y2+9, text=f"#{i+1}",
+                          fill=WHITE, font=FONT_SML, anchor="center", tags="flow")
+
+        return rects
+
+    def _burn_circles(self, img: "Image.Image", clicks: list, step_num: int):
+        """Draw red click circles + step label onto thumbnail."""
+        draw = ImageDraw.Draw(img)
+        r    = max(10, int(TH * 0.13))
+        font = _get_pil_font(max(9, r - 3))
+        iw, ih = img.size
+        for (orig_x, orig_y) in clicks:
+            # Coords are in original resolution; scale to thumbnail
+            sx = int(orig_x * iw / max(iw, 1))
+            sy = int(orig_y * ih / max(ih, 1))
+            draw.ellipse([sx-r, sy-r, sx+r, sy+r],
+                         outline="#FF3333", width=2)
+        # Step number label top-left
+        draw.rectangle([2, 2, 30, 20], fill="#1E3A5F")
+        draw.text((5, 3), f"#{step_num}", fill="white", font=font)
+        return img
+
+    # ─────────────────────────────────────────────────────────────
+    #  MOUSE EVENTS
+    # ─────────────────────────────────────────────────────────────
+
+    def _hit_test(self, cx, cy):
+        """Return (track, idx) for the step under canvas coords, or (None, None)."""
+        for x1, y1, x2, y2, idx in self._flow_rects_sop:
+            if x1 <= cx <= x2 and y1 <= cy <= y2:
+                return "sop", idx
+        for x1, y1, x2, y2, idx in self._flow_rects_user:
+            if x1 <= cx <= x2 and y1 <= cy <= y2:
+                return "user", idx
+        return None, None
+
+    def _on_press(self, event):
+        cx = self._canvas.canvasx(event.x)
+        cy = self._canvas.canvasy(event.y)
+        track, idx = self._hit_test(cx, cy)
+        if idx is None:
+            return
+
+        if self._mode == "edit":
+            # Toggle selection; if already selected start drag tracking
+            if self._sel_idx == idx and self._active_track == track:
+                # Already selected — begin drag track
+                pass
+            else:
+                self._sel_idx      = idx
+                self._active_track = track
+            self._drag_idx      = idx
+            self._drag_started  = False
+            self._drag_start_xy = (event.x, event.y)
+            self._drop_idx      = idx
+            self._render()
+        else:
+            self._status.config(
+                text=f"Step {idx+1} — switch to Edit mode to reorder")
+
+    def _on_drag(self, event):
+        if self._drag_idx is None or self._mode != "edit":
+            return
+        dx = event.x - self._drag_start_xy[0]
+        dy = event.y - self._drag_start_xy[1]
+        dist = (dx*dx + dy*dy) ** 0.5
+
+        if not self._drag_started:
+            if dist < 10:
+                return
+            self._drag_started = True
+            # Create ghost
+            rects = (self._flow_rects_sop if self._active_track == "sop"
+                     else self._flow_rects_user)
+            if self._drag_idx < len(rects):
+                x1, y1, x2, y2, _ = rects[self._drag_idx]
+                self._drag_ghost_id = self._canvas.create_rectangle(
+                    x1, y1, x2, y2,
+                    outline=GOLD, fill="#1A2530", width=3, dash=(8, 4),
+                    tags="drag_ghost")
+            self._render()
+
+        if not self._drag_started:
+            return
+
+        cx = self._canvas.canvasx(event.x)
+        cy = self._canvas.canvasy(event.y)
+
+        # Move ghost
+        if self._drag_ghost_id:
+            rects = (self._flow_rects_sop if self._active_track == "sop"
+                     else self._flow_rects_user)
+            if self._drag_idx < len(rects):
+                x1, y1, x2, y2, _ = rects[self._drag_idx]
+                tw, th = x2-x1, y2-y1
+                self._canvas.coords(self._drag_ghost_id,
+                                    cx-tw//2, cy-th//2,
+                                    cx+tw//2, cy+th//2)
+
+        # Find nearest drop slot (same track only)
+        rects = (self._flow_rects_sop if self._active_track == "sop"
+                 else self._flow_rects_user)
+        min_d, new_drop = float('inf'), self._drag_idx
+        for rx1, ry1, rx2, ry2, ridx in rects:
+            if ridx == self._drag_idx:
+                continue
+            mcx, mcy = (rx1+rx2)//2, (ry1+ry2)//2
+            d = ((cx-mcx)**2 + (cy-mcy)**2) ** 0.5
+            if d < min_d:
+                min_d, new_drop = d, ridx
+
+        if new_drop != self._drop_idx:
+            self._drop_idx = new_drop
+            self._canvas.delete("drop_indicator")
+            if new_drop < len(rects):
+                rx1, ry1, rx2, ry2, _ = rects[new_drop]
+                self._canvas.create_rectangle(
+                    rx1-3, ry1-3, rx2+3, ry2+3,
+                    outline="#00FF88", fill="", width=3, dash=(4, 3),
+                    tags="drop_indicator")
+
+    def _on_release(self, event):
+        if self._drag_idx is None:
+            return
+
+        did_swap = False
+        if (self._drag_started and
+                self._drop_idx is not None and
+                self._drop_idx != self._drag_idx):
+            paths = (self._sop_paths if self._active_track == "sop"
+                     else self._user_paths)
+            paths[self._drag_idx], paths[self._drop_idx] = \
+                paths[self._drop_idx], paths[self._drag_idx]
+            self._sel_idx = self._drop_idx
+            did_swap = True
+
+        self._cancel_drag()
+        self._render()
+
+        if did_swap:
+            self._status.config(
+                text=f"Swapped steps {self._drag_idx+1} ↔ {self._drop_idx+1}")
+
+    def _cancel_drag(self):
+        self._canvas.delete("drag_ghost")
+        self._canvas.delete("drop_indicator")
+        self._drag_idx     = None
+        self._drag_started = False
+        self._drop_idx     = None
+        self._drag_ghost_id = None
+
+    def _on_resize(self, event):
+        if self._resize_job:
+            self.after_cancel(self._resize_job)
+        self._resize_job = self.after(200, self._render)
+
+    # ─────────────────────────────────────────────────────────────
+    #  STEP MANAGEMENT
+    # ─────────────────────────────────────────────────────────────
+
+    def _import_step(self):
+        """Import image(s) — append or replace selected."""
+        files = filedialog.askopenfilenames(
+            parent=self,
+            title="Import screenshot(s)",
+            filetypes=[("Images", "*.png *.jpg *.jpeg *.bmp"), ("All", "*.*")])
+        if not files:
+            return
+        track = self._active_track
+        paths = self._sop_paths if track == "sop" else self._user_paths
+
+        if self._sel_idx is not None and len(files) == 1:
+            ans = messagebox.askyesnocancel(
+                "Import",
+                f"Replace Step {self._sel_idx+1} with this image?\n\n"
+                f"Yes = Replace  |  No = Insert after  |  Cancel = Abort",
+                parent=self)
+            if ans is None:
+                return
+            if ans:
+                paths[self._sel_idx] = files[0]
+            else:
+                paths.insert(self._sel_idx + 1, files[0])
+        else:
+            for f in files:
+                paths.append(f)
+
+        self._count_lbl.config(text=f"{len(self._sop_paths)} steps" +
+                                (f"  |  {len(self._user_paths)} user" if self._two_track else ""))
+        self._render()
+
+    def _delete_selected(self):
+        if self._sel_idx is None:
+            return
+        track = self._active_track
+        paths = self._sop_paths if track == "sop" else self._user_paths
+        if self._sel_idx >= len(paths):
+            return
+
+        # Offer to save first
+        path = paths[self._sel_idx]
+        ans  = messagebox.askyesnocancel(
+            "Delete Step",
+            f"Delete Step {self._sel_idx+1}?\n\n"
+            f"Yes = Delete  |  No = Save PNG then delete  |  Cancel = Abort",
+            parent=self)
+        if ans is None:
+            return
+        if not ans:   # save first
+            out = filedialog.asksaveasfilename(parent=self,
+                defaultextension=".png", filetypes=[("PNG", "*.png")],
+                initialfile=f"step_{self._sel_idx+1:03d}.png")
+            if out and PIL_OK and path and Path(path).exists():
+                Image.open(path).save(out)
+
+        paths.pop(self._sel_idx)
+        self._sel_idx = min(self._sel_idx, max(0, len(paths)-1)) if paths else None
+        self._render()
+
+    # ─────────────────────────────────────────────────────────────
+    #  PDF EXPORT
+    # ─────────────────────────────────────────────────────────────
+
+    def _export_pdf(self):
+        if not PIL_OK:
+            messagebox.showwarning("Pillow missing",
+                                    "Install Pillow to export PDF.", parent=self)
+            return
+        if not self._sop_paths:
+            messagebox.showwarning("No steps", "Nothing to export.", parent=self)
+            return
+
+        ts  = datetime.now().strftime("%Y%m%d_%H%M%S")
+        out = filedialog.asksaveasfilename(
+            parent=self, defaultextension=".pdf",
+            filetypes=[("PDF", "*.pdf")],
+            initialfile=f"sopsync_workflow_{ts}.pdf")
+        if not out:
+            return
+
+        pages = []
+        PW, PH = 1920, 1080
+        HDR_H  = 80
+        font_h  = _get_pil_font(30)
+        font_b  = _get_pil_font(20)
+        font_sm = _get_pil_font(16)
+
+        all_tracks = [("SOP Baseline", self._sop_paths, self._circles_sop)]
+        if self._two_track:
+            all_tracks.append(("User Session", self._user_paths, self._circles_user))
+
+        for track_label, paths, circles in all_tracks:
+            COLS = min(len(paths), max(1, PW // (300 + 20)))
+            THUMB_W, THUMB_H = 280, 158
+
+            for page_start in range(0, len(paths), COLS * 3):
+                page = Image.new("RGB", (PW, PH), "white")
+                draw = ImageDraw.Draw(page)
+
+                # Header
+                draw.rectangle([0, 0, PW, HDR_H], fill="#1E3A5F")
+                draw.text((30, 14), "SOPsync™  Work Instructions — " + track_label,
+                          fill="white", font=font_h)
+                draw.text((30, 52),
+                          f"{self._client}  ·  {self._process}  |  "
+                          f"{datetime.now().strftime('%Y-%m-%d')}",
+                          fill="#8ABFE0", font=font_sm)
+
+                chunk = paths[page_start: page_start + COLS * 3]
+                for i, path in enumerate(chunk):
+                    col  = i % COLS
+                    row  = i // COLS
+                    px   = 30 + col * (THUMB_W + 24)
+                    py   = HDR_H + 20 + row * (THUMB_H + 60)
+                    gidx = page_start + i
+
+                    if path and Path(path).exists():
+                        try:
+                            img = Image.open(path).convert("RGB")
+                            img.thumbnail((THUMB_W, THUMB_H), Image.LANCZOS)
+                            clks = circles.get(path, [])
+                            if clks:
+                                img = self._burn_circles_hires(
+                                    Image.open(path).convert("RGB"),
+                                    clks, gidx + 1, THUMB_W, THUMB_H)
+                            draw.rectangle([px-2, py-2,
+                                            px+img.width+2, py+img.height+2],
+                                           outline="#AAAAAA", width=1)
+                            page.paste(img, (px, py))
+                        except Exception:
+                            pass
+                    # Step badge
+                    draw.rectangle([px, py + THUMB_H + 4,
+                                    px + 60, py + THUMB_H + 26],
+                                   fill="#1E3A5F")
+                    draw.text((px + 4, py + THUMB_H + 6),
+                              f"Step {gidx+1}", fill="white", font=font_sm)
+
+                pages.append(page)
+
+        if not pages:
+            return
+        try:
+            pages[0].save(out, format="PDF", save_all=True,
+                          append_images=pages[1:], resolution=96)
+            messagebox.showinfo("PDF Exported",
+                                f"✔  {len(pages)} page(s) → {out}", parent=self)
+            _open_file(out)
+        except Exception as e:
+            messagebox.showerror("Failed", str(e), parent=self)
+
+    def _burn_circles_hires(self, img: "Image.Image", clicks: list,
+                             step_num: int, tw: int, th: int):
+        """Burn circles at original resolution then thumbnail."""
+        draw = ImageDraw.Draw(img)
+        iw, ih = img.size
+        r = max(14, int(ih * 0.04))
+        font = _get_pil_font(max(12, r - 4))
+        for cx, cy in clicks:
+            draw.ellipse([cx-r, cy-r, cx+r, cy+r], outline="#FF3333", width=3)
+        draw.rectangle([4, 4, 70, 34], fill="#1E3A5F")
+        draw.text((8, 6), f"Step {step_num}", fill="white", font=font)
+        img.thumbnail((tw, th), Image.LANCZOS)
+        return img
+
+    # ─────────────────────────────────────────────────────────────
+    #  CLICK LOG LOADER
+    # ─────────────────────────────────────────────────────────────
+
+    def _load_click_log(self, session_dir: Path, paths: list) -> dict:
+        rp = session_dir / "report.json"
+        if not rp.exists():
+            return {}
+        circles = {}
+        try:
+            data   = json.load(open(rp))
+            clicks = data.get("click_log", [])
+            for click in clicks:
+                t = datetime.fromisoformat(click["timestamp"])
+                p = self._nearest_screenshot(t, paths)
+                if p:
+                    circles.setdefault(p, []).append((click["x"], click["y"]))
+        except Exception:
+            pass
+        return circles
+
+    @staticmethod
+    def _nearest_screenshot(t: datetime, paths: list):
+        best, best_d = None, float("inf")
+        for p in paths:
+            try:
+                parts = Path(p).stem.split("_")
+                ts = datetime.strptime(f"{parts[1]}_{parts[2]}", "%H%M%S_%f")
+                ts = ts.replace(year=t.year, month=t.month, day=t.day)
+                d  = abs((t - ts).total_seconds())
+                if d < best_d:
+                    best_d, best = d, p
+            except Exception:
+                pass
+        return best if best_d < 30 else None
+
+
+# ─────────────────────────────────────────────────────────────────
+#  Public launcher
+# ─────────────────────────────────────────────────────────────────
+
+def open_viewer(parent, sop_paths, user_paths=None,
+                sop_dir=None, user_dir=None,
+                client_name="", process_name=""):
+    return WorkflowViewer(parent, sop_paths,
+                          user_paths=user_paths,
+                          sop_dir=sop_dir,
+                          user_dir=user_dir,
+                          client_name=client_name,
+                          process_name=process_name)
+
+
+# ─────────────────────────────────────────────────────────────────
+#  Standalone entry point
+# ─────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+
+    if len(sys.argv) >= 3:
+        # Two-track compare: sopsync_viewer.py <sop_dir> <user_dir>
+        sop_dir  = Path(sys.argv[1])
+        user_dir = Path(sys.argv[2])
+        sop_paths  = sorted(sop_dir.glob("*.png"))
+        user_paths = sorted(user_dir.glob("*.png"))
+        print(f"SOP track:  {len(sop_paths)} screenshots from {sop_dir}")
+        print(f"User track: {len(user_paths)} screenshots from {user_dir}")
+        if not sop_paths:
+            print("No PNGs found in SOP folder."); sys.exit(1)
+        WorkflowViewer(root,
+                       [str(p) for p in sop_paths],
+                       user_paths=[str(p) for p in user_paths],
+                       sop_dir=str(sop_dir),
+                       user_dir=str(user_dir))
+    elif len(sys.argv) == 2:
+        # Single track
+        folder = Path(sys.argv[1])
+        paths  = sorted(folder.glob("*.png"))
+        if not paths:
+            print(f"No PNGs found in: {folder}"); sys.exit(1)
+        print(f"Loading {len(paths)} screenshot(s) from: {folder}")
+        WorkflowViewer(root,
+                       [str(p) for p in paths],
+                       sop_dir=str(folder))
+    else:
+        # No args — pick a folder
+        folder = filedialog.askdirectory(title="Select session folder")
+        if not folder:
+            sys.exit(0)
+        paths = sorted(Path(folder).glob("*.png"))
+        if not paths:
+            messagebox.showerror("No images", f"No PNGs found in {folder}")
+            sys.exit(1)
+        WorkflowViewer(root,
+                       [str(p) for p in paths],
+                       sop_dir=folder)
+
+    root.mainloop()

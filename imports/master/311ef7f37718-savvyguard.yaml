@@ -1,0 +1,525 @@
+# ===========================================================================
+# SavvyGuard Smart Home Privacy Hub - Configuration
+# (c) 2026 SavvyTech Consulting LLC - Patent Pending
+# ===========================================================================
+# All settings have sensible defaults. Only modify what you need.
+# Environment variables can override any value using SAVVYGUARD_ prefix.
+# Example: SAVVYGUARD_DASHBOARD_PORT=9999 overrides dashboard.port
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+# Home Assistant Integration
+# ---------------------------------------------------------------------------
+home_assistant:
+  # Your Home Assistant instance URL (local IP recommended for speed)
+  url: "http://192.168.68.68:8123"
+
+  # Long-lived access token from HA (Profile > Security > Long-Lived Tokens)
+  # Can also be set via SAVVYGUARD_HA_TOKEN environment variable
+  token: "${HA_TOKEN}"
+
+  # How often to poll HA for device state changes (seconds)
+  poll_interval: 15
+
+  # Enable HA webhook for real-time push events (faster than polling)
+  webhook_enabled: true
+  webhook_path: "/api/savvyguard/webhook"
+
+  # Auto-discover HA integrations and map to SavvyGuard devices
+  auto_discover: true
+
+  # HA entities to ignore (e.g. helper entities, automations)
+  ignore_entity_prefixes:
+    - "automation."
+    - "script."
+    - "input_boolean."
+    - "input_number."
+    - "input_select."
+    - "input_text."
+    - "timer."
+    - "counter."
+
+# ---------------------------------------------------------------------------
+# AI / LLM Configuration (Patent Claim 31 - Model Agnostic)
+# ---------------------------------------------------------------------------
+# SavvyGuard works with ANY LLM. Switch providers without changing anything
+# else. Local models (Ollama) are the default for maximum privacy.
+ai:
+  # Active provider: ollama | openai | anthropic | google | custom
+  provider: "ollama"
+
+  # Active model name (must match provider's naming)
+  model: "llama3.1:8b"
+
+  # Provider-specific connection settings
+  providers:
+    ollama:
+      url: "http://localhost:11434"
+      # Request timeout in seconds (large models may need more)
+      timeout: 120
+      # Keep model loaded in memory between requests
+      keep_alive: "5m"
+      # Available models (displayed in dashboard dropdown)
+      models:
+        - "llama3.1:8b"
+        - "llama3.1:70b"
+        - "mistral:7b"
+        - "phi3:mini"
+        - "gemma2:9b"
+        - "qwen2.5:7b"
+
+    openai:
+      # Set via SAVVYGUARD_OPENAI_API_KEY or OPENAI_API_KEY
+      api_key: "${OPENAI_API_KEY}"
+      base_url: "https://api.openai.com/v1"
+      timeout: 60
+      models:
+        - "gpt-4o"
+        - "gpt-4o-mini"
+
+    anthropic:
+      api_key: "${ANTHROPIC_API_KEY}"
+      timeout: 60
+      models:
+        - "claude-sonnet-4-20250514"
+        - "claude-haiku-4-20250414"
+
+    google:
+      api_key: "${GOOGLE_AI_KEY}"
+      timeout: 60
+      models:
+        - "gemini-2.0-flash"
+        - "gemini-2.0-flash-lite"
+
+    # Custom OpenAI-compatible endpoint (e.g. LM Studio, vLLM, text-gen-webui)
+    custom:
+      url: "http://localhost:8080/v1"
+      api_key: "not-needed"
+      timeout: 120
+      models:
+        - "local-model"
+
+  # Maximum tokens for AI responses
+  max_tokens: 2048
+
+  # Temperature for AI analysis (lower = more deterministic)
+  temperature: 0.3
+
+  # System prompt injected into every AI call
+  system_prompt: >
+    You are SavvyGuard, an AI assistant embedded in a smart home privacy hub.
+    Your role is to analyze network traffic patterns, identify privacy threats,
+    and recommend remediation actions. Be concise and actionable. Always
+    prioritize user privacy and device security. Never recommend actions that
+    would break critical device functionality without user confirmation.
+
+# ---------------------------------------------------------------------------
+# Network Settings
+# ---------------------------------------------------------------------------
+network:
+  # Your home network subnet (used for ARP scanning and device discovery)
+  subnet: "192.168.68.0/24"
+
+  # Network interface to monitor (auto-detect if empty)
+  interface: ""
+
+  # How often to scan the network for new/changed devices (seconds)
+  scan_interval: 30
+
+  # Deep packet inspection for traffic classification
+  dpi_enabled: true
+
+  # DNS server SavvyGuard runs for sinkholing (0 = disabled)
+  dns_port: 5353
+
+  # Upstream DNS servers (used when domain is NOT blocked)
+  upstream_dns:
+    - "1.1.1.1"      # Cloudflare (privacy-focused)
+    - "9.9.9.9"      # Quad9 (security-focused)
+
+  # VLAN configuration for device isolation (requires managed switch)
+  vlans:
+    enabled: false
+    iot_vlan_id: 30
+    trusted_vlan_id: 10
+    guest_vlan_id: 20
+    quarantine_vlan_id: 99
+
+  # Known devices that should always be trusted (by MAC address)
+  trusted_macs:
+    - "AA:BB:CC:DD:EE:FF"  # Example - replace with your devices
+
+  # Devices to never scan or block (by IP)
+  excluded_ips:
+    - "192.168.68.1"    # Router
+    - "192.168.68.68"   # Home Assistant
+
+# ---------------------------------------------------------------------------
+# Remediation Settings (5-Level Escalation System)
+# ---------------------------------------------------------------------------
+remediation:
+  # Automatically apply remediations up to this level without asking
+  auto_level: 2
+
+  # Always require user confirmation above this level
+  confirm_above_level: 3
+
+  # Levels and their capabilities:
+  levels:
+    1:
+      name: "DNS Sinkhole"
+      description: "Block domain resolution for known tracking/telemetry domains"
+      timeout_sec: 5
+      retries: 2
+      rollback_after_min: 0  # 0 = permanent until manually removed
+
+    2:
+      name: "Firewall Rule"
+      description: "Add iptables/nftables rule blocking specific IP:port combinations"
+      timeout_sec: 10
+      retries: 1
+      rollback_after_min: 0
+
+    3:
+      name: "Rate Limit"
+      description: "Throttle device bandwidth to reduce data exfiltration"
+      timeout_sec: 15
+      retries: 1
+      rollback_after_min: 60  # Auto-revert after 1 hour
+
+    4:
+      name: "VLAN Isolation"
+      description: "Move device to quarantine VLAN with no internet access"
+      timeout_sec: 30
+      retries: 0
+      rollback_after_min: 1440  # Auto-revert after 24 hours
+
+    5:
+      name: "Full Block"
+      description: "Complete network disconnection via switch port disable or MAC ban"
+      timeout_sec: 10
+      retries: 0
+      rollback_after_min: 0  # Manual revert only
+
+  # Cooldown period between repeated remediations on same device (minutes)
+  cooldown_min: 5
+
+  # Maximum automatic remediations per device per day
+  max_auto_per_device_per_day: 10
+
+  # Send push notification on any remediation above this level
+  notify_above_level: 2
+
+# ---------------------------------------------------------------------------
+# Privacy Settings
+# ---------------------------------------------------------------------------
+privacy:
+  # Master blocklist of domains to sinkhole (telemetry, tracking, ads)
+  blocklist:
+    - "telemetry.amazon.com"
+    - "metrics.samsung.com"
+    - "data.hp.com"
+    - "tracking.lg.com"
+    - "ads.doubleclick.net"
+    - "analytics.google.com"
+    - "pixel.facebook.com"
+    - "isp-inject.comcast.net"
+    - "supercookies.verizon.com"
+    - "device-metrics-us.amazon.com"
+    - "cdn-telemetry.roborock.com"
+    - "log.tplinkcloud.com"
+    - "mqtt-mini.facebook.com"
+    - "firebaselogging-pa.googleapis.com"
+    - "app-measurement.com"
+    - "graph.facebook.com"
+    - "ping.chartbeat.net"
+    - "sb.scorecardresearch.com"
+    - "beacon.krxd.net"
+    - "cdn.mxpnl.com"
+
+  # External blocklist URLs to fetch and merge (updated daily)
+  external_blocklists:
+    - url: "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+      name: "StevenBlack Unified"
+      enabled: true
+    - url: "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/pro.txt"
+      name: "Hagezi Pro"
+      enabled: true
+
+  # Sensitivity level: low | medium | high | paranoid
+  # low    = block known malware/ads only
+  # medium = block telemetry + ads + known trackers
+  # high   = block all non-essential outbound + fingerprinting
+  # paranoid = whitelist mode: block everything not explicitly allowed
+  sensitivity: "high"
+
+  # ISP tracking detection (supercookies, header injection, DNS hijacking)
+  isp_detection:
+    enabled: true
+    check_interval_min: 30
+    # Test domains used to detect ISP injection
+    canary_domains:
+      - "neverssl.com"
+      - "example.com"
+
+  # Data exfiltration detection thresholds
+  exfiltration:
+    # Alert if device sends more than this many MB in 1 hour
+    threshold_mb_per_hour: 100
+    # Alert if device connects to more than this many unique IPs in 1 hour
+    threshold_unique_ips_per_hour: 50
+    # Alert if device sends data to a new country not seen before
+    new_country_alert: true
+
+  # Allowlist: domains that should NEVER be blocked even in paranoid mode
+  allowlist:
+    - "time.google.com"       # NTP
+    - "time.apple.com"        # NTP
+    - "pool.ntp.org"          # NTP
+    - "connectivity-check.ubuntu.com"
+    - "captive.apple.com"     # Captive portal check
+    - "connectivitycheck.gstatic.com"
+
+# ---------------------------------------------------------------------------
+# Behavioral Analysis Settings
+# ---------------------------------------------------------------------------
+behavioral:
+  # Enable AI-powered behavioral pattern detection
+  enabled: true
+
+  # Minimum data points before generating a pattern
+  min_observations: 50
+
+  # Minimum confidence (0.0 - 1.0) to surface a suggestion to user
+  suggestion_confidence_threshold: 0.85
+
+  # Types of patterns to detect
+  detection:
+    occupancy: true          # Presence/absence detection from device activity
+    energy: true             # Energy waste identification
+    security: true           # Anomalous device behavior
+    privacy: true            # Unusual data transmission patterns
+    network: true            # Device phone-home patterns
+    behavioral: true         # Usage routine detection
+
+  # Occupancy detection settings
+  occupancy:
+    # Devices used as occupancy signals (motion sensors, phones, etc.)
+    signal_devices:
+      - type: "phone"
+      - type: "motion_sensor"
+      - type: "camera"
+    # Minutes of no activity before marking as "away"
+    away_threshold_min: 30
+
+  # Energy insight settings
+  energy:
+    # Electricity cost per kWh (for savings calculations)
+    cost_per_kwh: 0.12
+    # Currency for display
+    currency: "USD"
+
+  # How long to keep pattern history (days)
+  pattern_retention_days: 365
+
+# ---------------------------------------------------------------------------
+# Dashboard Settings
+# ---------------------------------------------------------------------------
+dashboard:
+  # Port the web dashboard listens on
+  port: 8888
+
+  # Bind address (0.0.0.0 = all interfaces, 127.0.0.1 = localhost only)
+  host: "0.0.0.0"
+
+  # Auto-refresh interval in seconds (frontend polls API)
+  refresh_interval: 10
+
+  # Enable debug mode (verbose logging, auto-reload)
+  debug: false
+
+  # Basic auth for dashboard access (leave empty to disable)
+  auth:
+    enabled: false
+    username: "admin"
+    # Set via SAVVYGUARD_DASHBOARD_PASSWORD environment variable
+    password: "${SAVVYGUARD_DASHBOARD_PASSWORD}"
+
+  # HTTPS settings (recommended for production)
+  ssl:
+    enabled: false
+    cert_path: "/etc/savvyguard/ssl/cert.pem"
+    key_path: "/etc/savvyguard/ssl/key.pem"
+
+# ---------------------------------------------------------------------------
+# Data Retention & Storage (Patent Claim 32 - Data Sovereignty)
+# ---------------------------------------------------------------------------
+# All data stays LOCAL. Nothing is sent to any cloud service.
+# Users can export everything at any time via /api/export.
+storage:
+  # Where to store all SavvyGuard data
+  data_dir: "~/.savvyguard/data"
+
+  # Database backend: sqlite | postgres
+  backend: "sqlite"
+
+  # SQLite database file (relative to data_dir)
+  sqlite_path: "savvyguard.db"
+
+  # PostgreSQL connection (if backend is postgres)
+  postgres:
+    host: "localhost"
+    port: 5432
+    database: "savvyguard"
+    user: "savvyguard"
+    password: "${SAVVYGUARD_DB_PASSWORD}"
+
+  # Data retention policies
+  retention:
+    # How long to keep device activity logs (days)
+    device_logs_days: 90
+
+    # How long to keep remediation history (days)
+    remediation_days: 365
+
+    # How long to keep blocked domain stats (days)
+    blocked_stats_days: 180
+
+    # How long to keep raw traffic captures (days, 0 = don't capture)
+    traffic_capture_days: 7
+
+    # How long to keep behavioral pattern data (days)
+    pattern_data_days: 365
+
+    # Run cleanup job at this time daily (24h format)
+    cleanup_time: "03:00"
+
+  # Export settings (Claim 32)
+  export:
+    # Include raw traffic data in exports (can be large)
+    include_traffic: false
+    # Include AI analysis results
+    include_ai_analysis: true
+    # Export format: json | csv | both
+    format: "json"
+
+# ---------------------------------------------------------------------------
+# Logging Settings
+# ---------------------------------------------------------------------------
+logging:
+  # Log level: debug | info | warning | error | critical
+  level: "info"
+
+  # Log file path (empty = stdout only)
+  file: "~/.savvyguard/logs/savvyguard.log"
+
+  # Maximum log file size before rotation (MB)
+  max_size_mb: 50
+
+  # Number of rotated log files to keep
+  backup_count: 5
+
+  # Log format
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+
+  # Separate log for remediation actions (audit trail)
+  remediation_log: "~/.savvyguard/logs/remediation_audit.log"
+
+  # Separate log for privacy events
+  privacy_log: "~/.savvyguard/logs/privacy_events.log"
+
+# ---------------------------------------------------------------------------
+# Notifications
+# ---------------------------------------------------------------------------
+notifications:
+  # Push notification methods
+  methods:
+    # Home Assistant notification service
+    ha_notify:
+      enabled: true
+      service: "notify.mobile_app_joes_iphone"
+
+    # Email notifications
+    email:
+      enabled: false
+      smtp_host: "smtp.mail.yahoo.com"
+      smtp_port: 587
+      smtp_user: "${SAVVYGUARD_EMAIL_USER}"
+      smtp_password: "${SAVVYGUARD_EMAIL_PASSWORD}"
+      recipient: "${SAVVYGUARD_EMAIL_RECIPIENT}"
+
+    # Telegram bot notifications
+    telegram:
+      enabled: false
+      bot_token: "${SAVVYGUARD_TELEGRAM_TOKEN}"
+      chat_id: "${SAVVYGUARD_TELEGRAM_CHAT_ID}"
+
+  # Notification rules
+  rules:
+    # Notify on any remediation above level 2
+    remediation_level: 2
+    # Notify on new device discovery
+    new_device: true
+    # Notify on data exfiltration alert
+    exfiltration_alert: true
+    # Notify on ISP tracking detection
+    isp_tracking: true
+    # Daily summary at this time (empty = disabled)
+    daily_summary_time: "08:00"
+    # Suppress duplicate notifications within this window (minutes)
+    dedup_window_min: 15
+
+# ---------------------------------------------------------------------------
+# Hardware Privacy Switch (Patent Claim 30)
+# ---------------------------------------------------------------------------
+# Physical hardware switch that electrically disconnects microphones, cameras,
+# and optionally network from the hub. Cannot be overridden by software.
+hardware_switch:
+  # Is the hardware switch currently engaged
+  # (This is read from GPIO on the actual hardware; config value is initial state)
+  enabled: true
+
+  # GPIO pin for reading switch state (Raspberry Pi GPIO numbering)
+  gpio_pin: 17
+
+  # What the switch disconnects when engaged:
+  disconnects:
+    - "microphone"
+    - "camera"
+    # Uncomment to also kill network when switch is engaged:
+    # - "network"
+
+  # LED indicator GPIO pin (shows switch state)
+  led_pin: 27
+
+  # Poll interval for switch state changes (milliseconds)
+  poll_interval_ms: 100
+
+# ---------------------------------------------------------------------------
+# Advanced / Developer Settings
+# ---------------------------------------------------------------------------
+advanced:
+  # Enable developer API endpoints (/api/debug/*)
+  debug_api: false
+
+  # Prometheus metrics endpoint (/metrics)
+  metrics_enabled: false
+  metrics_port: 9090
+
+  # Rate limit API calls (requests per minute per IP)
+  api_rate_limit: 120
+
+  # Enable CORS for dashboard development
+  cors_enabled: false
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:5173"
+
+  # Plugin directory for community extensions
+  plugins_dir: "~/.savvyguard/plugins"
+
+  # Firmware update settings (for dedicated hardware version)
+  firmware:
+    auto_update: false
+    update_channel: "stable"  # stable | beta | nightly
+    check_interval_hours: 24

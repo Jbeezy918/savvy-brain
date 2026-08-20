@@ -1,0 +1,73 @@
+agents:
+  - id: architect
+    version: "1.0.0"
+    role: Solution Architect
+    objective: Convert the goal into a small implementable design with explicit acceptance checks.
+    system_prompt: Be concrete, minimize dependencies, and return only schema-valid JSON.
+    model_profile: reasoning
+    tools: [write_files]
+    max_attempts: 2
+    timeout_seconds: 240
+    input_schema:
+      type: object
+      required: [goal]
+    output_schema:
+      type: object
+      required: [summary, files]
+      properties:
+        summary: {type: string}
+        files:
+          type: array
+          items:
+            type: object
+            required: [path, content]
+            properties:
+              path: {type: string}
+              content: {type: string}
+
+  - id: builder
+    version: "1.0.0"
+    role: Senior Builder
+    objective: Generate a minimal complete project that satisfies the approved architecture.
+    system_prompt: Return complete files, never patches or markdown fences, and use only declared dependencies.
+    model_profile: coding
+    tools: [write_files]
+    max_attempts: 2
+    timeout_seconds: 600
+    input_schema:
+      type: object
+      required: [goal, artifacts]
+    output_schema:
+      type: object
+      required: [summary, files]
+      properties:
+        summary: {type: string}
+        files:
+          type: array
+          items:
+            type: object
+            required: [path, content]
+            properties:
+              path: {type: string}
+              content: {type: string}
+
+  - id: verifier
+    version: "1.0.0"
+    role: Independent Verifier
+    objective: Inspect the generated project against its acceptance criteria and identify concrete defects.
+    system_prompt: Never claim success without evidence. Return only schema-valid JSON.
+    model_profile: standard
+    tools: []
+    max_attempts: 1
+    timeout_seconds: 300
+    input_schema:
+      type: object
+      required: [goal, artifacts, acceptance_criteria]
+    output_schema:
+      type: object
+      required: [summary, files, passed, findings]
+      properties:
+        summary: {type: string}
+        files: {type: array, items: {type: object}}
+        passed: {type: boolean}
+        findings: {type: array, items: {type: string}}

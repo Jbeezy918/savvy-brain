@@ -1,0 +1,369 @@
+# ===== HOTFIX PATCH: normalize files, add Demo, wire dashboard/workloop =====
+
+set -e
+
+echo "== STEP 0: cd =="
+cd /Users/joebudds/Documents/Jenny_App_Pack_v4
+
+echo "== STEP 1: ensure Agents_Shared skeleton =="
+mkdir -p /Users/joebudds/Documents/Agents_Shared/{shared,logs,run,db}
+touch /Users/joebudds/Documents/Agents_Shared/.env
+
+cat > /Users/joebudds/Documents/Agents_Shared/shared/bus.py <<'PY'
+import sqlite3, time, threading
+from pathlib import Path
+
+ROOT = Path("/Users/joebudds/Documents/Agents_Shared")
+DB   = ROOT/"db"/"memory_shared.db"
+DB.parent.mkdir(parents=True, exist_ok=True)
+
+_lock = threading.Lock()
+
+def _conn():
+    c = sqlite3.connect(DB)
+    c.execute("PRAGMA journal_mode=WAL;")
+    return c
+
+def _init():
+    with _conn() as c:
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS messages(
+          id INTEGER PRIMARY KEY,
+          ts REAL, sender TEXT, recipient TEXT, kind TEXT, body TEXT, status TEXT
+        );
+        CREATE TABLE IF NOT EXISTS goals(
+          agent TEXT PRIMARY KEY, target_weekly REAL, description TEXT, created REAL
+        );
+        CREATE TABLE IF NOT EXISTS progress(
+          id INTEGER PRIMARY KEY, ts REAL, agent TEXT, amount REAL, note TEXT
+        );
+        CREATE TABLE IF NOT EXISTS heartbeats(
+          agent TEXT PRIMARY KEY, ts REAL, state TEXT, detail TEXT
+        );
+        """)
+_init()
+
+def now(): return time.time()
+
+def send(sender, recipient, kind, body):
+    with _lock, _conn() as c:
+        c.execute("INSERT INTO messages(ts,sender,recipient,kind,body,status) VALUES(?,?,?,?,?,?)",
+                  (now(), sender, recipient, kind, body, "new"))
+
+def inbox(recipient, mark_read=True):
+    with _lock, _conn() as c:
+        cur = c.execute("SELECT id,ts,sender,kind,body,status FROM messages WHERE recipient=? ORDER BY id DESC LIMIT 50", (recipient,))
+        rows = [{"id":r[0],"ts":r[1],"from":r[2],"kind":r[3],"body":r[4],"status":r[5]} for r in cur.fetchall()]
+        if mark_read and rows:
+            ids = [str(r["id"]) for r in rows]
+            c.execute(f"UPDATE messages SET status='read' WHERE id IN ({','.join(ids)})")
+        return rows
+
+def set_goal(agent, target_weekly, description):
+    with _lock, _conn() as c:
+        c.execute("INSERT INTO goals(agent,target_weekly,description,created) VALUES(?,?,?,?) ON CONFLICT(agent) DO UPDATE SET target_weekly=excluded.target_weekly, description=excluded.description",
+                  (agent, float(target_weekly), description, now()))
+
+def get_goal(agent):
+    with _lock, _conn() as c:
+        cur = c.execute("SELECT target_weekly,description,created FROM goals WHERE agent=?",(agent,))
+        r = cur.fetchone()
+        if not r: return None
+        return {"target_weekly": r[0], "description": r[1], "created": r[2]}
+
+def log_progress(agent, amount, note):
+    with _lock, _conn() as c:
+        c.execute("INSERT INTO progress(ts,agent,amount,note) VALUES(?,?,?,?)", (now(), agent, float(amount), note))
+
+def total_progress(agent):
+    with _lock, _conn() as c:
+        cur = c.execute("SELECT COALESCE(SUM(amount),0) FROM progress WHERE agent=?",(agent,))
+        return cur.fetchone()[0] or 0.0
+
+def heartbeat(agent, state, detail):
+    with _lock, _conn() as c:
+        c.execute("INSERT INTO heartbeats(agent,ts,state,detail) VALUES(?,?,?,?) ON CONFLICT(agent) DO UPDATE SET ts=excluded.ts, state=excluded.state, detail=excluded.detail",
+                  (agent, now(), state, detail))
+
+def read_heartbeats():
+    with _lock, _conn() as c:
+        cur = c.execute("SELECT agent,ts,state,detail FROM heartbeats")
+        rows = [{"agent":r[0],"ts":r[1],"state":r[2],"detail":r[3]} for r in cur.fetchall()]
+        return rows
+PY
+
+echo "== STEP 2: share .env + shared/bus.py symlinks for all agents =="
+for A in Jenny Lexi Luna Bob Common Demo; do
+  AGDIR="/Users/joebudds/Documents/${A}_App_Pack_v4"
+  [ -d "$AGDIR" ] || mkdir -p "$AGDIR"
+  rm -f "$AGDIR/.env"
+  ln -s /Users/joebudds/Documents/Agents_Shared/.env "$AGDIR/.env"
+  mkdir -p "$AGDIR/shared"
+  rm -f "$AGDIR/shared/bus.py"
+  ln -s /Users/joebudds/Documents/Agents_Shared/shared/bus.py "$AGDIR/shared/bus.py"
+done
+
+echo "== STEP 3: ensure Demo agent exists and identifies as Demo =="
+if [ ! -d "/Users/joebudds/Documents/Demo_App_Pack_v4" ]; then
+  cp -R /Users/joebudds/Documents/Jenny_App_Pack_v4 /Users/joebudds/Documents/Demo_App_Pack_v4
+  find /Users/joebudds/Documents/Demo_App_Pack_v4 -name "__pycache__" -type d -prune -exec rm -rf {} +
+  rm -f /Users/joebudds/Documents/Demo_App_Pack_v4/status.json /Users/joebudds/Documents/Demo_App_Pack_v4/heartbeat.txt
+fi
+
+python3 - <<'PY'
+from pathlib import Path
+import json
+
+root = Path("/Users/joebudds/Documents/Demo_App_Pack_v4")
+cfgp = root/"config.json"
+if cfgp.exists():
+    try:
+        cfg = json.loads(cfgp.read_text())
+    except Exception:
+        cfg = {}
+    cfg["agent_name"] = "Demo"
+    cfgp.write_text(json.dumps(cfg, indent=2))
+
+jp = root/"jenny.py"
+if jp.exists():
+    s = jp.read_text()
+    if "def _agent_name_from_dir()" not in s:
+        s += """
+
+def _agent_name_from_dir():
+    from pathlib import Path as _P
+    name = _P(__file__).resolve().parent.name
+    return name.split('_',1)[0] if name else "Jenny"
+
+try:
+    AGENT_NAME
+except NameError:
+    AGENT_NAME = _agent_name_from_dir()
+"""
+        jp.write_text(s)
+print("Demo agent ensured.")
+PY
+
+echo "== STEP 4: PayPal prep helper =="
+cat > /Users/joebudds/Documents/Agents_Shared/payments_prep.py <<'PY'
+from pathlib import Path
+SHARED_ENV = Path("/Users/joebudds/Documents/Agents_Shared/.env")
+REQUIRED = ["PAYPAL_CLIENT_ID","PAYPAL_CLIENT_SECRET","PAYPAL_WEBHOOK_ID"]
+def ensure_lines():
+    present = set()
+    if SHARED_ENV.exists():
+        for line in SHARED_ENV.read_text().splitlines():
+            if "=" in line:
+                present.add(line.split("=",1)[0].strip())
+    missing = [k for k in REQUIRED if k not in present]
+    if missing:
+        print("Missing keys:", ", ".join(missing))
+    else:
+        print("PayPal keys appear set.")
+if __name__=="__main__":
+    ensure_lines()
+PY
+python3 /Users/joebudds/Documents/Agents_Shared/payments_prep.py || true
+
+echo "== STEP 5: tools (launchers + supervisor + start script) =="
+mkdir -p tools
+
+# launch_all.py
+cat > tools/launch_all.py <<'PY'
+import subprocess, time
+from pathlib import Path
+AGENTS = ["Jenny","Lexi","Luna","Bob","Common","Demo"]
+BASE = Path("/Users/joebudds/Documents")
+def run_agent(a):
+    agdir = BASE / f"{a}_App_Pack_v4"
+    cmd = ["python3", "jenny.py"]
+    log = agdir / "logs" / "console.log"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    f = open(log, "a")
+    p = subprocess.Popen(cmd, cwd=str(agdir), stdin=subprocess.PIPE, stdout=f, stderr=f)
+    return p, f
+def main():
+    procs = {}
+    for a in AGENTS:
+        try:
+            p,f = run_agent(a)
+            procs[a] = (p,f)
+            print(f"Started {a} (pid {p.pid})")
+            time.sleep(0.5)
+        except Exception as e:
+            print(f"Failed to start {a}: {e}")
+    time.sleep(3)
+    print("All agents started. Use tools/supervisor.py to watch status.")
+    try:
+        while True:
+            time.sleep(5)
+    except KeyboardInterrupt:
+        print("Stopping...")
+        for a,(p,f) in procs.items():
+            try:
+                p.communicate(input=b"save shutting down\nquit\n", timeout=3)
+            except Exception:
+                p.kill()
+            f.close()
+if __name__=="__main__":
+    main()
+PY
+
+# stop_all.py
+cat > tools/stop_all.py <<'PY'
+import subprocess
+from pathlib import Path
+AGENTS = ["Jenny","Lexi","Luna","Bob","Common","Demo"]
+BASE = Path("/Users/joebudds/Documents")
+def try_stop(agent):
+    agdir = BASE / f"{agent}_App_Pack_v4"
+    try:
+        subprocess.run("printf 'quit\n' | python3 jenny.py", shell=True, cwd=str(agdir), timeout=3)
+    except Exception:
+        pass
+def main():
+    for a in AGENTS:
+        try_stop(a)
+    print("Issued quit to all agents. If any linger, close terminals or kill processes.")
+if __name__=="__main__":
+    main()
+PY
+
+# supervisor.py
+cat > tools/supervisor.py <<'PY'
+import time, json, datetime
+from pathlib import Path
+AGENTS = ["Jenny","Lexi","Luna","Bob","Common","Demo"]
+BASE = Path("/Users/joebudds/Documents")
+HB = "heartbeat.txt"
+ST = "status.json"
+def read_status(agent):
+    agdir = BASE / f"{agent}_App_Pack_v4"
+    hb = agdir/HB
+    st = agdir/ST
+    ts = "-"
+    state = "offline"
+    detail = "-"
+    if hb.exists():
+        try:
+            ts = hb.read_text().strip()
+        except Exception:
+            pass
+    if st.exists():
+        try:
+            s = json.loads(st.read_text())
+            state = s.get("state","?")
+            detail= s.get("detail","")
+        except Exception:
+            state = "?"
+    return ts, state, detail
+def clear():
+    print("\033[2J\033[H", end="")
+def main():
+    while True:
+        clear()
+        print("AGENT STATUS (Ctrl+C to exit)\n")
+        print(f"{'Name':8} | {'LastHB':19} | {'State':8} | Detail")
+        print("-"*80)
+        for a in AGENTS:
+            ts, state, detail = read_status(a)
+            try:
+                if ts != "-":
+                    dt = datetime.datetime.fromtimestamp(float(ts))
+                    ts = dt.strftime("%Y-%m-%d %H:%M:%S")
+            except Exception:
+                pass
+            print(f"{a:8} | {ts:19} | {state:8} | {detail[:60]}")
+        time.sleep(3)
+if __name__=="__main__":
+    main()
+PY
+
+# start_and_dashboard.sh
+cat > tools/start_and_dashboard.sh <<'SH'
+#!/usr/bin/env bash
+set -e
+cd /Users/joebudds/Documents/Jenny_App_Pack_v4
+nohup python3 tools/launch_all.py > /Users/joebudds/Documents/Agents_Shared/logs/launch_all.out 2>&1 &
+sleep 2
+python3 tools/supervisor.py
+SH
+chmod +x tools/start_and_dashboard.sh
+
+echo "== STEP 6: external workloop =="
+cat > tools/workloop.py <<'PY'
+import subprocess, time, pathlib
+BASE = pathlib.Path("/Users/joebudds/Documents")
+AGENTS = {
+  "Jenny":  ["trends collect", "trends cluster", "trends playbooks", "trends assets", "trends forecast", "trends export", "save jenny cycle done"],
+  "Lexi":   ["content", "save lexi content pass"],
+  "Luna":   ["research", "save luna research pass"],
+  "Bob":    ["scan", "autofix", "save bob maint pass"],
+  "Common": ["save common sync"],
+  "Demo":   ["content", "save demo pass"]
+}
+INTERVAL_SEC = 300
+def feed(agent, commands):
+    agdir = BASE / f"{agent}_App_Pack_v4"
+    if not agdir.exists(): return
+    script = "\n".join(commands + ["quit"]) + "\n"
+    try:
+        subprocess.run(["python3", "jenny.py"], cwd=str(agdir), input=script.encode(),
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=180)
+    except Exception:
+        pass
+def main():
+    print("External workloop runner started. Ctrl+C to stop.")
+    while True:
+        for a, cmds in AGENTS.items():
+            feed(a, cmds)
+            time.sleep(2)
+        time.sleep(INTERVAL_SEC)
+if __name__=="__main__":
+    main()
+PY
+
+cat > tools/workloop_start.sh <<'SH'
+#!/usr/bin/env bash
+set -e
+cd /Users/joebudds/Documents/Jenny_App_Pack_v4
+nohup python3 tools/workloop.py > /Users/joebudds/Documents/Agents_Shared/logs/workloop.out 2>&1 &
+echo "Workloop started."
+SH
+chmod +x tools/workloop_start.sh
+
+cat > tools/workloop_stop.sh <<'SH'
+#!/usr/bin/env bash
+pkill -f "python3 tools/workloop.py" || true
+echo "Workloop stop signal sent."
+SH
+chmod +x tools/workloop_stop.sh
+
+echo "== STEP 7: goals + scrub hourly check-ins =="
+python3 - <<'PY'
+from pathlib import Path
+from shared.bus import set_goal
+goals = {
+ "Jenny":  (500, "Orchestrate 6+ plays and ship assets this week"),
+ "Lexi":   (400, "Shorts + social posts; community replies"),
+ "Luna":   (300, "Research + trend intelligence"),
+ "Bob":    (200, "Automation scripts, glue code, maintenance"),
+ "Common": (150, "Common assets, docs, shared utilities"),
+ "Demo":   (250, "Assist content + experiments")
+}
+for a,(amt,desc) in goals.items():
+    set_goal(a, amt, desc)
+print("Goals set.")
+base = Path("/Users/joebudds/Documents")
+for A in ["Jenny","Lexi","Luna","Bob","Common","Demo"]:
+    jp = base/f"{A}_App_Pack_v4"/"jenny.py"
+    if not jp.exists(): continue
+    s = jp.read_text()
+    s2 = s.replace("check-in","").replace("checkin","")
+    if s2 != s:
+        jp.write_text(s2)
+print("Checked/removed any hourly check-in strings if found.")
+PY
+
+echo "== STEP 8: launch all + dashboard =="
+./tools/start_and_dashboard.sh

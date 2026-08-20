@@ -1,0 +1,386 @@
+from __future__ import annotations
+
+import json, os, re, subprocess, sys, uuid
+from datetime import datetime
+from pathlib import Path
+import streamlit as st
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from core.assistant import answer
+from core.indexer import index_workspace, search
+from core.releases import decide, request_approval
+from core.storage import add_message, enqueue, get_setting, initialize, rows, set_setting
+from core.integrations import registry
+from core.ingestion import audit, decide as decide_ingestion, preview as preview_ingestion
+from core.voice import speak, speak_now, transcribe
+from core.supervisor import WorkerSupervisor
+from core.health import get_health_summary
+from core.tools_registry import load_tools, launch_tool
+
+st.set_page_config(page_title="Savvy Brain", page_icon=":material/hub:", layout="wide")
+initialize()
+THEMES={"Savvy Midnight":("#060b13","#101d2e","#315273","#f4fbff","#5ee7f2"),"Ocean":("#06151d","#0c2734","#28708b","#e8fbff","#35d4ed"),"Royal":("#100c24","#1d1740","#5745a0","#f8f4ff","#a98bff"),"Emerald":("#07150f","#10271e","#2f7154","#ecfff5","#49e59a"),"Graphite":("#0d0f12","#191d22","#414852","#f5f7fa","#aab5c3"),"Amber":("#181006","#2d1e0b","#76521c","#fff8e8","#ffbd4a"),"Crimson":("#19090d","#301118","#7c3040","#fff1f3","#ff647d"),"Arctic":("#eaf3f7","#ffffff","#8ba9b8","#10212b","#007a9e"),"Paper":("#f3f0e8","#fffdf8","#aaa18f","#29261f","#875f18"),"Solar":("#002b36","#073642","#586e75","#fdf6e3","#b58900"),"Lavender":("#171221","#281d38","#65517b","#faf2ff","#d29cff"),"Copper":("#18110e","#2d1e18","#784f3d","#fff5ee","#e99060"),"Forest":("#0b140d","#17251a","#49644f","#f1faef","#80c77c"),"Slate":("#111827","#1f2937","#4b627d","#f9fafb","#60a5fa"),"Rose":("#1b1016","#321d29","#75415d","#fff2f8","#f58bbd"),"High Contrast":("#000000","#0b0b0b","#ffffff","#ffffff","#00ffff"),"Cloud":("#edf1f5","#ffffff","#9aa8b6","#17212b","#246fa8"),"Retro":("#17150b","#292612","#7f7738","#fffbd1","#e9dc51")}
+saved=get_setting("theme","Savvy Midnight");theme=st.sidebar.selectbox("Color preset",list(THEMES),index=list(THEMES).index(saved) if saved in THEMES else 0);bg,panel,border,textc,accent=THEMES[theme]
+with st.sidebar.expander("Mix & match colors"):
+    panel=st.color_picker("Panel background",get_setting("panel",panel));border=st.color_picker("Borders",get_setting("border",border));textc=st.color_picker("Text",get_setting("text",textc));accent=st.color_picker("Accent",get_setting("accent",accent));invert=st.toggle("Invert panel/text",get_setting("invert","0")=="1")
+    if st.button("Save appearance",use_container_width=True):
+        for k,v in {"theme":theme,"panel":panel,"border":border,"text":textc,"accent":accent,"invert":"1" if invert else "0"}.items():set_setting(k,v)
+if invert:panel,textc=textc,panel
+st.markdown(f"<style>:root{{--cyan:{accent}!important}} .stApp{{background:{bg}!important;color:{textc}}} [data-testid='stMainBlockContainer']{{max-width:1840px!important;padding-left:1.6rem!important;padding-right:1.6rem!important}} [data-testid='stVerticalBlockBorderWrapper']{{background:{panel}!important;border:2px solid {border}!important;border-radius:2px!important;padding:.3rem}}</style>", unsafe_allow_html=True)
+st.markdown("""<style>
+:root{--cyan:#5ee7f2;--line:#29415c}.stApp{background:radial-gradient(circle at 50% -10%,#173253 0,#09111e 34%,#060b13 100%)}
+[data-testid="stHeader"]{background:transparent}[data-testid="stMainBlockContainer"]{max-width:1600px;padding-top:1.25rem}
+.brand{border:1px solid #355b7d;background:linear-gradient(135deg,#111f33,#0a1321);padding:16px 20px;margin-bottom:12px;box-shadow:0 0 24px #3cb2ff14 inset}
+.kicker{color:var(--cyan);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}.title{color:#f5fbff;font-size:1.65rem;font-weight:760}.sub{color:#8fa8bf;font-size:.83rem}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ee09a;box-shadow:0 0 10px #4ee09a;margin-right:7px}
+[data-testid="stVerticalBlockBorderWrapper"]{background:linear-gradient(145deg,#121e30fa,#080f1afa);border-color:#2b4662!important;border-radius:3px!important;box-shadow:0 8px 28px #00000029}
+[data-testid="stMetric"]{border-left:3px solid var(--cyan);padding-left:12px}[data-testid="stMetricLabel"]{color:#8fa8bf;text-transform:uppercase;letter-spacing:.09em;font-size:.69rem}[data-testid="stMetricValue"]{color:#f4fbff;font-size:1.7rem}
+.stButton>button,.stDownloadButton>button{border-radius:2px;border-color:#315273;min-height:2.35rem}.stButton>button:hover{border-color:var(--cyan);color:var(--cyan)}
+[data-testid="stChatMessage"]{border:1px solid #243b54;border-radius:2px;padding:.5rem .7rem;background:#0a1421}[data-testid="stChatInput"]{border:1px solid #315273;border-radius:2px;background:#09131f}
+.green{color:#4ee09a}.yellow{color:#ffc857}.placeholder{border:1px dashed #38516b;background:#0a1320;padding:12px;color:#7894ad;font-size:.82rem}
+</style>""")
+
+def projects(): return sorted((p for p in (ROOT/"ideas").iterdir() if p.is_dir()),key=lambda p:p.name)
+def pretty(v): return str(v).replace("_"," ").replace("-"," ").title()
+def scalar(q,p=()):
+    r=rows(q,p); return int(r[0][0]) if r else 0
+def read(path,fallback="Nothing recorded yet."):
+    try:return path.read_text(encoding="utf-8") if path.exists() else fallback
+    except OSError:return fallback
+def ago(value):
+    if not value:return "No activity yet"
+    try:
+        d=datetime.fromisoformat(value.replace("Z","+00:00")); s=max(0,int((datetime.now(d.tzinfo)-d).total_seconds()))
+        return "Just now" if s<60 else f"{s//60}m ago" if s<3600 else f"{s//3600}h ago" if s<86400 else f"{s//86400}d ago"
+    except ValueError:return value
+def pids():
+    try:
+        p=subprocess.run(["pgrep","-f",str(ROOT/"agents"/"worker.py")],capture_output=True,text=True,timeout=2,check=False)
+        return [int(x) for x in p.stdout.split() if x.isdigit()]
+    except Exception:return []
+def status(p):
+    n=p.name; active=scalar("SELECT count(*) FROM jobs WHERE project=? AND status IN ('queued','running')",(n,))+scalar("SELECT count(*) FROM milestones WHERE project=? AND status!='completed'",(n,))
+    done=scalar("SELECT count(*) FROM jobs WHERE project=? AND status='completed'",(n,)); release=(p/"releases"/"current.json").exists()
+    return "Active / in process" if active else "Completed" if release and done else "Ideas" if not done and not release else "Idle"
+
+PROJECTS=projects(); NAMES=[p.name for p in PROJECTS]
+for k,v in {"session_id":uuid.uuid4().hex,"chat":[],"page":"Home","scope":"All projects","provider":"ollama","model":"llama3.2","speak_replies":True}.items():st.session_state.setdefault(k,v)
+def go(page):st.session_state.page=page
+def heading(title,caption=None):
+    st.subheader(title)
+    if caption:st.caption(caption)
+
+def chat(prompt):
+    project=None if st.session_state.scope=="All projects" else st.session_state.scope
+    st.session_state.chat.append({"role":"user","content":prompt});add_message(st.session_state.session_id,"user",prompt,project)
+    try:reply=answer(prompt,project,st.session_state.provider,st.session_state.model)
+    except Exception as e:reply=f"I couldn't reach the selected brain ({e}). Your saved workspace data is still available in the dashboard."
+    audio=None
+    if st.session_state.speak_replies:
+        try:audio=str(speak(reply))
+        except Exception:pass
+    add_message(st.session_state.session_id,"assistant",reply,project);st.session_state.chat.append({"role":"assistant","content":reply,"audio":audio})
+
+def health_banner():
+    """System health banner at top of page."""
+    health=get_health_summary()
+    disk=health["disk"]
+    status_color="🔴" if disk["status"]=="critical" else "🟡" if disk["status"]=="warning" else "🟢"
+    cols=st.columns([3,1],gap="small")
+    with cols[0]:
+        st.markdown(f"{status_color} **Disk:** {disk['free_gb']}GB free ({disk['percent_free']:.0f}%) · "
+                   f"Logs: {health['logs']['total_gb']:.1f}GB · "
+                   f"Database: {health['database']['gb']:.2f}GB")
+    with cols[1]:
+        if st.button("Refresh",use_container_width=True,key="health_refresh"):st.rerun()
+
+def quick_launch():
+    """Quick Launch panel with configurable tool shortcuts."""
+    tools=load_tools()
+    if not tools:
+        st.info("No tools configured. Edit `config/tools.json` to add shortcuts.")
+        return
+    st.subheader("Quick Launch");cols=st.columns(min(4,len(tools)),gap="small")
+    for col,tool in zip(cols,tools):
+        with col:
+            if st.button(tool["name"],use_container_width=True,key=f"launch-{tool['name']}"):
+                launch_tool(tool)
+                st.toast(f"Opening {tool['name']}…",icon="✅")
+
+def kpis():
+    counts={r["status"]:r["total"] for r in rows("SELECT status,count(*) total FROM jobs GROUP BY status")}
+    vals=[("Projects",len(PROJECTS),"folder"),("Active",sum(status(p)=="Active / in process" for p in PROJECTS),"bolt"),("Queue",counts.get("queued",0),"pending_actions"),("Completed",counts.get("completed",0),"task_alt"),("Approvals",scalar("SELECT count(*) FROM approvals WHERE status='pending'"),"approval"),("Agent health","1 online" if pids() else "0 online","smart_toy")]
+    for c,(label,value,icon) in zip(st.columns(6),vals):
+        with c.container(border=True):st.metric(label,value);st.caption(f":material/{icon}: Live from workspace")
+
+def talk():
+    with st.container(border=True,height=355):
+        a,b=st.columns([3,2]);a.markdown("### Talk to Savvy")
+        st.session_state.scope=b.selectbox("Scope",["All projects"]+NAMES,format_func=pretty,label_visibility="collapsed",key="home_scope")
+        history=st.session_state.chat[-4:] or [dict(x) for x in reversed(rows("SELECT role,content FROM messages ORDER BY id DESC LIMIT 4"))]
+        if not history:st.caption("Ask what changed, what needs approval, or what every project is doing.")
+        for m in history:
+            with st.chat_message(m["role"],avatar=":material/hub:" if m["role"]=="assistant" else None):st.markdown(m["content"])
+    with st.container(border=True):
+        a,b=st.columns([1,5])
+        with a:
+            with st.popover("Dictate",use_container_width=True):
+                recording=st.audio_input("Start dictation",label_visibility="collapsed") if hasattr(st,"audio_input") else None
+                if recording and st.button("Use recording",use_container_width=True):
+                    try:chat(transcribe(recording.getvalue(),getattr(recording,"name","dictation.wav")));st.rerun()
+                    except Exception as e:st.error(str(e))
+        prompt=b.chat_input("Type a message or use Dictate…",key="savvy_input")
+        c1,c2=st.columns(2)
+        with c1:
+            if st.button("Clear"):st.session_state.chat=[];st.rerun()
+        with c2:
+            audio=next((m.get("audio") for m in reversed(st.session_state.chat) if m.get("audio")),None)
+            if audio and Path(audio).exists():st.audio(audio)
+            else:st.button("Replay",disabled=True,help="Available after a spoken reply")
+        st.session_state.speak_replies=st.toggle("Read replies aloud",value=st.session_state.speak_replies)
+        with st.popover("Brain settings"):
+            st.session_state.provider=st.selectbox("Provider",["ollama","openai-compatible"])
+            st.session_state.model=st.text_input("Model",value=st.session_state.model)
+            for label,text in [("Status","What needs my attention?"),("Queue","Summarize the queue"),("Today","What changed today?")]:
+                if st.button(label,key=f"quick-{label}"):chat(text);st.rerun()
+    if prompt:
+        with st.spinner("Savvy is checking the workspace…"):chat(prompt)
+        st.rerun()
+
+def home():
+    health_banner();st.divider();quick_launch();st.write("")
+    kpis();st.write("");left,center,right=st.columns([1.05,2.7,1.05],gap="medium")
+    with left:
+        with st.container(border=True):
+            heading("Shortcuts","Jump straight into action")
+            for label,page in [("New assignment","Projects"),("Project brains","Projects"),("Search knowledge","Research"),("File intake","Tools"),("Recent thoughts","Conversations")]:st.button(label,use_container_width=True,key=f"short-{label}",on_click=go,args=(page,))
+        with st.container(border=True):
+            heading("Today");d=datetime.now().astimezone();st.markdown(f"**{d:%A, %B %d}**");st.markdown(f"## {d:%-I:%M %p}");st.caption(f"{d.tzname()} · refreshes on dashboard rerun");st.button("Refresh time",use_container_width=True)
+        with st.container(border=True):heading("Weather");st.markdown('<div class="placeholder">Location and weather service are not connected yet.</div>', unsafe_allow_html=True);st.button("Connect weather",disabled=True,use_container_width=True)
+    with center:
+        talk();a,b=st.columns(2,gap="medium")
+        with a.container(border=True,height=300):
+            heading("Approvals","Items waiting for Joe");pending=rows("SELECT * FROM approvals WHERE status='pending' ORDER BY id DESC LIMIT 4")
+            if not pending:st.caption("All clear—nothing is waiting for approval.")
+            for x in pending:
+                st.markdown(f"**{pretty(x['project'])} · {Path(x['source_path']).name}**");st.caption(x["note"] or "No review note")
+                c1,c2=st.columns(2)
+                with c1:
+                    if st.button("Approve",key=f"ha-{x['id']}"):decide(x["id"],True);st.rerun()
+                with c2:
+                    if st.button("Reject",key=f"hr-{x['id']}"):decide(x["id"],False);st.rerun()
+        with b.container(border=True,height=300):
+            heading("Current work","Live queue and running jobs");jobs=rows("SELECT * FROM jobs WHERE status IN ('queued','running') ORDER BY id LIMIT 6")
+            if not jobs:st.caption("No work is queued right now.")
+            for x in jobs:st.markdown((":green-badge[Running]" if x["status"]=="running" else ":orange-badge[Queued]")+f" **{pretty(x['project'])}**");st.caption(f"#{x['id']} · {x['prompt'][:90]}")
+        with st.container(border=True):
+            heading("Recent completions","Latest verified activity");done=rows("SELECT * FROM jobs WHERE status='completed' ORDER BY id DESC LIMIT 4")
+            if not done:st.caption("Completed jobs will appear here.")
+            for x in done:st.markdown(f":green-badge[Complete] **{pretty(x['project'])}** · Job #{x['id']}");st.caption(f"{ago(x['finished_at'])} · {x['prompt'][:120]}")
+    with right:
+        with st.container(border=True):heading("Quick view","What needs attention");st.metric("Pending approvals",scalar("SELECT count(*) FROM approvals WHERE status='pending'"));st.metric("Failed jobs",scalar("SELECT count(*) FROM jobs WHERE status='failed'"));st.metric("Planned milestones",scalar("SELECT count(*) FROM milestones WHERE status!='completed'"))
+        with st.container(border=True):
+            heading("Agent pulse");st.markdown(('<span class="green">● Online</span>' if pids() else '<span class="yellow">● Idle / stopped</span>'), unsafe_allow_html=True);current=rows("SELECT * FROM jobs WHERE status='running' ORDER BY id LIMIT 1");st.caption(current[0]["prompt"][:100] if current else "No active assignment");st.button("Open agents",use_container_width=True,on_click=go,args=("Agents",))
+        with st.container(border=True):
+            heading("Latest activity")
+            for x in rows("SELECT * FROM activity ORDER BY id DESC LIMIT 5"):st.markdown(f"**{pretty(x['event'])}**");st.caption(f"{pretty(x['project']) if x['project'] else 'System'} · {ago(x['created_at'])}")
+
+def brain(p):
+    from core.memory import get_active_session, reset_agent, get_project_history
+    st.title(pretty(p.name));st.markdown(f":blue-badge[{status(p)}]")
+    cols=st.columns([3,1,1],gap="small")
+    with cols[2]:
+        if st.button("Reset agent",key=f"reset-{p.name}"):
+            result=reset_agent(p.name);st.success(f"Agent reset. {result['archived_bytes']} bytes archived.");st.rerun()
+    with cols[1]:
+        if st.button("📋 History",key=f"hist-{p.name}"):
+            with st.popover("Project history"):
+                for h in get_project_history(p.name):
+                    st.caption(f"{h['created_at'][:10]} · {len(h['content'])} bytes");st.markdown(h['content'][:200])
+
+    tabs=st.tabs(["Brief","Goals","Memory","Session","Inbox","Outputs","Official versions","New assignment"])
+    for tab,name in zip(tabs[:3],["README.md","GOALS.md","MEMORY.md"]):
+        with tab:
+            content=read(p/name);c1,c2=st.columns([20,1],gap="small")
+            with c1:st.markdown(content)
+            with c2:
+                if st.button("▶️",key=f"speak-{name}",help="Speak aloud",use_container_width=True):speak_now(content[:5000])
+
+    with tabs[3]:
+        st.caption("Temporary working memory (cleared on reset)")
+        session=get_active_session(p.name);c1,c2=st.columns([20,1],gap="small")
+        with c1:
+            st.markdown(session if session else "*Empty — agent will write here during work*")
+        with c2:
+            if session and st.button("▶️",key="speak-session",help="Speak aloud",use_container_width=True):speak_now(session[:5000])
+
+    with tabs[4]:
+        inbox=read(p/"INBOX.md");st.markdown(inbox);st.button("▶️ Speak",key="speak-inbox",on_click=lambda:speak_now(inbox[:5000]))
+
+    with tabs[5]:
+        files=sorted((p/"outputs").glob("*.md"),reverse=True)
+        if not files:st.caption("No agent outputs yet.")
+        for f in files[:30]:
+            with st.expander(f.name):
+                content=read(f);st.markdown(content);c1,c2=st.columns([20,1])
+                with c1:
+                    note=st.text_input("Approval note",key=f"note-{f}")
+                    if st.button("Send for approval",key=f"approval-{f}"):st.success(f"Approval request {request_approval(p.name,str(f),note)} created.")
+                with c2:
+                    if st.button("▶️",key=f"speak-output-{f.name}",help="Speak aloud",use_container_width=True):speak_now(content[:5000])
+
+    with tabs[6]:
+        current=p/"releases"/"current.json";st.json(json.loads(read(current,"{}"))) if current.exists() else st.caption("No official version approved yet.")
+        versions=sorted((p/"releases").glob("v*"),reverse=True) if (p/"releases").exists() else [];st.write([v.name for v in versions])
+
+    with tabs[7]:
+        with st.form(f"assign-{p.name}"):
+            prompt=st.text_area("Assignment");provider=st.selectbox("Provider",["ollama","openai-compatible"]);model=st.text_input("Model",value="llama3.2")
+            if st.form_submit_button("Queue assignment",disabled=not prompt.strip()):st.success(f"Queued job {enqueue(p.name,prompt,provider,model)}.")
+
+def project_page():
+    st.title("Project brains");st.caption("Every section is derived from real jobs, milestones, outputs, and releases.")
+    for category in ["Active / in process","Ideas","Idle","Completed"]:
+        group=[p for p in PROJECTS if status(p)==category]
+        with st.container(border=True):
+            heading(category,f"{len(group)} projects")
+            if not group:st.caption("No projects in this section.")
+            cs=st.columns(min(3,max(1,len(group))))
+            for i,p in enumerate(group):
+                with cs[i%len(cs)].container(border=True):
+                    st.markdown(f"### {pretty(p.name)}");q=scalar("SELECT count(*) FROM jobs WHERE project=? AND status IN ('queued','running')",(p.name,));a=scalar("SELECT count(*) FROM approvals WHERE project=? AND status='pending'",(p.name,));st.caption(f"{q} active jobs · {a} approvals")
+                    if st.button("Open brain",key=f"open-{p.name}",use_container_width=True):st.session_state.brain_open=p.name;st.rerun()
+if st.session_state.get("brain_open"):
+    p=next((x for x in PROJECTS if x.name==st.session_state.brain_open),None)
+    if p:
+        with st.container(border=True):brain(p)
+
+def agents():
+    st.title("Agents");st.caption("Health is detected from real worker processes per project.")
+    supervisor = WorkerSupervisor()
+    status = supervisor.status()
+
+    for project, info in sorted(status["workers"].items()):
+        with st.container(border=True):
+            a,b,c=st.columns([1,5,2]);a.markdown("# :material/smart_toy:")
+            with b:
+                st.subheader(pretty(project))
+                st.markdown(f'<span class="green">● Running (PID {info["pid"]}, unsafe_allow_html=True)</span>' if info["running"] else '<span class="yellow">● Idle / stopped</span>')
+                st.write(f"**Enabled:** {info['enabled']} · **Model:** {info['model']}")
+                recent=rows("SELECT * FROM activity WHERE event LIKE 'job_%' AND ? ORDER BY id DESC LIMIT 1", (project,))
+                st.caption(f"Last activity: {ago(recent[0]['created_at']) if recent else 'none recorded'}")
+            with c:
+                if st.button("Start",key=f"start-{project}",use_container_width=True,disabled=info["running"]):
+                    supervisor.start_worker(project);st.toast(f"Starting {project}");st.rerun()
+                if st.button("Stop",key=f"stop-{project}",use_container_width=True,disabled=not info["running"]):
+                    supervisor.stop_worker(project);st.toast(f"Stopped {project}");st.rerun()
+                if st.button("Details",key=f"details-{project}",use_container_width=True):
+                    st.info(f"Project: {project}\nEnabled: {info['enabled']}\nRunning: {info['running']}\nModel: {info['model']}\nPID: {info['pid']}")
+
+def conversations():
+    st.title("Conversations");st.caption("Savvy history is live. External imports are staged for future wiring.");source=st.selectbox("Source",["Savvy","ChatGPT","Claude","Gemini","Apple","Alexa"],default="Savvy")
+    if source!="Savvy":st.markdown(f'<div class="placeholder">{source} import is not connected. No conversation data is being invented.</div>', unsafe_allow_html=True);st.button(f"Connect {source}",disabled=True);return
+    q=st.text_input("Search local conversations");sql="SELECT * FROM messages";params=()
+    if q.strip():sql+=" WHERE content LIKE ?";params=(f"%{q.strip()}%",)
+    groups={}
+    for x in rows(sql+" ORDER BY id DESC LIMIT 100",params):groups.setdefault(x["created_at"][:10],[]).append(x)
+    for date,items in groups.items():
+        with st.container(border=True):
+            st.subheader(date)
+            for x in items:st.markdown(f"**{pretty(x['role'])}** · {pretty(x['project']) if x['project'] else 'All projects'}");st.write(x["content"])
+
+def save_upload(uploaded,project):
+    name=re.sub(r"[^A-Za-z0-9._-]+","_",Path(uploaded.name).name).strip("._") or "upload";dest=ROOT/"ideas"/project/"assets"/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(uploaded.getvalue());return dest
+def tools_page():
+    st.title("Tools");a,b=st.columns(2,gap="medium")
+    with a.container(border=True):heading("YouTube analyzer","Video research shortcut");st.text_input("YouTube URL",disabled=True,placeholder="Not connected yet");st.button("Analyze video",disabled=True);st.caption("Requires a transcript/video intake backend.")
+    with b.container(border=True):
+        heading("File intake pipeline","Add a file to a real project brain");project=st.selectbox("Destination project",NAMES,format_func=pretty);uploaded=st.file_uploader("Drop a file here",type=["md","txt","pdf","docx","csv","json","png","jpg","jpeg"])
+        if st.button("Add to project",type="primary",disabled=uploaded is None):
+            path=save_upload(uploaded,project);indexed,skipped=index_workspace();st.success(f"Saved {path.name} to {pretty(project)}. Index refreshed ({indexed} indexed, {skipped} skipped).")
+    for f in sorted((ROOT/"tools").glob("*.*")):
+        with st.container(border=True):st.markdown(f"### :material/build: {pretty(f.stem)}");st.caption(f.name);st.button("Open tool",key=f"tool-{f}",disabled=True,help="Direct tool launching is not connected")
+    with st.container(border=True):
+        heading("Integration status","Connected only means credentials/configuration were detected")
+        for item in registry():st.markdown((":green-badge[Connected]" if item["configured"] else ":orange-badge[Setup needed]")+f" **{item['name']}** — {item['needs']}")
+    with st.container(border=True):
+        heading("Ingestion","Original files remain untouched");counts={x["status"]:x["n"] for x in rows("SELECT status,count(*) n FROM ingestion_items GROUP BY status")};st.write(f"Staged **{counts.get('staged',0)}** · Review **{counts.get('review',0)}** · Duplicates **{counts.get('duplicate',0)}**")
+        if st.button("Audit Desktop & Downloads"):st.success(str(audit([Path.home()/"Desktop",Path.home()/"Downloads"])));st.rerun()
+
+def ingestion_review():
+    st.title("Ingestion review");st.caption("Nothing is copied until you approve it. Originals are never changed.")
+    counts={x["status"]:x["n"] for x in rows("SELECT status,count(*) n FROM ingestion_items GROUP BY status")}
+    a,b,c,d=st.columns(4)
+    a.metric("Needs review",counts.get("review",0));b.metric("Approved",counts.get("approved",0));c.metric("Ignored",counts.get("ignored",0));d.metric("Duplicates",counts.get("duplicate",0))
+    with st.container(border=True):
+        kind=st.selectbox("Category",["All","chatgpt","claude","savvy","candidate"]);query=st.text_input("Filter by filename or folder")
+        sql="SELECT * FROM ingestion_items WHERE status='review'";params=[]
+        if kind!="All":sql+=" AND source_type=?";params.append(kind)
+        if query.strip():sql+=" AND source_path LIKE ?";params.append(f"%{query.strip()}%")
+        sql+=" ORDER BY id LIMIT 100";items=rows(sql,tuple(params))
+        st.caption(f"Showing {len(items)} items. Narrow the filter to review a specific folder or export.")
+    for item in items:
+        path=Path(item["source_path"]);label=f"#{item['id']} · {path.name} · {item['source_type']} · {item['size']/1024:.1f} KB"
+        with st.expander(label):
+            st.code(str(path),language=None);st.caption(item["review_reason"] or "Ready for review")
+            try:st.text_area("Preview",preview_ingestion(item["id"]),height=180,disabled=True,key=f"preview-{item['id']}")
+            except Exception as e:st.warning(f"Preview unavailable: {e}")
+            scope=st.selectbox("Send to",["master"]+[f"project:{n}" for n in NAMES],format_func=lambda x:"Savvy master" if x=="master" else pretty(x.split(":",1)[1]),key=f"scope-{item['id']}")
+            x,y,z=st.columns(3)
+            if x.button("Approve",type="primary",key=f"approve-ing-{item['id']}"):
+                decide_ingestion(item["id"],"approve",scope);index_workspace();st.toast(f"Approved {path.name}");st.rerun()
+            if y.button("Hold",key=f"hold-ing-{item['id']}"):
+                decide_ingestion(item["id"],"hold",scope);st.rerun()
+            if z.button("Ignore",key=f"ignore-ing-{item['id']}"):
+                decide_ingestion(item["id"],"ignore",scope);st.rerun()
+
+def home_assistant():
+    st.title("Home Assistant");configured=next(x for x in registry() if x["name"]=="Home Assistant")["configured"]
+    with st.container(border=True):
+        st.subheader("Connection status");st.success("Configuration found; connection can be validated.") if configured else st.warning("Not connected. No device data is being simulated.")
+        st.text_input("Home Assistant URL",value=os.getenv("HOME_ASSISTANT_URL",""),placeholder="http://homeassistant.local:8123",disabled=configured);st.text_input("Long-lived access token",type="password",disabled=configured);st.caption("Set HOME_ASSISTANT_URL and HOME_ASSISTANT_TOKEN in the dashboard environment, then restart.")
+
+def research():
+    st.title("Research");st.caption("Search the indexed workspace or refresh it after new files arrive.")
+    with st.container(border=True):
+        c1,c2=st.columns(2)
+        with c1:
+            q=st.text_input("Search saved research and files")
+        with c2:
+            if st.button("Refresh index"):i,s=index_workspace();st.toast(f"Indexed {i}; skipped {s}.")
+        if q:
+            try:
+                found=search(q)
+                if not found:st.caption("No matching indexed files.")
+                for x in found:
+                    with st.container(border=True):st.markdown(f"**{x['path']}**");st.caption(pretty(x["project"]) if x["project"] else "Shared workspace");st.markdown(x["snippet"])
+            except Exception as e:st.error(str(e))
+    with st.container(border=True):
+        heading("Joe knowledge profiles","First-pass signals extracted from approved source material")
+        prefs=rows("SELECT * FROM knowledge_profiles WHERE profile_type='preference' ORDER BY id DESC LIMIT 12");ideas=rows("SELECT * FROM knowledge_profiles WHERE profile_type='idea' ORDER BY id DESC LIMIT 12")
+        pref_count=scalar("SELECT count(*) FROM knowledge_profiles WHERE profile_type='preference'");idea_count=scalar("SELECT count(*) FROM knowledge_profiles WHERE profile_type='idea'")
+        ptab,itab=st.tabs([f"Preferences ({pref_count})",f"Promising ideas ({idea_count})"])
+        with ptab:
+            for x in prefs:st.markdown(f"- {x['statement']}");st.caption(x["source_path"])
+        with itab:
+            for x in ideas:st.markdown(f"- {x['statement']}");st.caption(x["source_path"])
+
+def archive():
+    st.title("Archive");st.caption("Official versions, approvals, completed work, and files remain recoverable here.");a,b,c=st.tabs(["Official releases","Approval history","Indexed files"])
+    with a:
+        found=False
+        for p in PROJECTS:
+            for v in sorted((p/"releases").glob("v*"),reverse=True) if (p/"releases").exists() else []:
+                found=True
+                with st.container(border=True):st.markdown(f"**{pretty(p.name)} · {v.name}**");st.caption(read(v/"manifest.json","Manifest unavailable"))
+        if not found:st.caption("No official releases yet.")
+    with b:st.dataframe([dict(x) for x in rows("SELECT * FROM approvals WHERE status!='pending' ORDER BY id DESC LIMIT 100")],hide_index=True)
+    with c:st.dataframe([dict(x) for x in rows("SELECT path,project,size,indexed_at FROM documents ORDER BY indexed_at DESC LIMIT 250")],hide_index=True)
+    st.info("Print, document export, and bundled downloads are planned but not connected.")
+
+st.markdown('<div class="brand"><div class="kicker"><span class="dot"></span>Local command system</div><div class="title">Savvy Brain</div><div class="sub">Joe\'s project intelligence, approvals, agents, and knowledge in one place</div></div>', unsafe_allow_html=True)
+PAGES=["Home","Projects","Agents","Conversations","Home Assistant","Tools","Ingestion","Research","Archive"]
+default_idx=PAGES.index(st.session_state.page) if st.session_state.page in PAGES else 0
+page=st.selectbox("Main navigation",PAGES,index=default_idx,key="main-navigation",label_visibility="collapsed")
+if page:st.session_state.page=page
+{"Home":home,"Projects":project_page,"Agents":agents,"Conversations":conversations,"Home Assistant":home_assistant,"Tools":tools_page,"Ingestion":ingestion_review,"Research":research,"Archive":archive}[st.session_state.page]()

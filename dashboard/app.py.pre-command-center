@@ -1,0 +1,147 @@
+from pathlib import Path
+import sys, uuid
+import streamlit as st
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from core.assistant import answer, system_snapshot
+from core.indexer import index_workspace, search
+from core.releases import decide, request_approval
+from core.storage import add_message, connect, enqueue, initialize, now, rows
+from core.voice import speak, transcribe
+
+initialize()
+projects = sorted(p for p in (ROOT / "ideas").iterdir() if p.is_dir())
+names = [p.name for p in projects]
+st.session_state.setdefault("session_id", uuid.uuid4().hex)
+st.session_state.setdefault("chat", [])
+st.set_page_config(page_title="Savvy Brain", page_icon="🧠", layout="wide")
+st.title("🧠 Savvy Brain Central Command")
+view = st.sidebar.radio("Navigation", ["Talk to Savvy", "Overview", "Project Brains", "Milestones & Approvals", "Search", "Job Queue", "Agents & Tools"])
+
+if view == "Talk to Savvy":
+    st.subheader("Talk to Savvy")
+    st.caption("Ask about all work, a project, tools, completed work, new developments, or pending approvals.")
+    scope = st.selectbox("Scope", ["All projects"] + names, format_func=lambda x: x.replace("_", " ").title())
+    a, b, c = st.columns([2, 2, 1])
+    provider = a.selectbox("Brain provider", ["ollama", "openai-compatible"])
+    model = b.text_input("Model", value="llama3.2" if provider == "ollama" else "gpt-5-mini")
+    spoken = c.toggle("Speak replies", value=True)
+    if hasattr(st, "audio_input"):
+        recording = st.audio_input("Dictate a message")
+    else:
+        st.warning("This Streamlit version cannot record directly. Upload a voice recording here, or launch with run_dashboard.command.")
+        recording = st.file_uploader("Upload dictation", type=["wav", "mp3", "m4a", "aiff"])
+    if recording and st.button("Transcribe recording"):
+        try:
+            st.session_state.dictated = transcribe(recording.getvalue(), getattr(recording, "name", "dictation.wav"))
+        except Exception as exc:
+            st.error(str(exc))
+    if st.session_state.get("dictated"):
+        st.info(f"Dictation: {st.session_state.dictated}")
+    for msg in st.session_state.chat:
+        with st.chat_message(msg["role"]):
+            st.markdown(msg["content"])
+            if msg.get("audio"): st.audio(msg["audio"])
+    prompt = st.chat_input("Ask for an update or give an assignment…")
+    if st.session_state.get("dictated") and st.button("Send dictated message", type="primary"):
+        prompt = st.session_state.pop("dictated")
+    if prompt:
+        project = None if scope == "All projects" else scope
+        st.session_state.chat.append({"role": "user", "content": prompt})
+        add_message(st.session_state.session_id, "user", prompt, project)
+        with st.chat_message("user"): st.markdown(prompt)
+        with st.chat_message("assistant"):
+            with st.spinner("Savvy is checking the workspace…"):
+                try:
+                    reply = answer(prompt, project, provider, model)
+                except Exception as exc:
+                    reply = f"I couldn't reach the selected LLM ({exc}). Verified local status:\n\n{system_snapshot(project)}"
+                audio_path = None
+                if spoken:
+                    try: audio_path = str(speak(reply))
+                    except Exception as exc: st.warning(f"Voice output unavailable: {exc}")
+                st.markdown(reply)
+                if audio_path: st.audio(audio_path, autoplay=True)
+        add_message(st.session_state.session_id, "assistant", reply, project)
+        st.session_state.chat.append({"role": "assistant", "content": reply, "audio": audio_path})
+
+elif view == "Overview":
+    counts = {r["status"]: r["total"] for r in rows("SELECT status,count(*) total FROM jobs GROUP BY status")}
+    cols = st.columns(5)
+    for col, label, value in zip(cols, ["Project brains", "Indexed files", "Queued", "Completed", "Awaiting approval"],
+        [len(projects), rows("SELECT count(*) n FROM documents")[0]["n"], counts.get("queued", 0), counts.get("completed", 0), rows("SELECT count(*) n FROM approvals WHERE status='pending'")[0]["n"]]):
+        col.metric(label, value)
+    st.code(system_snapshot(), language=None)
+    if st.button("Refresh searchable index"):
+        indexed, skipped = index_workspace(); st.success(f"Indexed {indexed}; skipped {skipped}.")
+
+elif view == "Project Brains":
+    chosen = st.selectbox("Project", projects, format_func=lambda p: p.name.replace("_", " ").title())
+    tabs = st.tabs(["Brief", "Goals", "Memory", "Inbox", "Outputs", "Official versions", "New job"])
+    for tab, filename in zip(tabs[:4], ["README.md", "GOALS.md", "MEMORY.md", "INBOX.md"]):
+        with tab:
+            path = chosen / filename
+            st.markdown(path.read_text(encoding="utf-8") if path.exists() else f"No {filename} yet.")
+    with tabs[4]:
+        outputs = sorted((chosen / "outputs").glob("*.md"), reverse=True)
+        if not outputs: st.info("No agent outputs yet.")
+        for output in outputs[:30]:
+            with st.expander(output.name):
+                st.markdown(output.read_text(encoding="utf-8"))
+                note = st.text_input("Approval note", key=f"note-{output}")
+                if st.button("Send for approval", key=f"approval-{output}"):
+                    st.success(f"Approval request {request_approval(chosen.name, str(output), note)} created.")
+    with tabs[5]:
+        current = chosen / "releases" / "current.json"
+        st.json(current.read_text(encoding="utf-8")) if current.exists() else st.info("No official version approved yet.")
+        release_dir = chosen / "releases"
+        st.write([p.name for p in release_dir.glob("v*")] if release_dir.exists() else [])
+    with tabs[6]:
+        assignment = st.text_area("Assignment")
+        jp = st.selectbox("Provider", ["ollama", "openai-compatible"], key="jp")
+        jm = st.text_input("Model", value="llama3.2", key="jm")
+        if st.button("Queue assignment", disabled=not assignment.strip()):
+            st.success(f"Queued job {enqueue(chosen.name, assignment, jp, jm)}.")
+
+elif view == "Milestones & Approvals":
+    chosen = st.selectbox("Project", names, format_func=lambda x: x.replace("_", " ").title())
+    left, right = st.columns(2)
+    with left:
+        st.subheader("Milestones")
+        with st.form("milestone"):
+            title, detail = st.text_input("New milestone"), st.text_area("Success criteria")
+            if st.form_submit_button("Add", disabled=not title.strip()):
+                with connect() as db: db.execute("INSERT INTO milestones(project,title,detail,status,created_at) VALUES(?,?,?,'planned',?)", (chosen,title,detail,now()))
+                st.rerun()
+        for item in rows("SELECT * FROM milestones WHERE project=? ORDER BY id DESC", (chosen,)):
+            checked = st.checkbox(item["title"], value=item["status"] == "completed", key=f"m-{item['id']}")
+            st.caption(item["detail"] or "No criteria recorded.")
+            status = "completed" if checked else "planned"
+            if status != item["status"]:
+                with connect() as db: db.execute("UPDATE milestones SET status=?,completed_at=? WHERE id=?", (status,now() if checked else None,item["id"]))
+                st.rerun()
+    with right:
+        st.subheader("Waiting for your approval")
+        pending = rows("SELECT * FROM approvals WHERE project=? AND status='pending'", (chosen,))
+        if not pending: st.info("Nothing is waiting for approval.")
+        for item in pending:
+            with st.container(border=True):
+                st.write(f"**{Path(item['source_path']).name}**"); st.caption(item["note"] or "No review note.")
+                yes, no = st.columns(2)
+                if yes.button("Approve as official", key=f"yes-{item['id']}"):
+                    release = decide(item["id"], True); st.success(f"Approved as {release.name}."); st.rerun()
+                if no.button("Reject", key=f"no-{item['id']}"): decide(item["id"], False); st.rerun()
+
+elif view == "Search":
+    query = st.text_input("Search all indexed knowledge")
+    if query:
+        try:
+            for result in search(query): st.markdown(f"**{result['path']}**  \n{result['snippet']}")
+        except Exception as exc: st.error(str(exc))
+elif view == "Job Queue":
+    st.dataframe([dict(x) for x in rows("SELECT * FROM jobs ORDER BY id DESC LIMIT 100")], use_container_width=True, hide_index=True)
+else:
+    left, right = st.columns(2)
+    left.subheader("Agents"); left.write([p.name for p in (ROOT / "agents").glob("*.py")])
+    right.subheader("Tools"); right.write([p.name for p in (ROOT / "tools").glob("*.*")])

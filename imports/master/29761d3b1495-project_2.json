@@ -1,0 +1,17 @@
+{
+  "project_name": "Test Project",
+  "folder_name": "Test_Project",
+  "niche": "AI",
+  "target_audience": "General audience",
+  "style": "Funny documentary",
+  "video_length_minutes": 20,
+  "videos_per_run": 1,
+  "created_at": "2026-07-12T22:36:34",
+  "status": "error",
+  "last_error": "Script generation failed after max retries",
+  "updated_at": "2026-07-13T23:30:30+00:00",
+  "research_started_at": "2026-07-13T13:29:23",
+  "topic": "Test Project",
+  "research_model": "qwen2.5-coder:32b",
+  "research_completed_at": "2026-07-13T13:41:56"
+}

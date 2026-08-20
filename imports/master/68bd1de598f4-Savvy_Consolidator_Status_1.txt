@@ -1,0 +1,67 @@
+SAVVY CONSOLIDATOR STATUS
+=========================
+Thu Jul 16 19:07:54 CDT 2026
+
+FOUND: /Users/joebudds/Desktop/Tools/SavvyConsolidator
+
+/Users/joebudds/Desktop/Tools/SavvyConsolidator/.venv/.gitignore
+/Users/joebudds/Desktop/Tools/SavvyConsolidator/.venv/pyvenv.cfg
+/Users/joebudds/Desktop/Tools/SavvyConsolidator/credential_workbook.py
+/Users/joebudds/Desktop/Tools/SavvyConsolidator/main.py
+/Users/joebudds/Desktop/Tools/SavvyConsolidator/run.command
+
+FOUND: /Users/joebudds/Desktop/Tools/savvy_consolidator
+
+/Users/joebudds/Desktop/Tools/savvy_consolidator/main_ui.py
+/Users/joebudds/Desktop/Tools/savvy_consolidator/src/orchestrator.py
+
+Launching existing installation...
+Installation exists, but no valid launcher was found.cat << 'EOF' > ~/Desktop/launch_savvy_consolidator.command
+#!/bin/bash
+set -e
+
+APP="$HOME/Desktop/Tools/SavvyConsolidator"
+PYTHON="$APP/.venv/bin/python"
+MAIN="$APP/main.py"
+LOG="$HOME/Desktop/Savvy_Consolidator_Launch.log"
+
+exec > >(tee "$LOG") 2>&1
+
+echo "Launching Savvy Consolidator..."
+echo "App: $APP"
+echo
+
+if [ ! -d "$APP" ]; then
+    echo "ERROR: Application folder not found."
+    open "$LOG"
+    exit 1
+fi
+
+if [ ! -x "$PYTHON" ]; then
+    echo "ERROR: Python environment is missing or broken."
+    open "$LOG"
+    exit 1
+fi
+
+if [ ! -f "$MAIN" ]; then
+    echo "ERROR: main.py was not found."
+    open "$LOG"
+    exit 1
+fi
+
+cat << 'RUNEOF' > "$APP/run.command"
+#!/bin/bash
+cd "$HOME/Desktop/Tools/SavvyConsolidator"
+exec "$HOME/Desktop/Tools/SavvyConsolidator/.venv/bin/python" \
+"$HOME/Desktop/Tools/SavvyConsolidator/main.py"
+RUNEOF
+
+chmod +x "$APP/run.command"
+chmod +x "$HOME/Desktop/launch_savvy_consolidator.command"
+
+"$PYTHON" "$MAIN"
+EOF
+
+chmod +x ~/Desktop/launch_savvy_consolidator.command
+~/Desktop/launch_savvy_consolidator.command
+

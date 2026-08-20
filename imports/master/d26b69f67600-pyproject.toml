@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "savvy-ai-factory"
+version = "0.4.0"
+description = "Local-first agent, project, and workflow factory for the Savvy_Suite"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.8,<3",
+  "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.115", "uvicorn[standard]>=0.30"]
+temporal = ["temporalio>=1.7"]
+dev = ["pytest>=8", "ruff>=0.7", "mypy>=1.13"]
+
+[project.scripts]
+savvy-factory = "savvy_factory.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

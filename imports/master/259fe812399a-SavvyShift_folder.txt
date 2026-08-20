@@ -1,0 +1,22 @@
+joebudds@MacBook-Pro-94  SavvyShift %  source "/U
+sers/joebudds/ SavvyShift/.venv/bin/activate"
+(.venv) joebudds@MacBook-Pro-94  SavvyShift % zip -r savvy_shift_export.zip . -x "*.venv*" -x "*/__pycache__/*" -x "*.git*"
+
+  adding: nurse_dispatch.py (deflated 69%)
+  adding: web_app.py (deflated 75%)
+  adding: requirements.txt (stored 0%)
+  adding: savvy_shift.py (deflated 75%)
+  adding: demo_marketplace_app.py (deflated 75%)
+  adding: backend/ (stored 0%)
+  adding: backend/__init__.py (stored 0%)
+  adding: backend/logic.py (deflated 76%)
+  adding: backend/savvy_shift.db (deflated 97%)
+  adding: __pycache__/ (stored 0%)
+  adding: __pycache__/savvy_shift.cpython-314.pyc (deflated 63%)
+  adding: __pycache__/demo_marketplace_app.cpython-314.pyc (deflated 59%)
+  adding: __pycache__/web_app.cpython-314.pyc (deflated 58%)
+  adding: nurse_dispatch.db (deflated 97%)
+  adding: savvy_shift.db (deflated 97%)
+  adding: savvyshift.db (deflated 97%)
+(.venv) joebudds@MacBook-Pro-94  SavvyShift % 
+

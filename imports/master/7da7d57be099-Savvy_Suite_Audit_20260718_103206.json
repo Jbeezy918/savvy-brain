@@ -1,0 +1,2296 @@
+{
+  "duplicate_groups": [
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_ops/approvals_approved/APPROVE_20260606_025236_ATEC_draft.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_ops/approvals_pending/APPROVE_20260606_025236_Qualwave_draft.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_ops/approvals_pending/APPROVE_20260606_025236_Richardson_-_Quantic_PMI_draft.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_ops/email_drafts/20260606_025236_ATEC_draft.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_ops/email_drafts/20260606_025236_Qualwave_draft.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_ops/email_drafts/20260606_025236_Richardson_-_Quantic_PMI_draft.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_ops/sent_ready/APPROVE_20260606_025236_ATEC_draft.txt",
+      "GovCon_Consolidated/govcon_ops/approvals_approved/APPROVE_20260606_025236_ATEC_draft.txt",
+      "GovCon_Consolidated/govcon_ops/approvals_pending/APPROVE_20260606_025236_Qualwave_draft.txt",
+      "GovCon_Consolidated/govcon_ops/approvals_pending/APPROVE_20260606_025236_Richardson_-_Quantic_PMI_draft.txt",
+      "GovCon_Consolidated/govcon_ops/email_drafts/20260606_025236_ATEC_draft.txt",
+      "GovCon_Consolidated/govcon_ops/email_drafts/20260606_025236_Qualwave_draft.txt",
+      "GovCon_Consolidated/govcon_ops/email_drafts/20260606_025236_Richardson_-_Quantic_PMI_draft.txt",
+      "GovCon_Consolidated/govcon_ops/sent_ready/APPROVE_20260606_025236_ATEC_draft.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_QUOTE.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/APPROVED_TO_QUOTE.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/APPROVED_TO_QUOTE.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_QUOTE.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_QUOTE.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/APPROVED_TO_QUOTE.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/APPROVED_TO_QUOTE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_QUOTE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/APPROVED_TO_QUOTE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/APPROVED_TO_QUOTE.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/BID_STAGE.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/BID_STAGE.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/BID_STAGE.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/BID_STAGE.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/BID_STAGE.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/BID_STAGE.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/BID_STAGE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/BID_STAGE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/BID_STAGE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/BID_STAGE.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/action_plan.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/action_plan.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/action_plan.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/action_plan.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/action_plan.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/action_plan.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/action_plan.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/action_plan.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/action_plan.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/action_plan.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_tracking_plan.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/email_tracking_plan.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/email_tracking_plan.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_tracking_plan.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_tracking_plan.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/email_tracking_plan.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/email_tracking_plan.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_tracking_plan.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/email_tracking_plan.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/email_tracking_plan.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_watch_terms.txt",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/email_watch_terms.txt",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/email_watch_terms.txt",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_watch_terms.txt",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_watch_terms.txt",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/email_watch_terms.txt",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/email_watch_terms.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/email_watch_terms.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/email_watch_terms.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/email_watch_terms.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/next_steps.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/next_steps.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/next_steps.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/next_steps.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/next_steps.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/next_steps.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/next_steps.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/next_steps.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/next_steps.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/next_steps.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/pricing_recommendation.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/pricing_recommendation.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/pricing_recommendation.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/pricing_recommendation.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/pricing_recommendation.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/pricing_recommendation.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/pricing_recommendation.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/pricing_recommendation.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/pricing_recommendation.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/pricing_recommendation.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_budget_box.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_budget_box.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_budget_box.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_budget_box.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_budget_box.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_budget_box.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_budget_box.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_budget_box.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_budget_box.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_budget_box.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_conexwest.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_conexwest.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_conexwest.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_conexwest.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_conexwest.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_conexwest.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_conexwest.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_conexwest.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_conexwest.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_conexwest.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_container_alliance.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_container_alliance.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_container_alliance.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_container_alliance.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_container_alliance.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_container_alliance.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_container_alliance.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_container_alliance.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_container_alliance.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_container_alliance.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_falcon_structures.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_falcon_structures.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_falcon_structures.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_falcon_structures.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_falcon_structures.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_falcon_structures.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_falcon_structures.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_falcon_structures.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_falcon_structures.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_falcon_structures.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_mobile_modular_portable_storage.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_mobile_modular_portable_storage.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_western_container_sales.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_western_container_sales.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_western_container_sales.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_western_container_sales.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_western_container_sales.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_western_container_sales.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_western_container_sales.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/rfq_drafts/rfq_western_container_sales.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/rfq_drafts/rfq_western_container_sales.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/rfq_drafts/rfq_western_container_sales.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/supplier_search_links.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/supplier_search_links.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/supplier_search_links.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/supplier_search_links.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/supplier_search_links.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/supplier_search_links.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/supplier_search_links.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/supplier_search_links.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/supplier_search_links.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/supplier_search_links.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/vendor_rfq_email.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/vendor_rfq_email.md",
+      "Cleaned_Work/Misc/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/vendor_rfq_email.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/vendor_rfq_email.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/vendor_rfq_email.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/vendor_rfq_email.md",
+      "GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/vendor_rfq_email.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/vendor_rfq_email.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/vendor_rfq_email.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/saved_deals/DWORSHAK_CONTAINER_DEAL/vendor_rfq_email.md"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/saved_resource.html",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/saved_resource.html",
+      "GovCon_Consolidated/GovCon_Consolidated/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/saved_resource(1).html",
+      "GovCon_Consolidated/GovCon_Consolidated/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/saved_resource(3).html",
+      "GovCon_Consolidated/GovCon_Consolidated/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/saved_resource.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/saved_resource.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/saved_resource.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/saved_resource(1).html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/saved_resource(3).html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/saved_resource.html"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities 2/attachments/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/attachments/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/extracted/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities 2/attachments/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/attachments/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/extracted/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities 2/attachments/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/attachments/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/extracted/dc4a66f238f44ed38adc8e68b4a1a566/file_1.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_190810.json",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_220758.json",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_221459.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_190810.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_220758.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_221459.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_190810.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_220758.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_221459.json"
+    ],
+    [
+      "Cleaned_Work/Documents/CampSmith_Contract.txt",
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/solicitation/original_FULL.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_60ea211b7c634d7d963fed62a70d4bf5_FULL.txt",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/solicitation/original_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/solicitation/original_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_60ea211b7c634d7d963fed62a70d4bf5_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/solicitation/original_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_60ea211b7c634d7d963fed62a70d4bf5_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/01_ACTION_CHECKLIST.md",
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/01_ACTION_CHECKLIST.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/01_ACTION_CHECKLIST.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/01_ACTION_CHECKLIST.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/01_ACTION_CHECKLIST.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/01_ACTION_CHECKLIST.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/01_ACTION_CHECKLIST.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/01_ACTION_CHECKLIST.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/02_RFQ_PACKAGE.md",
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/02_RFQ_PACKAGE.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/02_RFQ_PACKAGE.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/02_RFQ_PACKAGE.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/02_RFQ_PACKAGE.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/02_RFQ_PACKAGE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/02_RFQ_PACKAGE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/02_RFQ_PACKAGE.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/03_SUBMISSION_PACKAGE.md",
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/03_SUBMISSION_PACKAGE.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/03_SUBMISSION_PACKAGE.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/03_SUBMISSION_PACKAGE.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/03_SUBMISSION_PACKAGE.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/03_SUBMISSION_PACKAGE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/03_SUBMISSION_PACKAGE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/03_SUBMISSION_PACKAGE.md"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/swarm_docs/operations/1_ROUND_1.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/swarm_docs/research/3_ROUND_1.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/swarm_docs/technical/9_ROUND_1.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/work_queue/ROUND_1.md",
+      "GovCon_Consolidated/govcon_agent/swarm_docs/operations/1_ROUND_1.md",
+      "GovCon_Consolidated/govcon_agent/swarm_docs/research/3_ROUND_1.md",
+      "GovCon_Consolidated/govcon_agent/swarm_docs/technical/9_ROUND_1.md",
+      "GovCon_Consolidated/govcon_agent/work_queue/ROUND_1.md"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/app.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/app_working_communications_20260607_224546.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/app.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/app_working_communications_20260607_224546.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/app.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/app_working_communications_20260607_224546.py",
+      "GovCon_Consolidated/govcon_hq/app.py",
+      "GovCon_Consolidated/govcon_hq/app_working_communications_20260607_224546.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_pipeline/data/raw_sam/2026-05-25_opportunities.json",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_pipeline/data/raw_sam/2026-06-07_opportunities.json",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_pipeline/data/raw_sam/2027-06-07_opportunities.json",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_pipeline/data/raw_sam/2030-01-01_opportunities.json",
+      "GovCon_Consolidated/govcon_pipeline/data/raw_sam/2026-05-25_opportunities.json",
+      "GovCon_Consolidated/govcon_pipeline/data/raw_sam/2026-06-07_opportunities.json",
+      "GovCon_Consolidated/govcon_pipeline/data/raw_sam/2027-06-07_opportunities.json",
+      "GovCon_Consolidated/govcon_pipeline/data/raw_sam/2030-01-01_opportunities.json"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/APPROVED_TO_BUILD.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/DASHBOARD_SELECTED.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/FINAL_SEND_GATE.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/FINAL_SEND_GATE.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/FINAL_SEND_GATE.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/FINAL_SEND_GATE.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/FINAL_SEND_GATE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/FINAL_SEND_GATE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/FINAL_SEND_GATE.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/PACKET_BUILD_TODO.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/deal_summary.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/deal_summary.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/deal_summary.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/deal_summary.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/deal_summary.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/deal_summary.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/60ea211b7c634d7d963fed62a70d4bf5/deal_summary.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/APPROVED_TO_BUILD.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/APPROVED_TO_BUILD.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/DASHBOARD_SELECTED.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/DASHBOARD_SELECTED.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/INTERNAL_REVIEW.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/INTERNAL_REVIEW.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "Cleaned_Work/Misc/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/legacy_broker_deal/PACKET_BUILD_TODO.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/broker_deals/623c29f2069e4104addfab00af1fadef/PACKET_BUILD_TODO.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/solicitation/original_FULL.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_623c29f2069e4104addfab00af1fadef_FULL.txt",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/solicitation/original_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/solicitation/original_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_623c29f2069e4104addfab00af1fadef_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/solicitation/original_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_623c29f2069e4104addfab00af1fadef_FULL.txt"
+    ],
+    [
+      "AI_assistant/knowledge_base/Resumes_References/5dc6e99d32fc3e17_resume_customer_service_sales.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_customer_service_sales.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_customer_service_sales_sync.txt",
+      "Cleaned_Work/Misc/Briefcase/Active_JobHunt/All_Resumes_4.2026/old_Resumes/resume_customer_service_sales.txt",
+      "Cleaned_Work/Misc/Briefcase/SavvyTech_Business/SavvyTech_Business/SavvyTech_Records/Resumes/resume_customer_service_sales.txt",
+      "Cleaned_Work/Misc/Training_Refined/5dc6e99d32fc3e17_resume_customer_service_sales.txt"
+    ],
+    [
+      "AI_assistant/knowledge_base/Resumes_References/a87017cd14347128_resume_general_operations.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_general_operations.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_general_operations_sync.txt",
+      "Cleaned_Work/Misc/Briefcase/Active_JobHunt/All_Resumes_4.2026/old_Resumes/resume_general_operations.txt",
+      "Cleaned_Work/Misc/Briefcase/SavvyTech_Business/SavvyTech_Business/SavvyTech_Records/Resumes/resume_general_operations.txt",
+      "Cleaned_Work/Misc/Training_Refined/a87017cd14347128_resume_general_operations.txt"
+    ],
+    [
+      "AI_assistant/knowledge_base/Resumes_References/caa6b1e192d801ba_resume_logistics_supply_chain.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_logistics_supply_chain.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_logistics_supply_chain_sync.txt",
+      "Cleaned_Work/Misc/Briefcase/Active_JobHunt/All_Resumes_4.2026/old_Resumes/resume_logistics_supply_chain.txt",
+      "Cleaned_Work/Misc/Briefcase/SavvyTech_Business/SavvyTech_Business/SavvyTech_Records/Resumes/resume_logistics_supply_chain.txt",
+      "Cleaned_Work/Misc/Training_Refined/caa6b1e192d801ba_resume_logistics_supply_chain.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/Briefcase/AI_Agents_Code/Agent_Sessions/chrome_clone/component_crx_cache/metadata.json",
+      "Cleaned_Work/Misc/Briefcase/AI_Agents_Code/Agent_Sessions/chrome_clone/extensions_crx_cache/metadata.json",
+      "Cleaned_Work/Misc/Briefcase/AI_Agents_Code/Agent_Sessions/mega_identity/component_crx_cache/metadata.json",
+      "Cleaned_Work/Misc/Briefcase/AI_Agents_Code/Agent_Sessions/mega_identity/extensions_crx_cache/metadata.json",
+      "Cleaned_Work/Misc/Briefcase/AI_Agents_Code/Agent_Sessions/recorder_profile/component_crx_cache/metadata.json",
+      "Cleaned_Work/Misc/Briefcase/AI_Agents_Code/Agent_Sessions/recorder_profile/extensions_crx_cache/metadata.json"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/approvals/approved/approval_20260531_173137.md",
+      "Cleaned_Work/Misc/GovCon Files/proposals/drafts/proposal_20260531_173436/approved_opportunity.md",
+      "GovCon_Consolidated/GovCon Files/approvals/approved/approval_20260531_173137.md",
+      "GovCon_Consolidated/GovCon Files/proposals/drafts/proposal_20260531_173436/approved_opportunity.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/approvals/approved/approval_20260531_173137.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/proposals/drafts/proposal_20260531_173436/approved_opportunity.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/approvals/broker/broker_approval_623c29f2069e4104addfab00af1fadef.md",
+      "Cleaned_Work/Misc/GovCon Files/bid_packets/623c29f2069e4104addfab00af1fadef/bid_decision_packet.md",
+      "GovCon_Consolidated/GovCon Files/approvals/broker/broker_approval_623c29f2069e4104addfab00af1fadef.md",
+      "GovCon_Consolidated/GovCon Files/bid_packets/623c29f2069e4104addfab00af1fadef/bid_decision_packet.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/approvals/broker/broker_approval_623c29f2069e4104addfab00af1fadef.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/bid_packets/623c29f2069e4104addfab00af1fadef/bid_decision_packet.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/approvals/rejected/approval_20260531_170734.md",
+      "Cleaned_Work/Misc/GovCon Files/approvals/rejected/approval_20260531_173045.md",
+      "GovCon_Consolidated/GovCon Files/approvals/rejected/approval_20260531_170734.md",
+      "GovCon_Consolidated/GovCon Files/approvals/rejected/approval_20260531_173045.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/approvals/rejected/approval_20260531_170734.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/approvals/rejected/approval_20260531_173045.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/manual_298d40d656.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/manual_input.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/manual_298d40d656.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/manual_input.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/manual_298d40d656.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/manual_input.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_3ee74825225749abb97db285ef54549e.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_3ee74825225749abb97db285ef54549e_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_3ee74825225749abb97db285ef54549e.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_3ee74825225749abb97db285ef54549e_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_3ee74825225749abb97db285ef54549e.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_3ee74825225749abb97db285ef54549e_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_6738b66ff11f4edd9a1a41a7d81d8a7b.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_6738b66ff11f4edd9a1a41a7d81d8a7b_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_6738b66ff11f4edd9a1a41a7d81d8a7b.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_6738b66ff11f4edd9a1a41a7d81d8a7b_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_6738b66ff11f4edd9a1a41a7d81d8a7b.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_6738b66ff11f4edd9a1a41a7d81d8a7b_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_7ee0626c06214fc78554728332887552.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_7ee0626c06214fc78554728332887552_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_7ee0626c06214fc78554728332887552.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_7ee0626c06214fc78554728332887552_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_7ee0626c06214fc78554728332887552.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_7ee0626c06214fc78554728332887552_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_a548b2ac65c34872a1899164b0328179.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_a548b2ac65c34872a1899164b0328179_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_a548b2ac65c34872a1899164b0328179.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_a548b2ac65c34872a1899164b0328179_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_a548b2ac65c34872a1899164b0328179.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_a548b2ac65c34872a1899164b0328179_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_d583037ffa244ad98579b9863df33fb0.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_d583037ffa244ad98579b9863df33fb0_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_d583037ffa244ad98579b9863df33fb0.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_d583037ffa244ad98579b9863df33fb0_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_d583037ffa244ad98579b9863df33fb0.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_d583037ffa244ad98579b9863df33fb0_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_f371fc37b8064bdd8078ef21fc859fbc.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_f371fc37b8064bdd8078ef21fc859fbc_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_f371fc37b8064bdd8078ef21fc859fbc.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_f371fc37b8064bdd8078ef21fc859fbc_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_f371fc37b8064bdd8078ef21fc859fbc.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_f371fc37b8064bdd8078ef21fc859fbc_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_fa2f07b2c83740f1b115a9e80d09be57.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_fa2f07b2c83740f1b115a9e80d09be57_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fa2f07b2c83740f1b115a9e80d09be57.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fa2f07b2c83740f1b115a9e80d09be57_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fa2f07b2c83740f1b115a9e80d09be57.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fa2f07b2c83740f1b115a9e80d09be57_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_fb4546d042294e698ceb4139153c6439.txt",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_fb4546d042294e698ceb4139153c6439_FULL.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fb4546d042294e698ceb4139153c6439.txt",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fb4546d042294e698ceb4139153c6439_FULL.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fb4546d042294e698ceb4139153c6439.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_fb4546d042294e698ceb4139153c6439_FULL.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_220535.json",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_220757.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_220535.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_220757.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_220535.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_220757.json"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_222647.json",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_231056.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_222647.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_231056.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_222647.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_231056.json"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_222650.json",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_231059.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_222650.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_231059.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_222650.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_231059.json"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_222651.json",
+      "Cleaned_Work/Misc/GovCon Files/opportunities/raw/sam_live_20260531_231100.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_222651.json",
+      "GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_231100.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_222651.json",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/opportunities/raw/sam_live_20260531_231100.json"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/api.js",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/api.js",
+      "GovCon_Consolidated/GovCon_Consolidated/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/api.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/api.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/api.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/api.js"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/lazy.min.js",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/lazy.min.js",
+      "GovCon_Consolidated/GovCon_Consolidated/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/lazy.min.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/lazy.min.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/lazy.min.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/WHITEHORSE_SYSTEM_OVERVIEW.md - Google Docs_files/lazy.min.js"
+    ],
+    [
+      "AI_assistant/knowledge_base/Resumes_References/1b3a57ee176501a6_Joe_Budds_Resume_WWT_DeliveryManager.txt",
+      "AI_assistant/knowledge_base/Resumes_References/Joe_Budds_Resume_WWT_DeliveryManager.txt",
+      "AI_assistant/knowledge_base/Resumes_References/Joe_Budds_Resume_WWT_DeliveryManager_sync.txt",
+      "Cleaned_Work/Misc/Briefcase/Active_JobHunt/All_Resumes_4.2026/old_Resumes/Joe_Budds_Resume_WWT_DeliveryManager.txt",
+      "Cleaned_Work/Misc/Training_Refined/1b3a57ee176501a6_Joe_Budds_Resume_WWT_DeliveryManager.txt"
+    ],
+    [
+      "AI_assistant/knowledge_base/Resumes_References/Joe_Budds_Resume_2026_Clean.txt",
+      "AI_assistant/knowledge_base/Resumes_References/Joe_Budds_Resume_2026_Clean_sync.txt",
+      "AI_assistant/knowledge_base/Resumes_References/c157c88f3bca519a_Joe_Budds_Resume_2026_Clean.txt",
+      "Cleaned_Work/Misc/Briefcase/Active_JobHunt/All_Resumes_4.2026/old_Resumes/Joe_Budds_Resume_2026_Clean.txt",
+      "Cleaned_Work/Misc/Training_Refined/c157c88f3bca519a_Joe_Budds_Resume_2026_Clean.txt"
+    ],
+    [
+      "Cleaned_Work/Agents/AI1_GovCon.command",
+      "Cleaned_Work/Misc/GovCon Files/tools/open_ai1.sh",
+      "GovCon_Consolidated/GovCon Files/tools/open_ai1.sh",
+      "GovCon_Consolidated/GovCon_Consolidated/AI1_GovCon.command",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/tools/open_ai1.sh"
+    ],
+    [
+      "Cleaned_Work/Misc/Training_Refined/b58598b3ef315498_requirements.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/requirements.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/requirements.txt",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/requirements.txt",
+      "GovCon_Consolidated/govcon_hq/requirements.txt"
+    ],
+    [
+      "AI_assistant/knowledge_base/Resumes_References/2252b7acea2fb931_resume_data_sap.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_data_sap_sync.txt",
+      "Cleaned_Work/Misc/Briefcase/Active_JobHunt/All_Resumes_4.2026/old_Resumes/resume_data_sap.txt",
+      "Cleaned_Work/Misc/Training_Refined/2252b7acea2fb931_resume_data_sap.txt"
+    ],
+    [
+      "AI_assistant/knowledge_base/Resumes_References/a246ac83c68f6f5b_resume_data_sap.txt",
+      "AI_assistant/knowledge_base/Resumes_References/resume_data_sap.txt",
+      "Cleaned_Work/Misc/Briefcase/SavvyTech_Business/SavvyTech_Business/SavvyTech_Records/Resumes/resume_data_sap.txt",
+      "Cleaned_Work/Misc/Training_Refined/a246ac83c68f6f5b_resume_data_sap.txt"
+    ],
+    [
+      "Cleaned_Work/Agents/start_ai1.command",
+      "Cleaned_Work/Misc/GovCon Files/start_ai1.command",
+      "GovCon_Consolidated/GovCon Files/start_ai1.command",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/start_ai1.command"
+    ],
+    [
+      "Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle 2/guardian-live/backend/src/data/brand_overrides.json",
+      "Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle 2/guardian-live/backend/src/data/guardian_assets.json",
+      "Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle/guardian-live/backend/src/data/brand_overrides.json",
+      "Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle/guardian-live/backend/src/data/guardian_assets.json"
+    ],
+    [
+      "Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/dist/theplug_beta100_v1.0 2/requirements.txt",
+      "Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/dist/theplug_beta100_v1.0/requirements.txt",
+      "Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/requirements.txt",
+      "Cleaned_Work/Misc/Training_Refined/efd3e5594fa6e66f_requirements.txt"
+    ],
+    [
+      "Cleaned_Work/Misc/CLI_framwork_dual_auit_and_agent_titus/TITUS AGENT PROTOCOL copy 2.md",
+      "Cleaned_Work/Misc/CLI_framwork_dual_auit_and_agent_titus/TITUS AGENT PROTOCOL copy 3.md",
+      "Cleaned_Work/Misc/CLI_framwork_dual_auit_and_agent_titus/TITUS AGENT PROTOCOL copy.md",
+      "Cleaned_Work/Misc/CLI_framwork_dual_auit_and_agent_titus/TITUS AGENT PROTOCOL.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/00_EXECUTIVE_BRIEF.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/00_EXECUTIVE_BRIEF.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/00_EXECUTIVE_BRIEF.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/00_EXECUTIVE_BRIEF.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/audit_log/activity_log.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/audit_log/activity_log.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/audit_log/activity_log.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/audit_log/activity_log.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/COVER_SHEET.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/COVER_SHEET.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/COVER_SHEET.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/COVER_SHEET.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/INTERNAL_REVIEW.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_60ea211_MEAL_DROP_OFF_CAMP_SMITH_TRAINING_SITE_07JUL2/legacy_broker_deal/INTERNAL_REVIEW.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/00_EXECUTIVE_BRIEF.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/00_EXECUTIVE_BRIEF.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/00_EXECUTIVE_BRIEF.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/00_EXECUTIVE_BRIEF.md"
+    ],
+    [
+      "Cleaned_Work/Misc/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/audit_log/activity_log.md",
+      "GovCon_Consolidated/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/audit_log/activity_log.md",
+      "GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/audit_log/activity_log.md",
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon Files/GOVCON_DEALS/ACTIVE/2026-06-01_623c29f_DWORSHAK_DAM_SHIPPING_CONTAINERS_WITH_SIDE_AC/audit_log/activity_log.md"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/2.html",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/2.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/2.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/2.html"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/app.html",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/app.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/app.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/app.html"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/bscframe.html",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/bscframe.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/bscframe.html",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/bscframe.html"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/en.js",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/en.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/en.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/en.js"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/en_dvorak.js",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/en_dvorak.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/en_dvorak.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/en_dvorak.js"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/en_t_i0_und.js",
+      "GovCon_Consolidated/GovCon_Consolidated/Inbox - savvytechconsult@gmail.com - Gmail_files/en_t_i0_und.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/AR-Request a Quote - Savvytechconsult@gmail.com - savvytechconsult@gmail.com - Gmail_files/en_t_i0_und.js",
+      "GovCon_Consolidated/~:Documents:GovCon_Emails/Inbox - savvytechconsult@gmail.com - Gmail_files/en_t_i0_und.js"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/GovCon_Scout_sample_brief.html",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_pipeline/marketing/GovCon_Scout_sample_brief.html",
+      "GovCon_Consolidated/GovCon_Scout_sample_brief.html",
+      "GovCon_Consolidated/govcon_pipeline/marketing/GovCon_Scout_sample_brief.html"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/backups/email_draft_generator.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/email_draft_generator.py",
+      "GovCon_Consolidated/govcon_agent/backups/email_draft_generator.py",
+      "GovCon_Consolidated/govcon_agent/email_draft_generator.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/backups/scout_ranker.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/scout_ranker.py",
+      "GovCon_Consolidated/govcon_agent/backups/scout_ranker.py",
+      "GovCon_Consolidated/govcon_agent/scout_ranker.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/swarm_docs/safety/1_auditor.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_agent/swarm_docs/technical/3_auditor.md",
+      "GovCon_Consolidated/govcon_agent/swarm_docs/safety/1_auditor.md",
+      "GovCon_Consolidated/govcon_agent/swarm_docs/technical/3_auditor.md"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/app_backup_before_intake_v2.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/app_backup_before_intake_v2.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/app_backup_before_intake_v2.py",
+      "GovCon_Consolidated/govcon_hq/app_backup_before_intake_v2.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/app_before_email_intake.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/app_before_email_intake.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/app_before_email_intake.py",
+      "GovCon_Consolidated/govcon_hq/app_before_email_intake.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/app_before_ops_lanes.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/app_before_ops_lanes.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/app_before_ops_lanes.py",
+      "GovCon_Consolidated/govcon_hq/app_before_ops_lanes.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/app_messy_backup_20260607_173415.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/app_messy_backup_20260607_173415.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/app_messy_backup_20260607_173415.py",
+      "GovCon_Consolidated/govcon_hq/app_messy_backup_20260607_173415.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/app_pre_toolbar_backup.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/app_pre_toolbar_backup.py",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/app_pre_toolbar_backup.py",
+      "GovCon_Consolidated/govcon_hq/app_pre_toolbar_backup.py"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/CLAUDE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/CLAUDE.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/CLAUDE.md",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/CLAUDE.md"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/README.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/README.md",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/README.md",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/README.md"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/automations.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/automations.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/automations.yaml",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/automations.yaml"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/configuration.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/configuration.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/configuration.yaml",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/configuration.yaml"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/confirmable_notification.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/confirmable_notification.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/confirmable_notification.yaml",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/confirmable_notification.yaml"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-2025-redesign.html",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-2025-redesign.html",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-2025-redesign.html",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-2025-redesign.html"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-tailwind-backup.html",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-tailwind-backup.html",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-tailwind-backup.html",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index-tailwind-backup.html"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index.html",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index.html",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index.html",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/index.html"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/main.yml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/main.yml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/main.yml",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/main.yml"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/motion_light.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/motion_light.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/motion_light.yaml",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/motion_light.yaml"
+    ],
+    [
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/notify_leaving_zone.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/notify_leaving_zone.yaml",
+      "GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/notify_leaving_zone.yaml",
+      "GovCon_Consolidated/govcon_hq/backups/files_before_reset_20260607_180536/1333MK26Q0077/attachments/notify_leaving_zone.yaml"
+    ]
+  ],
+  "generated_at": "2026-07-18T15:32:06.050035+00:00",
+  "projects": [
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "Export Savvy ENV.command",
+        "Finalize Savvy Cleanup.command",
+        "Launch Savvy Consolidator.command",
+        "Open Savvy Consolidator - Diagnostic.command",
+        "Open Savvy Consolidator.command",
+        "Rebuild Savvy Consolidator.command",
+        "Repair Savvy Consolidator.command",
+        "Savvy Auto Consolidate.command",
+        "check_savvy_consolidator.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "ollama",
+        "openai"
+      ],
+      "name": "Desktop",
+      "path": "/Users/joebudds/Desktop",
+      "secret_files": [
+        "build_savvy_credentials_workbook.sh"
+      ],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "AI_assistant",
+      "path": "/Users/joebudds/Desktop/AI_assistant",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [],
+      "name": "Career_Assistant_AI",
+      "path": "/Users/joebudds/Desktop/Career_Assistant_AI",
+      "secret_files": [
+        "debug_secrets.py"
+      ],
+      "syntax_errors": []
+    },
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "deepseek",
+        "gemini",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai",
+        "qwen"
+      ],
+      "name": "Cleaned_Work",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work",
+      "secret_files": [
+        "Misc/.env"
+      ],
+      "syntax_errors": [
+        "process_training.py:54: invalid character '\u2013' (U+2013)"
+      ]
+    },
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "LaunchKeyVault.command",
+        "Run_SAM_Scanner.command",
+        "Start_SOPSync.command",
+        "\ud83c\udfdb\ufe0f GovCon Dashboard.command",
+        "\ud83d\udd04 SOPsync Dashboard.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "Desktop",
+      "path": "/Users/joebudds/Desktop/Desktop",
+      "secret_files": [],
+      "syntax_errors": [
+        "cluster_dispatcher.py:None: source code string cannot contain null bytes",
+        "desktop_mascot.py:None: source code string cannot contain null bytes",
+        "executor_loop.py:None: source code string cannot contain null bytes",
+        "harvest_keys.py:None: source code string cannot contain null bytes",
+        "key_vault_app.py:None: source code string cannot contain null bytes",
+        "master_hub_voice_native.py:None: source code string cannot contain null bytes",
+        "master_hub_voice_wired.py:None: source code string cannot contain null bytes",
+        "relay_dashboard.py:None: source code string cannot contain null bytes",
+        "relay_hub.py:None: source code string cannot contain null bytes",
+        "savvytech_cockpit_engine.py:None: source code string cannot contain null bytes",
+        "savvytech_master_hub_v2.py:None: source code string cannot contain null bytes",
+        "squid_mascot.py:None: source code string cannot contain null bytes",
+        "youtube_analyzer.py:None: source code string cannot contain null bytes",
+        "youtube_machine.py:None: source code string cannot contain null bytes"
+      ]
+    },
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "GovCon_HQ.command",
+        "\ud83c\udfdb\ufe0f GovCon Dashboard.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "ollama",
+        "qwen"
+      ],
+      "name": "GovCon_Consolidated",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated",
+      "secret_files": [
+        ".govcon_vault/.env",
+        "govcon_agent/.env"
+      ],
+      "syntax_errors": [
+        "harvester.py:46: closing parenthesis ')' does not match opening parenthesis '{' on line 24"
+      ]
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [],
+      "name": "HA_Agent",
+      "path": "/Users/joebudds/Desktop/HA_Agent",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "gemini"
+      ],
+      "name": "Mac_Cleanup_Tools",
+      "path": "/Users/joebudds/Desktop/Mac_Cleanup_Tools",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [],
+      "launchers": [
+        "GovCon_HQ.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "My_Tools",
+      "path": "/Users/joebudds/Desktop/My_Tools",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [],
+      "launchers": [],
+      "markers": [],
+      "model_references": [
+        "ollama"
+      ],
+      "name": "Organized-2026-07-16_11-24-05",
+      "path": "/Users/joebudds/Desktop/Organized-2026-07-16_11-24-05",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "ollama"
+      ],
+      "name": "SOPSync_Workspace",
+      "path": "/Users/joebudds/Desktop/SOPSync_Workspace",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "Launch_SOPSync.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "SOP_Syncv2",
+      "path": "/Users/joebudds/Desktop/SOP_Syncv2",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "deepseek",
+        "gemini",
+        "llama",
+        "openai"
+      ],
+      "name": "SavvyTube_OS",
+      "path": "/Users/joebudds/Desktop/SavvyTube_OS",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [],
+      "name": "Tools",
+      "path": "/Users/joebudds/Desktop/Tools",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [],
+      "name": "career_creator",
+      "path": "/Users/joebudds/Desktop/career_creator",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "gemini",
+        "llama",
+        "ollama",
+        "qwen"
+      ],
+      "name": "container bid complete",
+      "path": "/Users/joebudds/Desktop/container bid complete",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "AI1_GovCon.command",
+        "Command Center.command",
+        "JoeBot Dash.command",
+        "KEEP_AWAKE.command",
+        "Launch_SavvyTech_Dashboard.command",
+        "Omni.command",
+        "Operator Workspace.command",
+        "Start Agent Zero.command",
+        "Talk_to_Beezy.command",
+        "start_ai1.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "Agents",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Agents",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "ollama"
+      ],
+      "name": "GOVCON_AI",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GOVCON_AI",
+      "secret_files": [],
+      "syntax_errors": [
+        "app.py:257: unexpected indent"
+      ]
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "start_ai1.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "ollama"
+      ],
+      "name": "GovCon Files",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon Files",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "AI1_GovCon.command",
+        "GovCon_HQ.command",
+        "\ud83c\udfdb\ufe0f GovCon Dashboard.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "gemini",
+        "llama",
+        "ollama",
+        "qwen"
+      ],
+      "name": "GovCon_Consolidated",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated",
+      "secret_files": [
+        "govcon_agent/.env"
+      ],
+      "syntax_errors": [
+        "harvester.py:46: closing parenthesis ')' does not match opening parenthesis '{' on line 24"
+      ]
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "app.py",
+        "launch.command"
+      ],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "gemini"
+      ],
+      "name": "govcon_hq",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/govcon_hq",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "govcon_micro_tools",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/govcon_micro_tools",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "Launch Opportunity Engine.command",
+        "Launch Savvy Builder OS.command",
+        "Launch_SOPsync.command",
+        "RemoteJobMatcher.command",
+        "SOPsync_Recorder.command",
+        "Start_SOPSync.command",
+        "Sync.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "deepseek",
+        "ollama",
+        "openai"
+      ],
+      "name": "Code",
+      "path": "/Users/joebudds/Desktop/Organized-2026-07-16_11-24-05/Code",
+      "secret_files": [
+        "credentials.py"
+      ],
+      "syntax_errors": [
+        "fix_ha.py:1: invalid syntax",
+        "my_builder.py:1: unexpected indent",
+        "sopsync_dashboard.py:414: '(' was never closed"
+      ]
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "dashboard.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "deepseek",
+        "ollama",
+        "openai"
+      ],
+      "name": "app",
+      "path": "/Users/joebudds/Desktop/SavvyTube_OS/app",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "start.command"
+      ],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "SavvyAppForge",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyAppForge",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "main.py",
+        "run.command",
+        "setup_local_ai.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "llama",
+        "ollama",
+        "openai"
+      ],
+      "name": "SavvyConsolidator",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyConsolidator",
+      "secret_files": [
+        "credential_workbook.py"
+      ],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "start.command"
+      ],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "SavvyHomeForge",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyHomeForge",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "start.command"
+      ],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "SavvyMarketForge",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyMarketForge",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "start.command"
+      ],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "SavvySiteForge",
+      "path": "/Users/joebudds/Desktop/Tools/SavvySiteForge",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "start.command"
+      ],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "SavvyTubeForge",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyTubeForge",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "start_ai1.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "ollama"
+      ],
+      "name": "GovCon Files",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/GovCon Files",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [],
+      "launchers": [
+        "Launch_SavvyTech_Command_Center.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "Shortcuts",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Shortcuts",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [
+        "deepseek",
+        "gemini",
+        "gemma",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai",
+        "qwen"
+      ],
+      "name": "freellmapi",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/freellmapi",
+      "secret_files": [
+        ".env"
+      ],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "run.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "ollama"
+      ],
+      "name": "sovereign_control",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/sovereign_control",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py",
+        "start.sh"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "sovereign_dash",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/sovereign_dash",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "training_command_fresh",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/training_command_fresh",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [],
+      "name": "training_readiness_mvp",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/training_readiness_mvp",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "dashboard",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon Files/dashboard",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "start_ai1.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "ollama"
+      ],
+      "name": "GovCon Files",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated/GovCon Files",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "app.py",
+        "launch.command"
+      ],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "gemini"
+      ],
+      "name": "govcon_hq",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated/govcon_hq",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "app.py",
+        "launch.command"
+      ],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "gemini"
+      ],
+      "name": "govcon_hq_backup_20260607_224546",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [
+        "app.py",
+        "launch.command"
+      ],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "gemini"
+      ],
+      "name": "govcon_hq_backup_20260607_224546 2",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated/govcon_hq_backup_20260607_224546 2",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "govcon_micro_tools",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated/govcon_micro_tools",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic"
+      ],
+      "name": "dashboard",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_V2/dashboard",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "dashboard.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "ollama"
+      ],
+      "name": "integrated_queue_20260713_101551",
+      "path": "/Users/joebudds/Desktop/SavvyTube_OS/backups/integrated_queue_20260713_101551",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [],
+      "launchers": [
+        "AcquisitionApp 2.command",
+        "AcquisitionApp 3.command",
+        "AcquisitionApp.command",
+        "Acquisition_Ops.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "Acquisition_Engine",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Acquisition_Engine",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [],
+      "launchers": [
+        "SavvyTech Command Center.command",
+        "\u2692 Shortcut Forge.command",
+        "\u26a1 Apple Shortcut Forge.command",
+        "\ud83c\udfac Demo Video Forge.command",
+        "\ud83c\udfaf Job Hunter.command",
+        "\ud83d\udca1 Idea Forge.command",
+        "\ud83d\udcc4 Markdown Viewer.command",
+        "\ud83d\udce8 License Outreach.command",
+        "\ud83d\udcf0 Morning Brief.command",
+        "\ud83d\udde3 Agent Roundtable.command",
+        "\ud83e\udd16 Auto Workflow Builder.command",
+        "\ud83e\udde0 Sovereign Forge.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "Command_Launchers",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Command_Launchers",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "dashboard",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/GovCon Files/dashboard",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "main.py"
+      ],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "anthropic",
+        "deepseek",
+        "gemini",
+        "llama",
+        "ollama",
+        "openai"
+      ],
+      "name": "AgentBrain",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Red Flash Drive/AgentBrain",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "client",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/freellmapi/client",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "server",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/freellmapi/server",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "shared",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/freellmapi/shared",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "app.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "dashboard",
+      "path": "/Users/joebudds/Desktop/GovCon_Consolidated/GovCon_Consolidated/GovCon Files/dashboard",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "website-is-a-site-that-advertises-and-rents-camp-sites-a",
+      "path": "/Users/joebudds/Desktop/Tools/SavvySiteForge/generated/website-is-a-site-that-advertises-and-rents-camp-sites-a",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "2026-07-17-the-ai-workflow-small-businesses-will-actually-pay-for-auto-2-2026-07-17",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyTubeForge/generated/2026-07-17-the-ai-workflow-small-businesses-will-actually-pay-for-auto-2-2026-07-17",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "2026-07-17-the-longevity-habit-that-is-becoming-impossible-to-ignore-auto-1-2026-07-17",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyTubeForge/generated/2026-07-17-the-longevity-habit-that-is-becoming-impossible-to-ignore-auto-1-2026-07-17",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [],
+      "launchers": [
+        "start.sh"
+      ],
+      "markers": [],
+      "model_references": [
+        "ollama"
+      ],
+      "name": "guardian_minipc_bundle",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [],
+      "launchers": [
+        "start.sh"
+      ],
+      "markers": [],
+      "model_references": [
+        "ollama"
+      ],
+      "name": "guardian_minipc_bundle 2",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle 2",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "anthropic",
+        "deepseek",
+        "gemini",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai"
+      ],
+      "name": "ThePlug",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python",
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [
+        "gemini"
+      ],
+      "name": "SnapToFill",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/SnapToFill/SnapToFill",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "start_bob.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "deepseek",
+        "ollama",
+        "openai"
+      ],
+      "name": "Bob_v2",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/AI_Agents_Code/AI_Agents/Bob_v2",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "openai"
+      ],
+      "name": "Bob_v3",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/AI_Agents_Code/AI_Agents/Bob_v3",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "START_TRANSFER_SERVER.command"
+      ],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [],
+      "name": "Webby_Windows_Package",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/AI_Agents_Code/AI_Agents/Webby_Windows_Package",
+      "secret_files": [],
+      "syntax_errors": [
+        "webby_monitor_homeassistant.py:107: expected an indented block after 'if' statement on line 104"
+      ]
+    },
+    {
+      "health": "inventory_only",
+      "languages": [],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "guardian-live",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle 2/guardian-live",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "guardian-live",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle/guardian-live",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [],
+      "launchers": [
+        "Open_Brothers_Chat.command",
+        "Start_Job_Search.command",
+        "Start_Voice_System.command",
+        "Titus_Form_Filler.command",
+        "Webby_Dashboard.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "Commands",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/Scripts_Tools/Commands",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "Claude_Chat.command",
+        "Command Center.command",
+        "Email Cleanup.command",
+        "Niche Gap Finder.command",
+        "Record Video.command",
+        "SavvyTech Command Center.command",
+        "Send_Voice_Message.command",
+        "Talk_to_Claude.command",
+        "Voice Studio.command",
+        "YouTube Analyzer.command",
+        "YouTube Learn.command",
+        "YouTube Transcript.command",
+        "YouTube to Text.command",
+        "launch_brothers.command"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "ollama",
+        "openai"
+      ],
+      "name": "Scripts",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/Scripts_Tools/Scripts",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "dashboard.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai"
+      ],
+      "name": "web",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/web",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "backend",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle 2/guardian-live/backend",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "frontend",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle 2/guardian-live/frontend",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "backend",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle/guardian-live/backend",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "JavaScript/TypeScript"
+      ],
+      "launchers": [],
+      "markers": [
+        "package.json"
+      ],
+      "model_references": [],
+      "name": "frontend",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Guardian_Patent/guardian_minipc_bundle/guardian-live/frontend",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai"
+      ],
+      "name": "theplug_beta100_v1.0",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/dist/theplug_beta100_v1.0",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "inventory_only",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [],
+      "markers": [
+        "requirements.txt"
+      ],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai"
+      ],
+      "name": "theplug_beta100_v1.0 2",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/dist/theplug_beta100_v1.0 2",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "dashboard.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai"
+      ],
+      "name": "web",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/dist/theplug_beta100_v1.0 2/web",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "dashboard.py"
+      ],
+      "markers": [],
+      "model_references": [
+        "anthropic",
+        "gemini",
+        "llama",
+        "mistral",
+        "ollama",
+        "openai"
+      ],
+      "name": "web",
+      "path": "/Users/joebudds/Desktop/Cleaned_Work/Misc/Briefcase/Projects_Archive/ThePlug/dist/theplug_beta100_v1.0/web",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "run.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "text",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyConsolidator/.venv_bad_20260716_201859/lib/python3.14/site-packages/docx/text",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "main.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "_internal",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyConsolidator/.venv_bad_20260716_201859/lib/python3.14/site-packages/pip/_internal",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "run.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "text",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyConsolidator/.venv_bad_20260716_201859/lib/python3.14/site-packages/docx/oxml/text",
+      "secret_files": [],
+      "syntax_errors": []
+    },
+    {
+      "health": "candidate",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "main.py"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "cli",
+      "path": "/Users/joebudds/Desktop/Tools/SavvyConsolidator/.venv_bad_20260716_201859/lib/python3.14/site-packages/pip/_internal/cli",
+      "secret_files": [],
+      "syntax_errors": []
+    }
+  ],
+  "root": "/Users/joebudds/Desktop",
+  "warnings": [
+    "Secret-bearing filenames were found; values were not read or copied into the report.",
+    "At least one Python file has a syntax error and should not be registered as healthy."
+  ]
+}

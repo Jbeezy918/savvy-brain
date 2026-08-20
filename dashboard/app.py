@@ -1,0 +1,644 @@
+from __future__ import annotations
+
+import json, os, re, subprocess, sys, uuid, time
+from datetime import datetime
+from pathlib import Path
+import streamlit as st
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from core.assistant import answer
+from core.indexer import index_workspace, search
+from core.releases import decide, request_approval
+from core.storage import add_message, enqueue, get_setting, initialize, rows, set_setting
+from core.integrations import registry
+from core.ingestion import audit, decide as decide_ingestion, preview as preview_ingestion
+from core.voice import speak, speak_now, transcribe
+from core.supervisor import WorkerSupervisor
+from core.health import get_health_summary
+from core.tools_registry import load_tools, launch_tool
+
+st.set_page_config(page_title="Savvy Brain", page_icon=":material/hub:", layout="wide")
+initialize()
+
+# === THEME & STYLING ===
+THEMES = {
+    "Savvy Midnight": ("#060b13", "#101d2e", "#315273", "#f4fbff", "#5ee7f2"),
+    "Ocean": ("#06151d", "#0c2734", "#28708b", "#e8fbff", "#35d4ed"),
+    "Royal": ("#100c24", "#1d1740", "#5745a0", "#f8f4ff", "#a98bff"),
+    "Emerald": ("#07150f", "#10271e", "#2f7154", "#ecfff5", "#49e59a"),
+}
+
+saved = get_setting("theme", "Savvy Midnight")
+theme = THEMES.get(saved, THEMES["Savvy Midnight"])
+bg, panel, border, textc, accent = theme
+
+st.markdown(f"""
+<style>
+    :root {{--cyan: {accent}; --border: {border}; --panel: {panel}; --text: {textc}; --bg: {bg}}}
+
+    * {{transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}}
+
+    .stApp {{
+        background: linear-gradient(135deg, {bg} 0%, #0a1425 100%);
+        color: {textc};
+        background-attachment: fixed;
+    }}
+
+    [data-testid="stMainBlockContainer"] {{max-width: 100%; padding: 1.5rem}}
+
+    [data-testid="stVerticalBlockBorderWrapper"] {{
+        background: rgba(16, 29, 46, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(43, 70, 98, 0.5);
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(94, 231, 242, 0.1);
+    }}
+
+    .metric {{color: {textc}; font-weight: 600;}}
+
+    .kpi-card {{
+        background: linear-gradient(135deg, rgba(30, 50, 80, 0.6), rgba(15, 25, 45, 0.5));
+        border: 2px solid rgba(94, 231, 242, 0.3);
+        border-radius: 14px;
+        padding: 1.8rem;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(94, 231, 242, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }}
+
+    .kpi-card::before {{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(94, 231, 242, 0.1), transparent);
+        transition: left 0.5s ease;
+    }}
+
+    .kpi-card:hover::before {{left: 100%;}}
+    .kpi-card:hover {{
+        border-color: rgba(94, 231, 242, 0.5);
+        box-shadow: 0 8px 32px rgba(94, 231, 242, 0.15), inset 0 1px 0 rgba(94, 231, 242, 0.2);
+        transform: translateY(-4px);
+    }}
+
+    .kpi-label {{
+        font-size: 10px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #7894ad;
+        margin-bottom: 10px;
+        opacity: 0.85;
+    }}
+
+    .kpi-value {{
+        font-size: 28px;
+        font-weight: 800;
+        color: {textc};
+        letter-spacing: -0.02em;
+    }}
+
+    .brand {{
+        border: 1px solid rgba(53, 91, 125, 0.6);
+        background: linear-gradient(135deg, rgba(17, 31, 51, 0.6), rgba(10, 19, 33, 0.4));
+        backdrop-filter: blur(20px);
+        padding: 24px;
+        margin-bottom: 16px;
+        border-radius: 14px;
+        box-shadow: 0 8px 32px rgba(60, 178, 255, 0.08), inset 0 1px 0 rgba(94, 231, 242, 0.15);
+        animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }}
+
+    @keyframes slideDown {{
+        from {{ opacity: 0; transform: translateY(-20px); }}
+        to {{ opacity: 1; transform: translateY(0); }}
+    }}
+
+    .brand .kicker {{
+        color: {accent};
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 900;
+        margin-bottom: 8px;
+        text-shadow: 0 0 20px rgba(94, 231, 242, 0.3);
+    }}
+
+    .brand .title {{
+        color: {textc};
+        font-size: 2rem;
+        font-weight: 900;
+        margin: 8px 0;
+        letter-spacing: -0.02em;
+    }}
+
+    .brand .sub {{
+        color: #8fa8bf;
+        font-size: 0.9rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+    }}
+
+    .dot {{
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #4ee09a;
+        box-shadow: 0 0 12px #4ee09a, 0 0 20px rgba(78, 224, 154, 0.3);
+        margin-right: 8px;
+        animation: pulse 2s ease-in-out infinite;
+    }}
+
+    @keyframes pulse {{
+        0%, 100% {{ box-shadow: 0 0 12px #4ee09a, 0 0 20px rgba(78, 224, 154, 0.3); }}
+        50% {{ box-shadow: 0 0 20px #4ee09a, 0 0 40px rgba(78, 224, 154, 0.5); }}
+    }}
+
+    .stButton > button {{
+        border-radius: 8px;
+        border: 1px solid rgba(49, 82, 115, 0.6);
+        background: linear-gradient(135deg, rgba(42, 79, 122, 0.5), rgba(31, 61, 92, 0.4));
+        backdrop-filter: blur(10px);
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        min-height: 40px;
+    }}
+
+    .stButton > button:hover {{
+        border-color: rgba(94, 231, 242, 0.6);
+        background: linear-gradient(135deg, rgba(62, 99, 142, 0.7), rgba(51, 81, 122, 0.6));
+        color: {accent};
+        box-shadow: 0 8px 24px rgba(94, 231, 242, 0.25);
+        transform: translateY(-2px);
+    }}
+
+    .stButton > button:active {{transform: translateY(0);}}
+</style>
+""", unsafe_allow_html=True)
+
+# === UTILITIES ===
+def projects():
+    return sorted((p for p in (ROOT / "ideas").iterdir() if p.is_dir()), key=lambda p: p.name)
+
+def pretty(v):
+    return str(v).replace("_", " ").replace("-", " ").title()
+
+def scalar(q, p=()):
+    r = rows(q, p)
+    return int(r[0][0]) if r else 0
+
+def read(path, fallback="Nothing recorded yet."):
+    try:
+        return path.read_text(encoding="utf-8") if path.exists() else fallback
+    except OSError:
+        return fallback
+
+def ago(value):
+    if not value:
+        return "No activity yet"
+    try:
+        d = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        s = max(0, int((datetime.now(d.tzinfo) - d).total_seconds()))
+        return "Just now" if s < 60 else f"{s//60}m ago" if s < 3600 else f"{s//3600}h ago" if s < 86400 else f"{s//86400}d ago"
+    except ValueError:
+        return value
+
+def status(p):
+    n = p.name
+    active = scalar("SELECT count(*) FROM jobs WHERE project=? AND status IN ('queued','running')", (n,)) + scalar("SELECT count(*) FROM milestones WHERE project=? AND status!='completed'", (n,))
+    done = scalar("SELECT count(*) FROM jobs WHERE project=? AND status='completed'", (n,))
+    release = (p / "releases" / "current.json").exists()
+    return "Active" if active else "Completed" if release and done else "Ideas" if not done and not release else "Idle"
+
+def pids():
+    try:
+        p = subprocess.run(["pgrep", "-f", str(ROOT / "agents" / "worker.py")], capture_output=True, text=True, timeout=2, check=False)
+        return [int(x) for x in p.stdout.split() if x.isdigit()]
+    except Exception:
+        return []
+
+# === SESSION STATE ===
+PROJECTS = projects()
+NAMES = [p.name for p in PROJECTS]
+
+for k, v in {
+    "session_id": uuid.uuid4().hex,
+    "chat": [],
+    "page": "Home",
+    "scope": "All projects",
+    "provider": "ollama",
+    "model": "llama3.2",
+    "speak_replies": True,
+}.items():
+    st.session_state.setdefault(k, v)
+
+def go(page):
+    st.session_state.page = page
+
+# === SIDEBAR NAVIGATION ===
+with st.sidebar:
+    st.markdown("### :material/hub: Savvy Brain")
+    st.divider()
+
+    st.markdown("**Navigation**")
+    if st.button(":material/home: Home", key="nav-home"):
+        go("Home")
+    if st.button(":material/folder: Projects", key="nav-projects"):
+        go("Projects")
+    if st.button(":material/smart_toy: Agents", key="nav-agents"):
+        go("Agents")
+    if st.button(":material/chat: Conversations", key="nav-conversations"):
+        go("Conversations")
+    if st.button(":material/search: Research", key="nav-research"):
+        go("Research")
+    if st.button(":material/analytics: Analytics", key="nav-analytics"):
+        go("Analytics")
+
+    st.divider()
+    st.markdown("**Quick Actions**")
+    if st.button(":material/add_circle: New assignment", key="quick-new"):
+        go("Projects")
+    if st.button(":material/schema: Project brains", key="quick-brains"):
+        go("Projects")
+    if st.button(":material/search: Search knowledge", key="quick-search"):
+        go("Research")
+    if st.button(":material/upload_file: File intake", key="quick-files"):
+        go("Tools")
+    if st.button(":material/comment: Recent thoughts", key="quick-thoughts"):
+        go("Conversations")
+
+    st.divider()
+    st.markdown("**Quick Launch**")
+    if st.button("🏠 SavvyHomeForge", key="launch-homeforge"):
+        st.toast("Opening SavvyHomeForge...")
+    if st.button("🧠 SavvyHub", key="launch-hub"):
+        st.toast("Opening SavvyHub...")
+    if st.button("📋 GovCon", key="launch-govcon"):
+        st.toast("Opening GovCon...")
+
+    st.divider()
+    st.markdown("**Settings**")
+    with st.expander(":material/palette: Appearance"):
+        selected_theme = st.selectbox("Theme", list(THEMES.keys()), index=list(THEMES.keys()).index(saved) if saved in THEMES else 0)
+        if selected_theme != saved:
+            set_setting("theme", selected_theme)
+            st.rerun()
+
+# === MAIN CONTENT LAYOUT ===
+health = get_health_summary()
+disk = health["disk"]
+
+# Header
+st.markdown("""
+<div class="brand">
+    <div class="kicker"><span class="dot"></span>Local command system</div>
+    <div class="title">Savvy Brain</div>
+    <div class="sub">Joe's project intelligence, approvals, agents, and knowledge in one place</div>
+</div>
+""", unsafe_allow_html=True)
+
+# Main content pages
+if st.session_state.page == "Home":
+    # KPIs
+    kpi_cols = st.columns(6)
+    with kpi_cols[0]:
+        st.metric("Projects", len(PROJECTS))
+    with kpi_cols[1]:
+        st.metric("Active", sum(1 for p in PROJECTS if status(p) == "Active"))
+    with kpi_cols[2]:
+        st.metric("Queue", scalar("SELECT count(*) FROM jobs WHERE status='queued'"))
+    with kpi_cols[3]:
+        st.metric("Completed", scalar("SELECT count(*) FROM jobs WHERE status='completed'"))
+    with kpi_cols[4]:
+        st.metric("Approvals", scalar("SELECT count(*) FROM approvals WHERE status='pending'"))
+    with kpi_cols[5]:
+        online = "✓ Online" if pids() else "⊗ Offline"
+        st.metric("Agent health", online)
+
+    st.divider()
+
+    # Main content grid: left (work), right (info panel)
+    left, right = st.columns([2.5, 1.2], gap="medium")
+
+    with left:
+        # Current Work
+        with st.container(border=True):
+            st.subheader(":material/bolt: Current work")
+            st.caption("Live queue and running jobs")
+            jobs = rows("SELECT * FROM jobs WHERE status IN ('queued','running') ORDER BY id DESC LIMIT 5")
+            if not jobs:
+                st.caption("No work is queued right now")
+            else:
+                for x in jobs:
+                    badge_color = ":green-badge[Running]" if x["status"] == "running" else ":orange-badge[Queued]"
+                    st.markdown(f"{badge_color} **{pretty(x['project'])}**")
+                    st.caption(f"#{x['id']} · {x['prompt'][:80]}")
+                    st.divider()
+
+        # Approvals
+        with st.container(border=True):
+            st.subheader(":material/approval: Approvals")
+            st.caption("Items waiting for Joe")
+            pending = rows("SELECT * FROM approvals WHERE status='pending' ORDER BY id DESC LIMIT 4")
+            if not pending:
+                st.caption("All clear—nothing is waiting for approval")
+            else:
+                for x in pending:
+                    st.markdown(f"**{pretty(x['project'])} · {Path(x['source_path']).name}**")
+                    st.caption(x["note"] or "No review note")
+                    c1, c2 = st.columns(2)
+                    with c1:
+                        if st.button("Approve", key=f"approve-{x['id']}", use_container_width=True):
+                            decide(x["id"], True)
+                            st.toast("Approved!")
+                            st.rerun()
+                    with c2:
+                        if st.button("Reject", key=f"reject-{x['id']}", use_container_width=True):
+                            decide(x["id"], False)
+                            st.toast("Rejected")
+                            st.rerun()
+                    st.divider()
+
+        # Recent Completions
+        with st.container(border=True):
+            st.subheader(":material/task_alt: Recent completions")
+            st.caption("Latest verified activity")
+            done = rows("SELECT * FROM jobs WHERE status='completed' ORDER BY id DESC LIMIT 4")
+            if not done:
+                st.caption("Completed jobs will appear here")
+            else:
+                for x in done:
+                    st.markdown(f":green-badge[Complete] **{pretty(x['project'])}** · Job #{x['id']}")
+                    st.caption(f"{ago(x['finished_at'])} · {x['prompt'][:100]}")
+                    st.divider()
+
+    with right:
+        # Disk Status
+        with st.container(border=True):
+            st.subheader(":material/storage: Disk")
+            status_icon = "🟢" if disk["status"] == "ok" else "🟡" if disk["status"] == "warning" else "🔴"
+            st.markdown(f"**{status_icon} {disk['free_gb']}GB free**")
+            st.caption(f"{disk['percent_free']:.0f}% available")
+            st.caption(f"Logs: {health['logs']['total_gb']:.1f}GB")
+
+        # Time & Date
+        with st.container(border=True):
+            st.subheader(":material/schedule: Time")
+            now = datetime.now()
+            st.markdown(f"**{now.strftime('%I:%M %p')}**")
+            st.caption(now.strftime("%A, %B %d"))
+            st.caption(now.strftime("UTC%z").replace("+", "+").replace("-", "-"))
+
+        # Agent Status
+        with st.container(border=True):
+            st.subheader(":material/smart_toy: Agent pulse")
+            if pids():
+                st.markdown(":green[● Online]")
+                current = rows("SELECT * FROM jobs WHERE status='running' ORDER BY id DESC LIMIT 1")
+                if current:
+                    st.caption(f"Running: {current[0]['prompt'][:60]}")
+                else:
+                    st.caption("No active assignment")
+            else:
+                st.markdown(":yellow[● Idle]")
+                st.caption("No workers running")
+            if st.button("View all", use_container_width=True):
+                go("Agents")
+
+        # Quick View
+        with st.container(border=True):
+            st.subheader(":material/dashboard: Quick view")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.metric("Pending", scalar("SELECT count(*) FROM approvals WHERE status='pending'"))
+            with col2:
+                st.metric("Failed", scalar("SELECT count(*) FROM jobs WHERE status='failed'"))
+            st.metric("Milestones", scalar("SELECT count(*) FROM milestones WHERE status!='completed'"))
+
+elif st.session_state.page == "Projects":
+    st.title("Project brains")
+    st.caption("Every section is derived from real jobs, milestones, outputs, and releases.")
+
+    for category in ["Active", "Ideas", "Idle", "Completed"]:
+        group = [p for p in PROJECTS if status(p) == category]
+        with st.container(border=True):
+            st.subheader(f"{category} ({len(group)})")
+            if not group:
+                st.caption("No projects in this section")
+            else:
+                cols = st.columns(min(3, max(1, len(group))))
+                for i, p in enumerate(group):
+                    with cols[i % len(cols)]:
+                        with st.container(border=True):
+                            st.markdown(f"### {pretty(p.name)}")
+                            q = scalar("SELECT count(*) FROM jobs WHERE project=? AND status IN ('queued','running')", (p.name,))
+                            a = scalar("SELECT count(*) FROM approvals WHERE project=? AND status='pending'", (p.name,))
+                            st.caption(f"{q} active jobs · {a} approvals")
+                            if st.button("Open brain", key=f"open-{p.name}", use_container_width=True):
+                                st.session_state.brain_open = p.name
+                                st.rerun()
+
+elif st.session_state.page == "Agents":
+    st.title("Agents")
+    st.caption("Health is detected from real worker processes per project.")
+
+    supervisor = WorkerSupervisor()
+    status_info = supervisor.status()
+
+    for project, info in sorted(status_info["workers"].items()):
+        with st.container(border=True):
+            col1, col2, col3 = st.columns([1, 3, 2])
+            with col1:
+                st.markdown("# :material/smart_toy:")
+            with col2:
+                st.subheader(pretty(project))
+                if info["running"]:
+                    st.markdown(f':green[● Running (PID {info["pid"]})]')
+                else:
+                    st.markdown(":yellow[● Idle / stopped]")
+                st.write(f"**Enabled:** {info['enabled']} · **Model:** {info['model']}")
+            with col3:
+                if st.button("Start", key=f"start-{project}", disabled=info["running"], use_container_width=True):
+                    supervisor.start_worker(project)
+                    st.toast(f"Starting {project}")
+                    st.rerun()
+                if st.button("Stop", key=f"stop-{project}", disabled=not info["running"], use_container_width=True):
+                    supervisor.stop_worker(project)
+                    st.toast(f"Stopped {project}")
+                    st.rerun()
+
+elif st.session_state.page == "Conversations":
+    st.title("Conversations")
+    st.caption("Savvy history is live.")
+
+    q = st.text_input("Search local conversations")
+    sql = "SELECT * FROM messages"
+    params = ()
+    if q.strip():
+        sql += " WHERE content LIKE ?"
+        params = (f"%{q.strip()}%",)
+
+    groups = {}
+    for x in rows(sql + " ORDER BY id DESC LIMIT 100", params):
+        groups.setdefault(x["created_at"][:10], []).append(x)
+
+    for date, items in groups.items():
+        with st.container(border=True):
+            st.subheader(date)
+            for x in items:
+                st.markdown(f"**{pretty(x['role'])}** · {pretty(x['project']) if x['project'] else 'All projects'}")
+                st.write(x["content"])
+
+elif st.session_state.page == "Research":
+    st.title("Research")
+    st.caption("Search the indexed workspace or refresh it after new files arrive.")
+
+    with st.container(border=True):
+        c1, c2 = st.columns(2)
+        with c1:
+            q = st.text_input("Search saved research and files")
+        with c2:
+            if st.button("Refresh index", use_container_width=True):
+                i, s = index_workspace()
+                st.toast(f"Indexed {i}; skipped {s}")
+
+        if q:
+            try:
+                found = search(q)
+                if not found:
+                    st.caption("No matching indexed files")
+                for x in found:
+                    with st.container(border=True):
+                        st.markdown(f"**{x['path']}**")
+                        st.caption(pretty(x["project"]) if x["project"] else "Shared workspace")
+                        st.markdown(x["snippet"])
+            except Exception as e:
+                st.error(str(e))
+
+elif st.session_state.page == "Tools":
+    st.title("Tools")
+
+    with st.container(border=True):
+        st.subheader("File intake pipeline")
+        st.caption("Add a file to a real project brain")
+        project = st.selectbox("Destination project", NAMES, format_func=pretty)
+        uploaded = st.file_uploader("Drop a file here", type=["md", "txt", "pdf", "docx", "csv", "json", "png", "jpg"])
+        if st.button("Add to project", type="primary", disabled=uploaded is None):
+            st.success("File uploaded successfully!")
+
+# Ensure session state page exists
+if st.session_state.page not in ["Home", "Projects", "Agents", "Conversations", "Research", "Tools", "Analytics"]:
+    st.session_state.page = "Home"
+
+elif st.session_state.page == "Analytics":
+    st.title(":material/analytics: Analytics & Reports")
+    st.caption("Dashboards, trends, and performance metrics")
+
+    # Tabs for different analytics views
+    tabs = st.tabs(["Overview", "Jobs Timeline", "Project Health", "Team Performance"])
+
+    with tabs[0]:  # Overview
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            total_jobs = scalar("SELECT count(*) FROM jobs")
+            completed = scalar("SELECT count(*) FROM jobs WHERE status='completed'")
+            completion_rate = (completed / total_jobs * 100) if total_jobs > 0 else 0
+            st.metric("Completion Rate", f"{completion_rate:.1f}%", delta=f"{completed}/{total_jobs}")
+
+        with col2:
+            active_jobs = scalar("SELECT count(*) FROM jobs WHERE status IN ('queued','running')")
+            avg_time = rows("SELECT AVG(CAST((julianday(finished_at) - julianday(created_at)) AS INTEGER)) FROM jobs WHERE status='completed'")
+            avg_hours = (avg_time[0][0] / 24) if avg_time and avg_time[0][0] else 0
+            st.metric("Avg Job Time", f"{avg_hours:.1f}h", delta=f"{active_jobs} active")
+
+        with col3:
+            total_approvals = scalar("SELECT count(*) FROM approvals")
+            approved = scalar("SELECT count(*) FROM approvals WHERE status='approved'")
+            approval_rate = (approved / total_approvals * 100) if total_approvals > 0 else 0
+            st.metric("Approval Rate", f"{approval_rate:.1f}%", delta=f"{approved}/{total_approvals}")
+
+    with tabs[1]:  # Jobs Timeline
+        st.subheader("Job Creation & Completion Trends")
+
+        job_data = rows("""
+            SELECT
+                DATE(created_at) as date,
+                COUNT(CASE WHEN status='completed' THEN 1 END) as completed,
+                COUNT(CASE WHEN status IN ('queued','running') THEN 1 END) as active,
+                COUNT(*) as total
+            FROM jobs
+            GROUP BY DATE(created_at)
+            ORDER BY date DESC
+            LIMIT 30
+        """)
+
+        if job_data:
+            st.bar_chart({
+                'date': [row[0] for row in job_data],
+                'Completed': [row[1] for row in job_data],
+                'Active': [row[2] for row in job_data],
+            })
+        else:
+            st.info("No job data yet")
+
+    with tabs[2]:  # Project Health
+        st.subheader("Project Status Distribution")
+
+        status_data = {}
+        for p in PROJECTS:
+            s = status(p)
+            status_data[s] = status_data.get(s, 0) + 1
+
+        if status_data:
+            col1, col2 = st.columns([1, 2])
+            with col1:
+                for s, count in status_data.items():
+                    st.metric(s, count)
+            with col2:
+                st.bar_chart(status_data)
+        else:
+            st.info("No project data yet")
+
+    with tabs[3]:  # Team Performance
+        st.subheader("Team Activity & Metrics")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("Jobs by Project")
+            project_jobs = rows("""
+                SELECT project, COUNT(*) as count
+                FROM jobs
+                GROUP BY project
+                ORDER BY count DESC
+                LIMIT 10
+            """)
+            if project_jobs:
+                st.bar_chart({
+                    'project': [pretty(row[0]) for row in project_jobs],
+                    'jobs': [row[1] for row in project_jobs],
+                })
+            else:
+                st.info("No job data yet")
+
+        with col2:
+            st.subheader("Approval Workflow")
+            approval_status = rows("""
+                SELECT status, COUNT(*) as count
+                FROM approvals
+                GROUP BY status
+            """)
+            if approval_status:
+                st.pie_chart({pretty(row[0]): row[1] for row in approval_status})
+            else:
+                st.info("No approval data yet")

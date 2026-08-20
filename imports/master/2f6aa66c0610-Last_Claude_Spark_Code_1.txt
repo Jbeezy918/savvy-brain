@@ -1,0 +1,310 @@
+import streamlit as st
+import pandas as pd
+import datetime
+from datetime import timedelta
+import json
+import requests
+from typing import Dict, List, Optional
+
+# Page configuration
+st.set_page_config(
+    page_title="Spark Tracker Pro",
+    page_icon="🚚",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Initialize session state
+if 'trips' not in st.session_state:
+    st.session_state.trips = []
+if 'customer_history' not in st.session_state:
+    st.session_state.customer_history = {}
+if 'user_settings' not in st.session_state:
+    st.session_state.user_settings = {
+        'mpg': 25.0,
+        'gas_price': 3.50,
+        'hourly_target': 20.0
+    }
+
+class SparkTrip:
+    def __init__(self, trip_id: str, base_pay: float, tip: float, mileage: float, 
+                 estimated_time: float, trip_type: str = "delivery", incentive: float = 0.0):
+        self.trip_id = trip_id
+        self.base_pay = base_pay
+        self.tip = tip
+        self.mileage = mileage
+        self.estimated_time = estimated_time
+        self.trip_type = trip_type  # "delivery" or "shop_and_deliver"
+        self.incentive = incentive
+        self.timestamp = datetime.datetime.now()
+        self.status = "pending"  # pending, accepted, completed, declined
+        
+    def calculate_gas_cost(self, mpg: float, gas_price: float) -> float:
+        return (self.mileage / mpg) * gas_price
+    
+    def calculate_profit(self, mpg: float, gas_price: float) -> float:
+        total_pay = self.base_pay + self.tip + self.incentive
+        gas_cost = self.calculate_gas_cost(mpg, gas_price)
+        return total_pay - gas_cost
+    
+    def calculate_hourly_rate(self, mpg: float, gas_price: float) -> float:
+        profit = self.calculate_profit(mpg, gas_price)
+        return profit / (self.estimated_time / 60) if self.estimated_time > 0 else 0
+    
+    def get_recommendation(self, mpg: float, gas_price: float, target_hourly: float) -> tuple:
+        hourly_rate = self.calculate_hourly_rate(mpg, gas_price)
+        profit = self.calculate_profit(mpg, gas_price)
+        
+        if hourly_rate >= target_hourly and profit > 5:
+            return "🟢 EXCELLENT DEAL", "green"
+        elif hourly_rate >= target_hourly * 0.8 and profit > 2:
+            return "🟡 GOOD DEAL", "orange"
+        elif hourly_rate >= target_hourly * 0.6 and profit > 0:
+            return "🟠 OKAY DEAL", "orange"
+        else:
+            return "🔴 BAD DEAL", "red"
+
+def get_gas_prices(zip_code: str = None) -> float:
+    """Get current gas prices (mock function - in real app, integrate with gas price API)"""
+    # In a real app, you'd integrate with GasBuddy API or similar
+    return 3.45  # Mock price
+
+def main():
+    st.title("🚚 Spark Tracker Pro")
+    st.markdown("### Maximize Your Walmart Spark Earnings")
+    
+    # Sidebar for settings
+    with st.sidebar:
+        st.header("⚙️ Settings")
+        
+        mpg = st.number_input("Vehicle MPG", value=st.session_state.user_settings['mpg'], 
+                             min_value=10.0, max_value=50.0, step=0.5)
+        
+        gas_price = st.number_input("Current Gas Price ($)", 
+                                   value=st.session_state.user_settings['gas_price'], 
+                                   min_value=2.0, max_value=8.0, step=0.05)
+        
+        hourly_target = st.number_input("Target Hourly Rate ($)", 
+                                       value=st.session_state.user_settings['hourly_target'], 
+                                       min_value=10.0, max_value=50.0, step=1.0)
+        
+        # Update session state
+        st.session_state.user_settings.update({
+            'mpg': mpg,
+            'gas_price': gas_price,
+            'hourly_target': hourly_target
+        })
+        
+        if st.button("🔄 Update Gas Prices"):
+            st.session_state.user_settings['gas_price'] = get_gas_prices()
+            st.rerun()
+    
+    # Main tabs
+    tab1, tab2, tab3, tab4 = st.tabs(["📱 Current Trip", "📊 Earnings Summary", "📈 Reports", "👥 Customer History"])
+    
+    with tab1:
+        st.header("Current Trip Analysis")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.subheader("Trip Details")
+            trip_id = st.text_input("Trip ID", value=f"TRIP_{datetime.datetime.now().strftime('%Y%m%d_%H%M')}")
+            base_pay = st.number_input("Base Pay ($)", min_value=0.0, step=0.01, value=7.50, format="%.2f")
+            tip = st.number_input("Tip ($)", min_value=0.0, step=0.01, value=0.00, format="%.2f")
+            incentive = st.number_input("Incentive ($)", min_value=0.0, step=0.01, value=0.00, format="%.2f")
+            mileage = st.number_input("Total Miles", min_value=0.1, step=0.1, value=5.0)
+            estimated_time = st.number_input("Estimated Time (minutes)", min_value=5, step=5, value=30)
+            trip_type = st.selectbox("Trip Type", ["delivery", "shop_and_deliver"])
+        
+        with col2:
+            if st.button("🧮 Analyze Trip", type="primary"):
+                trip = SparkTrip(trip_id, base_pay, tip, mileage, estimated_time, trip_type, incentive)
+                
+                # Calculate metrics
+                gas_cost = trip.calculate_gas_cost(mpg, gas_price)
+                profit = trip.calculate_profit(mpg, gas_price)
+                hourly_rate = trip.calculate_hourly_rate(mpg, gas_price)
+                recommendation, color = trip.get_recommendation(mpg, gas_price, hourly_target)
+                
+                # Display results
+                st.subheader("Trip Analysis")
+                
+                col2a, col2b, col2c = st.columns(3)
+                with col2a:
+                    st.metric("Total Pay", f"${base_pay + tip + incentive:.2f}")
+                    st.metric("Gas Cost", f"${gas_cost:.2f}")
+                with col2b:
+                    st.metric("Net Profit", f"${profit:.2f}", delta=f"${profit:.2f}")
+                    st.metric("Hourly Rate", f"${hourly_rate:.2f}/hr")
+                with col2c:
+                    st.markdown(f"### {recommendation}")
+                    if color == "green":
+                        st.success("This trip meets your profitability targets!")
+                    elif color == "orange":
+                        st.warning("This trip is marginal - consider your current needs")
+                    else:
+                        st.error("This trip is below your profitability targets")
+                
+                # Action buttons
+                col_accept, col_decline = st.columns(2)
+                with col_accept:
+                    if st.button("✅ Accept Trip", type="primary"):
+                        trip.status = "accepted"
+                        st.session_state.trips.append(trip)
+                        st.success("Trip accepted and logged!")
+                        st.rerun()
+                
+                with col_decline:
+                    if st.button("❌ Decline Trip"):
+                        trip.status = "declined"
+                        st.session_state.trips.append(trip)
+                        st.info("Trip declined and logged for analysis")
+                        st.rerun()
+    
+    with tab2:
+        st.header("📊 Earnings Summary")
+        
+        if not st.session_state.trips:
+            st.info("No trips logged yet. Start by analyzing some trips!")
+        else:
+            # Filter to accepted/completed trips
+            completed_trips = [t for t in st.session_state.trips if t.status in ["accepted", "completed"]]
+            
+            if not completed_trips:
+                st.warning("No accepted trips yet.")
+            else:
+                # Calculate summary stats
+                total_trips = len(completed_trips)
+                total_pay = sum(t.base_pay + t.tip + t.incentive for t in completed_trips)
+                total_gas_cost = sum(t.calculate_gas_cost(mpg, gas_price) for t in completed_trips)
+                total_profit = total_pay - total_gas_cost
+                total_miles = sum(t.mileage for t in completed_trips)
+                total_time = sum(t.estimated_time for t in completed_trips) / 60  # Convert to hours
+                avg_hourly = total_profit / total_time if total_time > 0 else 0
+                
+                # Display metrics
+                col1, col2, col3, col4 = st.columns(4)
+                with col1:
+                    st.metric("Total Trips", total_trips)
+                    st.metric("Total Miles", f"{total_miles:.1f}")
+                with col2:
+                    st.metric("Gross Pay", f"${total_pay:.2f}")
+                    st.metric("Gas Costs", f"${total_gas_cost:.2f}")
+                with col3:
+                    st.metric("Net Profit", f"${total_profit:.2f}", delta=f"${total_profit:.2f}")
+                    st.metric("Avg Hourly", f"${avg_hourly:.2f}/hr")
+                with col4:
+                    efficiency = (total_profit / total_pay * 100) if total_pay > 0 else 0
+                    st.metric("Efficiency", f"{efficiency:.1f}%")
+                    st.metric("Total Hours", f"{total_time:.1f}")
+                
+                # Time period breakdown
+                st.subheader("Earnings Breakdown")
+                
+                # Convert to DataFrame for analysis
+                df_data = []
+                for trip in completed_trips:
+                    df_data.append({
+                        'Date': trip.timestamp.date(),
+                        'Trip ID': trip.trip_id,
+                        'Base Pay': trip.base_pay,
+                        'Tip': trip.tip,
+                        'Incentive': trip.incentive,
+                        'Total Pay': trip.base_pay + trip.tip + trip.incentive,
+                        'Miles': trip.mileage,
+                        'Gas Cost': trip.calculate_gas_cost(mpg, gas_price),
+                        'Profit': trip.calculate_profit(mpg, gas_price),
+                        'Hourly Rate': trip.calculate_hourly_rate(mpg, gas_price),
+                        'Time (min)': trip.estimated_time
+                    })
+                
+                df = pd.DataFrame(df_data)
+                
+                # Daily summary
+                daily_summary = df.groupby('Date').agg({
+                    'Total Pay': 'sum',
+                    'Gas Cost': 'sum',
+                    'Profit': 'sum',
+                    'Miles': 'sum',
+                    'Time (min)': 'sum'
+                }).round(2)
+                
+                daily_summary['Hours'] = daily_summary['Time (min)'] / 60
+                daily_summary['Hourly Rate'] = daily_summary['Profit'] / daily_summary['Hours']
+                daily_summary = daily_summary.round(2)
+                
+                st.dataframe(daily_summary, use_container_width=True)
+    
+    with tab3:
+        st.header("📈 Reports & Analytics")
+        
+        if st.session_state.trips:
+            all_trips = st.session_state.trips
+            
+            # Trip acceptance rate
+            total_analyzed = len(all_trips)
+            accepted = len([t for t in all_trips if t.status == "accepted"])
+            declined = len([t for t in all_trips if t.status == "declined"])
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Total Analyzed", total_analyzed)
+            with col2:
+                acceptance_rate = (accepted / total_analyzed * 100) if total_analyzed > 0 else 0
+                st.metric("Acceptance Rate", f"{acceptance_rate:.1f}%")
+            with col3:
+                st.metric("Declined Trips", declined)
+            
+            # Profitability analysis
+            st.subheader("Profitability Analysis")
+            
+            profitable_trips = [t for t in all_trips if t.calculate_profit(mpg, gas_price) > 0]
+            unprofitable_trips = [t for t in all_trips if t.calculate_profit(mpg, gas_price) <= 0]
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                st.success(f"Profitable Trips: {len(profitable_trips)}")
+            with col2:
+                st.error(f"Unprofitable Trips: {len(unprofitable_trips)}")
+            
+            # Show recent trips table
+            st.subheader("Recent Trip History")
+            recent_trips_data = []
+            for trip in reversed(all_trips[-20:]):  # Last 20 trips
+                profit = trip.calculate_profit(mpg, gas_price)
+                hourly = trip.calculate_hourly_rate(mpg, gas_price)
+                recent_trips_data.append({
+                    'Time': trip.timestamp.strftime('%m/%d %H:%M'),
+                    'Trip ID': trip.trip_id,
+                    'Pay': f"${trip.base_pay + trip.tip + trip.incentive:.2f}",
+                    'Miles': f"{trip.mileage:.1f}",
+                    'Profit': f"${profit:.2f}",
+                    'Hourly': f"${hourly:.2f}",
+                    'Status': trip.status.title()
+                })
+            
+            if recent_trips_data:
+                st.dataframe(pd.DataFrame(recent_trips_data), use_container_width=True)
+        else:
+            st.info("Start analyzing trips to see reports and analytics!")
+    
+    with tab4:
+        st.header("👥 Customer History")
+        st.info("Customer tracking feature coming soon! This will track tip changes and delivery frequency.")
+        
+        # Placeholder for customer history functionality
+        customer_address = st.text_input("Customer Address (for tracking)")
+        if customer_address:
+            if customer_address not in st.session_state.customer_history:
+                st.session_state.customer_history[customer_address] = []
+            
+            st.write(f"Delivery history for {customer_address}:")
+            if st.session_state.customer_history[customer_address]:
+                for delivery in st.session_state.customer_history[customer_address]:
+                    st.write(f"- {delivery}")
+            else:
+                st.write("No previous deliveries recorded")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,44 @@
+{
+  "duplicate_groups": [],
+  "generated_at": "2026-07-18T15:07:10.672319+00:00",
+  "projects": [
+    {
+      "health": "needs_attention",
+      "languages": [
+        "Python"
+      ],
+      "launchers": [
+        "LaunchKeyVault.command",
+        "Run_SAM_Scanner.command",
+        "Start_SOPSync.command",
+        "\ud83c\udfdb\ufe0f GovCon Dashboard.command",
+        "\ud83d\udd04 SOPsync Dashboard.command"
+      ],
+      "markers": [],
+      "model_references": [],
+      "name": "Desktop",
+      "path": "/Users/joebudds/Desktop/Desktop",
+      "secret_files": [],
+      "syntax_errors": [
+        "cluster_dispatcher.py:None: source code string cannot contain null bytes",
+        "desktop_mascot.py:None: source code string cannot contain null bytes",
+        "executor_loop.py:None: source code string cannot contain null bytes",
+        "harvest_keys.py:None: source code string cannot contain null bytes",
+        "key_vault_app.py:None: source code string cannot contain null bytes",
+        "master_hub_voice_native.py:None: source code string cannot contain null bytes",
+        "master_hub_voice_wired.py:None: source code string cannot contain null bytes",
+        "relay_dashboard.py:None: source code string cannot contain null bytes",
+        "relay_hub.py:None: source code string cannot contain null bytes",
+        "savvytech_cockpit_engine.py:None: source code string cannot contain null bytes",
+        "savvytech_master_hub_v2.py:None: source code string cannot contain null bytes",
+        "squid_mascot.py:None: source code string cannot contain null bytes",
+        "youtube_analyzer.py:None: source code string cannot contain null bytes",
+        "youtube_machine.py:None: source code string cannot contain null bytes"
+      ]
+    }
+  ],
+  "root": "/Users/joebudds/Desktop/Desktop",
+  "warnings": [
+    "At least one Python file has a syntax error and should not be registered as healthy."
+  ]
+}

@@ -1,0 +1,398 @@
+Name 	Model	Mac Address	IP address	Location									
+AI Sync Box	H6604	CC:B8:5:80:B2:24		Livingroom									
+86in Tv	H6199	D4:AD:FC:81:36:37		Livingroom									
+Garage Rope	H61A8	60:74:F4:16:45:E6		Garage									
+Mini Tube Light	H6046	5c e753 6b 4c a4		Garage									
+Garage LED	H618F	d4 ad FC BA AD F5		Garage									
+String Lights	H608B	60 74 F4 88 D5 26	192.168.68.80	Livingroom									
+Garage Rope	H61A8	60 74 F4 63 53 B2		Garage									
+Garage Rope	H61A8	60 74 F4 2A E5 FE		Garage									
+Stair Lights	H618F	D4 AD FC A9 1A ED		Hallway up/down									
+Livingroom Rope	H61A5	60 74 F4 29 0A B8	192.168.68.106	Livingroom									
+Livvingroom Tube Light	H6062	D4 AD FC DE 45 4A	.	Livingroom									
+Smart Curtain 1	H70B1	60 75 F4 53 8B EA	192.168.68.99	Livingroom									
+Smart Curtain 2	H70B1	60 74 F4 40 A3 04	192.168.68.66	Dinning Room									
+Smart Curtain 3	H70B1	60 74 F4 41 9B 02	192.168.68.73	Dinning Room									
+Floor Lamp Left	H6076	60 74 F4 51 10 E0	192.168.68.89	Livingroom									
+Floor Lamp Right	H6076	60 74 F4 3F BC 21		Livingroom									
+Bar Rope	H61A2	D4 AD FC F2 5F 52		Den									
+Den Rope 10ft 	H61A0	D4 AD FC DF 4E 36		Den									
+Bedroom Rope	H61A8	60 74 F4 42 F6 78		Bedroom									
+Bedroom String Light	H608A	60 71 F4 4D CB 76		Bedroom									
+Kitchen LED 1	H619D	D4 AD FC C5 9F 60		Kitchen									
+Kitchen LED 2	H619D	D4 AD FC 54 2A E8		Kitchen									
+Kitchen LED 3	H618C 	60 74 F4 12 BF 1C		Kitchen									
+Kitchen LED 4	H618A	60 74 f4 03 90 10	192.168.68.94	Bar	iot_device								
+Govee Music Sync	H1162												
+Perm House Lights	H1705C	60 74 F4 AA B6 24		Outside House Lights 									
+													
+													
+		5C 47 5D 23 72 DE	192.168.68.79										
+		4C A9 19 7F 6E 4A	192.168.68.116										
+		6C F2 D8 E7 65 95	192.168.68.95										
+		60 74 F4 70 3D F6	192.168.68.108										
+		AC 9F C3 29 02 D2	192.168.68.96										
+		60 74 F4 12 BF 1C	192.168.68.98										
+		60 74 F4 3F BC 21	192.168.68.86										
+		5C 47 5E 27 E1 3B	192.168.68.131										
+		5C 47 5E 1F E0 8A	192.168.68.146										
+													
+													
+													
+Govee API	5c838b3c-2a0f-437c-aa2b-1be05acb706b	5c838b3c-2a0f-437c-aa2b-1be05acb706b	5c838b3c-2a0f-437c-aa2b-1be05acb706b		5c838b3c-2a0f-437c-aa2b-1be05acb706b								
+													
+													
+													
+													
+													
+													
+		User Code											
+	Tuya	BxdiW0e											
+													
+		Home Assistant				Homey Pro					? The API key from tuya.com: ec8vs7h377jaxasv8585		  {
+		smart home				Connecting homey pro to Tuya for smart home					? The API secret from tuya.com c482b022001e4ddd880963bd16c777c8		    name: 'Gateway',
+		Industry : Smart Home				Industry : Smart Home					? Provide a 'virtual ID' of a device currently registered in the app: eb8a1531b8		    id: 'eba6c3eff357e331a2lff0',
+		Creation Time : 2026-06-29 19:07:08				Creation Time : 2024-10-23 07:28:24					f1145acepjlm		    key: "2/l$2XT{ZG8hm'&=",
+		Data Center : Western America Data Center				Data Center : Western America Data Center					[		    subDevices: [
+		Authorization Key				Authorization Key					  {		      {
+		Access ID/Client ID				Access ID/Client ID					    name: 'Gateway',		        name: 'Rondall’s Bedroom ',
+		ec8vs7h377jaxasv8585				x8cytp8ngxsvfrktwj9e					    id: 'eba6c3eff357e331a2lff0',		        id: 'ebef3cfajm4gngzy',
+		Access Secret/Client Secret				Access Secret/Client Secret					    key: "2/l$2XT{ZG8hm'&=",		        cid: 'b01b6cee959c4b6d'
+		********************************				440b6e40e14b4937976632386aaabee2					    subDevices: [		      },
+		Project Code				Project Code					      {		      {
+		p17827780284153jyn33				p1729686504185r4f8a4					        name: 'Rondall’s Bedroom ',		        name: 'Guest Room',
+						Cloud Authorization IP AllowlistConfigure					        id: 'ebef3cfajm4gngzy',		        id: 'eb7e59bu2yqe5ktk',
+		Secret				Western America Data Center：0 IP(s) addedView					        cid: 'b01b6cee959c4b6d'		        cid: 'f64c7d901184afcc'
+		c482b022001e4ddd880963bd16c777c8									      },		      },
+											      {		      {
+		UID									        name: 'Guest Room',		        name: 'My Room',
+		az1681871643192dIW0e									        id: 'eb7e59bu2yqe5ktk',		        id: 'ebd446v5zitilw6d',
+											        cid: 'f64c7d901184afcc'		        cid: 'c0dcebf5c1986b51'
+											      },		      },
+											      {		      {
+											        name: 'My Room',		        name: 'Chloe’s Room',
+Perfect. Having it mapped out cleanly like this completely eliminates the copy-paste nightmare.											        id: 'ebd446v5zitilw6d',		        id: 'eba08duhusa29lkn',
+I stripped out every single quotation mark, bracket, colon, and piece of formatting text. The data below is structured as a clean Markdown table. When you highlight this entire table block, copy it, and paste it directly into an empty cell in **Excel** or **Google Sheets**, it will automatically separate everything perfectly into its own independent columns and rows.											        cid: 'c0dcebf5c1986b51'		        cid: 'bbe9f7dcb36d0654'
+### Master Device Key Sheet											      },		      },
+| Column A: Name | Column B: Host (IP) | Column C: Device ID | Column D: Local Key |											      {		      { name: '蓝牙柜锁', id: 'eb1ba7bwz3eh7skg', cid: 'fcdd3d4878c17081' }
+|---|---|---|---|											        name: 'Chloe’s Room',		    ]
+| Gateway | [Insert IP] | eba6c3eff357e331a2lff0 | 2/1$2XT{ZG8hm'&= |											        id: 'eba08duhusa29lkn',		  },
+| Kitchen Cubby 1 | [Insert IP] | eb23287083dac395ebg6yd | aev>1e^BPUbv#tJ} |											        cid: 'bbe9f7dcb36d0654'		  {
+| Cabinet Light 1 | [Insert IP] | eb9ac459c07b9af5bao4nz | >;Xvp1$A#PsvaY=9 |											      },		    name: 'Kitchen Cubby 1',
+| Wi-Fi Gateway 4 Garage | [Insert IP] | eb8a1531b8f1145acepjlm | v{huWcm6g@I:?!& |											      { name: '蓝牙柜锁', id: 'eb1ba7bwz3eh7skg', cid: 'fcdd3d4878c17081' }		    id: 'eb23287083dac395ebg6yd',
+| Garage Power Strip PC side | [Insert IP] | eb9880e670237d83b0l03j | 1`v0'fHSI6{?g56x |											    ]		    key: 'aev>1e^BPUbv#tJ}'
+| Den Cubby 2 | [Insert IP] | ebd6d420666618013b9pvk | w{)g#qx@.IPxFp!( |											  },		  },
+| Den Cubby 1 | [Insert IP] | eba9b9f7e721778d1b4bcy | akkC0U!sv<.$bgFr |											  {		  {
+| Cabinet Light 2 | [Insert IP] | ebc4cb077583b01d0ct7sg | }e1f?N&`.eU=~TLU |											    name: 'Kitchen Cubby 1',		    name: 'Cabinet Light 1 ',
+| Contact Sensor 2 | [Insert IP] | ebc2c70254ae9b36c0d6db | .h&u^E1/RM0>lyMP |											    id: 'eb23287083dac395ebg6yd',		    id: 'eb9ac459c07b9af5bao4nz',
+### 💡 Crucial Note for Your Sub-Devices (Bluetooth/Zigbee)											    key: 'aev>1e^BPUbv#tJ}'		    key: '>;Xvp1$A#PsvaY=9'
+You'll notice that the devices under your master gateways (like *Rondall's Bedroom*, *Guest Room*, *My Room*, *Chloe's Room*, and *Garage*) **do not have their own unique Local Keys**.											  },		  },
+That isn't a glitch in the script! Because those are sub-devices connected to a central hub, they share the exact security credentials of their main parent gateway. When you add any of those specific sub-devices to Home Assistant, you simply use the **Device ID** of that sub-device, but you paste the **Local Key of its master parent Gateway** to unlock the local connection lane.											  {		  {
+Go ahead and copy this grid right over to your spreadsheet, drop your network IPs into Column B, and you can speedrun the Home Assistant setup fields with pure single-clicks!											    name: 'Cabinet Light 1 ',		    name: 'Wi-Fi  Gateway   4 Garage Door',
+											    id: 'eb9ac459c07b9af5bao4nz',		    id: 'eb8a1531b8f1145acepjlm',
+											    key: '>;Xvp1$A#PsvaY=9'		    key: 'v{huWcm6g@I:|?!&',
+											  },		    subDevices: [
+											  {		      {
+Connected Clients											    name: 'Wi-Fi  Gateway   4 Garage Door',		        name: 'Garage ',
+(All Deco's)											    id: 'eb8a1531b8f1145acepjlm',		        id: 'eb1595c4bf3a781e32rzj5',
+	Type	Information	Real-time Rate	Connection							    key: 'v{huWcm6g@I:|?!&',		        cid: '613a723c06ab1021'
+		Smart curtain two	0KB/s	Wireless(2.4G)							    subDevices: [		      }
+		60-74-F4-40-A3-04	0KB/s								      {		    ]
+		192.168.68.66									        name: 'Garage ',		  },
+		Floor Lamp Right	0KB/s	Wireless(2.4G)							        id: 'eb1595c4bf3a781e32rzj5',		  {
+		60-74-F4-51-10-E0	0KB/s								        cid: '613a723c06ab1021'		    name: 'Garage Power Strip PC side',
+		192.168.68.89									      }		    id: 'eb9880e670237d83b0l03j',
+		io	0KB/s	Wireless(2.4G)							    ]		    key: "1`vO'fHSI6{?g56x"
+		5C-47-5E-23-72-DE	0KB/s								  },		  },
+		192.168.68.79									  {		  {
+		i.	0KB/s	Wireless(2.4G)							    name: 'Garage Power Strip PC side',		    name: 'Den Cubby 2',
+		5C-47-5E-27-E1-3B	0KB/s								    id: 'eb9880e670237d83b0l03j',		    id: 'ebd6d420666618013b9pvk',
+		192.168.68.131									    key: "1`vO'fHSI6{?g56x"		    key: 'w{)g#qx@.IPxFp!('
+		wlan0	0KB/s	Wireless(2.4G)							  },		  },
+		A8-80-55-93-90-AF	0KB/s								  {		  {
+		192.168.68.81									    name: 'Den Cubby 2',		    name: 'Den Cubby 1',
+		io	0KB/s	Wireless(2.4G)							    id: 'ebd6d420666618013b9pvk',		    id: 'eba9b9f7e721778d1b4bcy',
+		60-74-F4-70-3D-F6	0KB/s								    key: 'w{)g#qx@.IPxFp!('		    key: 'akkC0U!sv<.$bgFr'
+		192.168.68.108									  },		  },
+		P135	0KB/s	Wireless(2.4G)							  {		  {
+		74-FE-CE-B3-CF-3F	0KB/s								    name: 'Den Cubby 1',		    name: 'Cabinet Light 2',
+		192.168.68.54									    id: 'eba9b9f7e721778d1b4bcy',		    id: 'ebc4cb077583b01d0ct7sg',
+		phone	0KB/s	Wireless(5G)							    key: 'akkC0U!sv<.$bgFr'		    key: '}e1f?N&`.eU=~TLU'
+		58-9A-3E-F3-FE-40	0KB/s								  },		  },
+		192.168.68.74									  {		  {
+		Private	0KB/s	Wireless(2.4G)							    name: 'Cabinet Light 2',		    name: 'Contact Sensor 2',
+		D4-AD-FC-81-36-37	0KB/s								    id: 'ebc4cb077583b01d0ct7sg',		    id: 'ebc2c70254ae9b36c0d6db',
+		192.168.68.91									    key: '}e1f?N&`.eU=~TLU'		    key: '.h&u^E1/RM0>lyMP'
+		Smart curtain one	0KB/s	Wireless(2.4G)							  },		  }
+		60-74-F4-53-8B-EA	0KB/s								  {		]
+		192.168.68.99									    name: 'Contact Sensor 2',		━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+		io	0KB/s	Wireless(2.4G)							    id: 'ebc2c70254ae9b36c0d6db',		[20:15:33] joebudds@MacBook-Pro-7 ~
+		60-74-F4-12-BF-1C	0KB/s								    key: '.h&u^E1/RM0>lyMP'		
+		192.168.68.98									  }		
+		Mac	0KB/s	Wireless(5G)							]		
+		0A-F3-B6-AA-FE-AD	0KB/s								━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━		
+		192.168.68.112											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-4D-CB-76	0KB/s										
+		192.168.68.139											
+		Private	0KB/s	Wireless(2.4G)									
+		D4-AD-FC-BA-AD-F5	0KB/s										
+		192.168.68.82											
+		tablet	0KB/s	Wireless(2.4G)									
+		F0-2F-9E-73-EA-DE	0KB/s										
+		192.168.68.145											
+		string lights	0KB/s	Wireless(2.4G)									
+		60-74-F4-88-D5-26	0KB/s										
+		192.168.68.80											
+		phone	0KB/s	Wireless(2.4G)									
+		3C-E4-41-90-92-07	0KB/s										
+		192.168.68.70											
+		tablet	0KB/s	Wireless(5G)									
+		C0-91-B9-F8-DB-99	0KB/s										
+		192.168.68.117											
+		JBs-IPhone	0KB/s	Wireless(6G)									
+		AC-DF-A1-65-DE-D3	0KB/s										
+		192.168.68.75											
+		RingFloodlightCam-6c	0KB/s	Wireless(2.4G)									
+		9C-76-13-B5-0D-6C	0KB/s										
+		192.168.68.152											
+		echoshow-cdd851a7e0bd16b9	0KB/s	Wireless(2.4G)									
+		98-CC-F3-15-90-EB	0KB/s										
+		192.168.68.124											
+		H100	0KB/s	Wireless(2.4G)									
+		74-FE-CE-FC-64-B6	0KB/s										
+		192.168.68.97											
+		Govee Bar Light	0KB/s	Wireless(2.4G)									
+		60-74-F4-03-90-10	0KB/s										
+		192.168.68.94											
+		wlan0	0KB/s	Wireless(2.4G)									
+		A8-80-55-93-97-63	0KB/s										
+		192.168.68.61											
+		iPhone	0KB/s	Wireless(5G)									
+		9A-FD-8B-1A-7C-79	0KB/s										
+		192.168.68.156											
+		Amazon	0KB/s	Wireless(2.4G)									
+		EC-2B-EB-30-C4-B3	0KB/s										
+		192.168.68.56											
+		io	0KB/s	Wireless(2.4G)									
+		5C-47-5E-1F-E0-8A	0KB/s										
+		192.168.68.76											
+		phone	0KB/s	Wireless(5G)									
+		28-73-F6-03-74-DF	0KB/s										
+		192.168.68.50											
+		amazon-5024e288a	0KB/s	Wireless(2.4G)									
+		B0-F7-C4-D5-E4-52	0KB/s										
+		192.168.68.123											
+		wlan0	0KB/s	Wireless(2.4G)									
+		A8-80-55-93-96-B3	0KB/s										
+		192.168.68.55											
+		iot_device	0KB/s	Wireless(2.4G)									
+		BC-2A-33-FA-86-13	0KB/s										
+		192.168.68.60											
+		iot_device	0KB/s	Wireless(2.4G)									
+		CC-B8-5E-80-B2-24	0KB/s										
+		192.168.68.130											
+		Private	0KB/s	Wireless(2.4G)									
+		D4-AD-FC-54-2A-E8	0KB/s										
+		192.168.68.68											
+		HL_PAN3-D03F27C05007	0KB/s	Wireless(2.4G)									
+		D0-3F-27-C0-50-07	0KB/s										
+		192.168.68.96											
+		amazon-c9a2dd2e4	0KB/s	Wireless(5G)									
+		14-0A-C5-DB-66-E8	0KB/s										
+		192.168.68.129											
+		Private	0KB/s	Wireless(2.4G)									
+		D4-AD-FC-A9-1A-ED	0KB/s										
+		192.168.68.84											
+		tablet	0KB/s	Wireless(5G)									
+		AC-41-6A-CD-CE-24	0KB/s										
+		192.168.68.103											
+		phone	0KB/s	Wired									
+		4C-49-29-AD-48-95	0KB/s										
+		192.168.68.92											
+		Private	0KB/s	Wireless(2.4G)									
+		D4-AD-FC-F2-5F-52	0KB/s										
+		192.168.68.114											
+		io	0KB/s	Wireless(2.4G)									
+		60-74-F4-29-0A-B8	0KB/s										
+		192.168.68.106											
+		io	0KB/s	Wireless(2.4G)									
+		AC-9F-C3-29-02-D2	0KB/s										
+		192.168.68.154											
+		RingStickUpCam-bb	0KB/s	Wireless(2.4G)									
+		90-48-6C-D3-49-BB	0KB/s										
+		192.168.68.57											
+		amazon-d4832f581	0KB/s	Wireless(2.4G)									
+		5C-8B-6B-AC-3B-94	0KB/s										
+		192.168.68.72											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-2A-E5-FE	0KB/s										
+		192.168.68.146											
+		iot_device	0KB/s	Wireless(2.4G)									
+		BC-2A-33-C6-F7-D6	0KB/s										
+		192.168.68.65											
+		wlan0	0KB/s	Wireless(2.4G)									
+		D8-1F-12-07-9D-74	0KB/s										
+		192.168.68.62											
+		RingStickUpCam-c1	0KB/s	Wireless(2.4G)									
+		90-48-6C-DB-9D-C1	0KB/s										
+		192.168.68.63											
+		GE_Light_2FD5	0KB/s	Wireless(2.4G)									
+		78-6D-EB-A3-2F-D5	0KB/s										
+		192.168.68.150											
+		io	0KB/s	Wireless(2.4G)									
+		4C-A9-19-7F-6E-4A	0KB/s										
+		192.168.68.116											
+		phone	0KB/s	Wireless(5G)									
+		A8-4A-63-AC-41-4B	0KB/s										
+		192.168.68.107											
+		tablet	0KB/s	Wireless(2.4G)									
+		44-3D-54-84-D2-F5	0KB/s										
+		192.168.68.144											
+		tablet	0KB/s	Wireless(2.4G)									
+		44-3D-54-ED-9E-B3	0KB/s										
+		192.168.68.93											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-AA-B6-24	0KB/s										
+		192.168.68.142											
+		Amazon	0KB/s	Wireless(2.4G)									
+		AC-63-BE-91-17-DD	0KB/s										
+		192.168.68.78											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-42-F6-78	0KB/s										
+		192.168.68.153											
+		RingStickUpCam-92	0KB/s	Wireless(2.4G)									
+		5C-47-5E-4D-E3-92	0KB/s										
+		192.168.68.113											
+		Garage	0KB/s	Wireless(2.4G)									
+		D4-A3-3D-7C-B4-E6	0KB/s										
+		192.168.68.52											
+		Private	0KB/s	Wireless(2.4G)									
+		D4-AD-FC-DE-45-4A	0KB/s										
+		192.168.68.53											
+		tablet	0KB/s	Wireless(2.4G)									
+		10-BF-67-C9-87-53	0KB/s										
+		192.168.68.77											
+		Private	0KB/s	Wireless(2.4G)									
+		D4-AD-FC-C5-9F-60	0KB/s										
+		192.168.68.105											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-76-F3-10	0KB/s										
+		192.168.68.122											
+		iPad	0KB/s	Wireless(5G)									
+		7A-F8-C3-55-A9-A7	0KB/s										
+		192.168.68.120											
+		Private	0KB/s	Wireless(2.4G)									
+		D4-AD-FC-DF-4E-36	0KB/s										
+		192.168.68.90											
+		wlan0	0KB/s	Wireless(2.4G)									
+		38-1F-8D-60-0C-47	0KB/s										
+		192.168.68.69											
+		RingStickUpCam-13	0KB/s	Wireless(2.4G)									
+		5C-47-5E-40-4A-13	0KB/s										
+		192.168.68.111											
+		nuk-node	0KB/s	Wired									
+		84-47-09-71-6E-8E	0KB/s										
+		192.168.68.102											
+		MacBook-Pro-7	0KB/s	Wired									
+		9C-EB-E8-77-A0-DE	0KB/s										
+		192.168.68.58											
+		tablet	0KB/s	Wireless(2.4G)									
+		FC-E9-D8-DF-77-80	0KB/s										
+		192.168.68.133											
+		ESP-E54ED3	0KB/s	Wireless(2.4G)									
+		AC-0B-FB-E5-4E-D3	0KB/s										
+		192.168.68.71											
+		tablet	0KB/s	Wireless(2.4G)									
+		90-39-5F-E0-35-AF	0KB/s										
+		192.168.68.148											
+		dell-node	0KB/s	Wireless(5G)									
+		00-24-D6-09-B3-A0	0KB/s										
+		192.168.68.149											
+		wlan0	0KB/s	Wireless(2.4G)									
+		FC-67-1F-BA-44-22	0KB/s										
+		192.168.68.85											
+		HL_PAN3-80482CAC9810	0KB/s	Wireless(2.4G)									
+		80-48-2C-AC-98-10	0KB/s										
+		192.168.68.136											
+		phone	0KB/s	Wireless(5G)									
+		28-73-F6-03-59-C9	0KB/s										
+		192.168.68.137											
+		Amazon	0KB/s	Wireless(5G)									
+		68-54-FD-56-73-CA	0KB/s										
+		192.168.68.143											
+		Amazon	0KB/s	Wireless(2.4G)									
+		AC-63-BE-26-D3-45	0KB/s										
+		192.168.68.127											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-3F-BC-21	0KB/s										
+		192.168.68.86											
+		iot_device	0KB/s	Wireless(2.4G)									
+		5C-E7-53-6B-4C-A4	0KB/s										
+		192.168.68.121											
+		hp-node	0KB/s	Wired									
+		A4-5D-36-C1-71-AA	0KB/s										
+		192.168.68.104											
+		Amazon	0KB/s	Wireless(2.4G)									
+		EC-2B-EB-8B-81-63	0KB/s										
+		192.168.68.118											
+		Lutron-051337ac	0KB/s	Wired									
+		6C-C3-74-BA-50-F9	0KB/s										
+		192.168.68.51											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-16-45-E6	0KB/s										
+		192.168.68.151											
+		wlan0	0KB/s	Wireless(2.4G)									
+		A0-92-08-EF-13-70	0KB/s										
+		192.168.68.67											
+		amazon-e2a9e39e5	0KB/s	Wireless(5G)									
+		F4-03-2A-94-73-2F	0KB/s										
+		192.168.68.115											
+		Toshiba Cast TV	0KB/s	Wired									
+		1C-39-47-89-34-0A	0KB/s										
+		192.168.68.95											
+		Kitchen	0KB/s	Wireless(5G)									
+		D4-90-9C-EB-3B-D5	0KB/s										
+		192.168.68.140											
+		iot_device	0KB/s	Wireless(2.4G)									
+		60-74-F4-63-53-B2	0KB/s										
+		192.168.68.125											
+		Upstairs-Thermostat	0KB/s	Wireless(2.4G)									
+		44-61-32-4E-35-CE	0KB/s										
+		192.168.68.119											
+		Ring LLC	0KB/s	Wireless(2.4G)									
+		9C-76-13-FF-42-C6	0KB/s										
+		192.168.68.87											
+		Presence-Sensor-FP2-1F10	0KB/s	Wireless(2.4G)									
+		54-EF-44-54-1F-10	0KB/s										
+		192.168.68.128											
+		ESP-32E7D1	0KB/s	Wireless(2.4G)									
+		D4-8C-49-32-E7-D1	0KB/s										
+		192.168.68.126											
+		amazon-73893c89a	0KB/s	Wireless(2.4G)									
+		E8-D8-7E-04-91-73	0KB/s										
+		192.168.68.64											
+		iot_device	0KB/s	Wireless(2.4G)									
+		6C-F2-D8-E7-65-7A	0KB/s										
+		192.168.68.155											
+		tablet	0KB/s	Wireless(5G)									
+		6C-0C-9A-EF-73-8F	0KB/s										
+		192.168.68.141											
+		Aqara-Hub-M2-6AE8	0KB/s	Wireless(2.4G)									
+		54-EF-44-53-6A-E8	0KB/s										
+		192.168.68.59											
+		MacBook-Pro-7	0KB/s	-									
+		84-2F-57-63-B1-99	0KB/s										
+		192.168.68.100											
+		RingStickUpCam-11	0KB/s	Wireless(2.4G)									
+		90-48-6C-AE-17-11	0KB/s										
+		192.168.68.109											
+		nuk-node	0KB/s	Wireless(5G)									
+		84-9E-56-41-18-E5	0KB/s										
+		192.168.68.138											
+		homey	0KB/s	Wired									
+		C0-EA-C3-63-A7-F3	0KB/s										
+		192.168.68.135											
+		tablet	0KB/s	Wireless(2.4G)									
+		44-3D-54-76-58-4D	0KB/s										
+		192.168.68.88											
